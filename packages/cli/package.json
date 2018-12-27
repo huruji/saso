@@ -1,5 +1,5 @@
 {
-  "name": "@saso/updater",
+  "name": "@saso/cli",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@saso/log": "^1.0.0",
+    "commander": "^2.19.0"
+  }
 }

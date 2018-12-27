@@ -1,0 +1,232 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/Users/huruji/Documents/github/saso/node_modules/.bin/npm',
+1 verbose cli   'install' ]
+2 info using npm@3.10.10
+3 info using node@v10.8.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly fetchNamedPackageData @legos/wqvue
+20 silly mapToRegistry name @legos/wqvue
+21 silly mapToRegistry scope (from package name) @legos
+22 verbose mapToRegistry no registry URL found in name for scope @legos
+23 silly mapToRegistry using default registry
+24 silly mapToRegistry registry http://registry.npmjs.org/
+25 silly mapToRegistry data Result {
+25 silly mapToRegistry   raw: '@legos/wqvue',
+25 silly mapToRegistry   scope: '@legos',
+25 silly mapToRegistry   escapedName: '@legos%2fwqvue',
+25 silly mapToRegistry   name: '@legos/wqvue',
+25 silly mapToRegistry   rawSpec: '',
+25 silly mapToRegistry   spec: 'latest',
+25 silly mapToRegistry   type: 'tag' }
+26 silly mapToRegistry uri http://registry.npmjs.org/@legos%2fwqvue
+27 silly fetchNamedPackageData chain-get
+28 silly mapToRegistry name chain-get
+29 silly mapToRegistry using default registry
+30 silly mapToRegistry registry http://registry.npmjs.org/
+31 silly mapToRegistry data Result {
+31 silly mapToRegistry   raw: 'chain-get',
+31 silly mapToRegistry   scope: null,
+31 silly mapToRegistry   escapedName: 'chain-get',
+31 silly mapToRegistry   name: 'chain-get',
+31 silly mapToRegistry   rawSpec: '',
+31 silly mapToRegistry   spec: 'latest',
+31 silly mapToRegistry   type: 'tag' }
+32 silly mapToRegistry uri http://registry.npmjs.org/chain-get
+33 verbose request uri http://registry.npmjs.org/@legos%2fwqvue
+34 verbose request no auth needed
+35 info attempt registry request try #1 at 23:46:26
+36 verbose request using bearer token for auth
+37 verbose request id f7aab8d38e81ca5c
+38 http request GET http://registry.npmjs.org/@legos%2fwqvue
+39 verbose request uri http://registry.npmjs.org/chain-get
+40 verbose request no auth needed
+41 info attempt registry request try #1 at 23:46:26
+42 verbose request using bearer token for auth
+43 verbose etag W/"522488cc215ded12137ccfe77bdbc449"
+44 verbose lastModified Thu, 29 Nov 2018 09:22:59 GMT
+45 http request GET http://registry.npmjs.org/chain-get
+46 http 304 http://registry.npmjs.org/chain-get
+47 verbose headers { date: 'Thu, 27 Dec 2018 15:46:28 GMT',
+47 verbose headers   connection: 'keep-alive',
+47 verbose headers   'set-cookie':
+47 verbose headers    [ '__cfduid=d839f1522b7b7cf22cc2f4d7a939756191545925586; expires=Fri, 27-Dec-19 15:46:26 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+47 verbose headers   'cf-cache-status': 'REVALIDATED',
+47 verbose headers   'cache-control': 'max-age=300',
+47 verbose headers   'cf-ray': '48fceb8504a7b753-HKG',
+47 verbose headers   etag: '"522488cc215ded12137ccfe77bdbc449"',
+47 verbose headers   'expect-ct':
+47 verbose headers    'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+47 verbose headers   'last-modified': 'Thu, 29 Nov 2018 09:22:59 GMT',
+47 verbose headers   vary: 'accept-encoding, accept',
+47 verbose headers   'x-amz-meta-rev': '3-9a8906c515537eda20a14707c2fa0fbf',
+47 verbose headers   server: 'cloudflare' }
+48 silly get cb [ 304,
+48 silly get   { date: 'Thu, 27 Dec 2018 15:46:28 GMT',
+48 silly get     connection: 'keep-alive',
+48 silly get     'set-cookie':
+48 silly get      [ '__cfduid=d839f1522b7b7cf22cc2f4d7a939756191545925586; expires=Fri, 27-Dec-19 15:46:26 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+48 silly get     'cf-cache-status': 'REVALIDATED',
+48 silly get     'cache-control': 'max-age=300',
+48 silly get     'cf-ray': '48fceb8504a7b753-HKG',
+48 silly get     etag: '"522488cc215ded12137ccfe77bdbc449"',
+48 silly get     'expect-ct':
+48 silly get      'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+48 silly get     'last-modified': 'Thu, 29 Nov 2018 09:22:59 GMT',
+48 silly get     vary: 'accept-encoding, accept',
+48 silly get     'x-amz-meta-rev': '3-9a8906c515537eda20a14707c2fa0fbf',
+48 silly get     server: 'cloudflare' } ]
+49 verbose etag http://registry.npmjs.org/chain-get from cache
+50 verbose get saving chain-get to /Users/huruji/.npm/registry.npmjs.org/chain-get/.cache.json
+51 verbose correctMkdir /Users/huruji/.npm correctMkdir not in flight; initializing
+52 silly resolveWithNewModule chain-get@1.0.2 checking installable status
+53 silly cache add args [ 'chain-get@^1.0.0', null ]
+54 verbose cache add spec chain-get@^1.0.0
+55 silly cache add parsed spec Result {
+55 silly cache add   raw: 'chain-get@^1.0.0',
+55 silly cache add   scope: null,
+55 silly cache add   escapedName: 'chain-get',
+55 silly cache add   name: 'chain-get',
+55 silly cache add   rawSpec: '^1.0.0',
+55 silly cache add   spec: '>=1.0.0 <2.0.0',
+55 silly cache add   type: 'range' }
+56 silly addNamed chain-get@>=1.0.0 <2.0.0
+57 verbose addNamed ">=1.0.0 <2.0.0" is a valid semver range for chain-get
+58 silly addNameRange { name: 'chain-get', range: '>=1.0.0 <2.0.0', hasData: false }
+59 silly mapToRegistry name chain-get
+60 silly mapToRegistry using default registry
+61 silly mapToRegistry registry http://registry.npmjs.org/
+62 silly mapToRegistry data Result {
+62 silly mapToRegistry   raw: 'chain-get',
+62 silly mapToRegistry   scope: null,
+62 silly mapToRegistry   escapedName: 'chain-get',
+62 silly mapToRegistry   name: 'chain-get',
+62 silly mapToRegistry   rawSpec: '',
+62 silly mapToRegistry   spec: 'latest',
+62 silly mapToRegistry   type: 'tag' }
+63 silly mapToRegistry uri http://registry.npmjs.org/chain-get
+64 verbose addNameRange registry:http://registry.npmjs.org/chain-get not in flight; fetching
+65 verbose get http://registry.npmjs.org/chain-get not expired, no request
+66 silly addNameRange number 2 { name: 'chain-get', range: '>=1.0.0 <2.0.0', hasData: true }
+67 silly addNameRange versions [ 'chain-get', [ '1.0.0', '1.0.1', '1.0.2' ] ]
+68 silly addNamed chain-get@1.0.2
+69 verbose addNamed "1.0.2" is a plain semver version for chain-get
+70 silly mapToRegistry name chain-get
+71 silly mapToRegistry using default registry
+72 silly mapToRegistry registry http://registry.npmjs.org/
+73 silly mapToRegistry data Result {
+73 silly mapToRegistry   raw: 'chain-get',
+73 silly mapToRegistry   scope: null,
+73 silly mapToRegistry   escapedName: 'chain-get',
+73 silly mapToRegistry   name: 'chain-get',
+73 silly mapToRegistry   rawSpec: '',
+73 silly mapToRegistry   spec: 'latest',
+73 silly mapToRegistry   type: 'tag' }
+74 silly mapToRegistry uri http://registry.npmjs.org/chain-get
+75 verbose addRemoteTarball http://registry.npmjs.org/chain-get/-/chain-get-1.0.2.tgz not in flight; adding
+76 verbose addRemoteTarball [ 'http://registry.npmjs.org/chain-get/-/chain-get-1.0.2.tgz',
+76 verbose addRemoteTarball   '4392ca3750ea515c3322ba25c694f31c7d8f391d' ]
+77 info retry fetch attempt 1 at 23:46:28
+78 info attempt registry request try #1 at 23:46:28
+79 http fetch GET http://registry.npmjs.org/chain-get/-/chain-get-1.0.2.tgz
+80 verbose request using bearer token for auth
+81 http fetch 200 http://registry.npmjs.org/chain-get/-/chain-get-1.0.2.tgz
+82 silly fetchAndShaCheck shasum 4392ca3750ea515c3322ba25c694f31c7d8f391d
+83 verbose addTmpTarball /var/folders/my/jlfqw4t139187pbd50nshy8c0000gn/T/npm-1908-a47a7010/registry.npmjs.org/chain-get/-/chain-get-1.0.2.tgz not in flight; adding
+84 verbose addTmpTarball already have metadata; skipping unpack for chain-get@1.0.2
+85 verbose correctMkdir /Users/huruji/.npm correctMkdir not in flight; initializing
+86 silly cache afterAdd chain-get@1.0.2
+87 verbose afterAdd /Users/huruji/.npm/chain-get/1.0.2/package/package.json not in flight; writing
+88 verbose correctMkdir /Users/huruji/.npm correctMkdir not in flight; initializing
+89 verbose afterAdd /Users/huruji/.npm/chain-get/1.0.2/package/package.json written
+90 http 404 http://registry.npmjs.org/@legos%2fwqvue
+91 verbose headers { date: 'Thu, 27 Dec 2018 15:46:30 GMT',
+91 verbose headers   'content-type': 'application/json',
+91 verbose headers   'content-length': '21',
+91 verbose headers   connection: 'keep-alive',
+91 verbose headers   'set-cookie':
+91 verbose headers    [ '__cfduid=d83ac5f41e28ac6baf8ad2d21a502e70a1545925587; expires=Fri, 27-Dec-19 15:46:27 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+91 verbose headers   'cf-ray': '48fceb8ae2fcb11c-HKG',
+91 verbose headers   'expect-ct':
+91 verbose headers    'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+91 verbose headers   vary: 'Accept-Encoding',
+91 verbose headers   server: 'cloudflare' }
+92 silly get cb [ 404,
+92 silly get   { date: 'Thu, 27 Dec 2018 15:46:30 GMT',
+92 silly get     'content-type': 'application/json',
+92 silly get     'content-length': '21',
+92 silly get     connection: 'keep-alive',
+92 silly get     'set-cookie':
+92 silly get      [ '__cfduid=d83ac5f41e28ac6baf8ad2d21a502e70a1545925587; expires=Fri, 27-Dec-19 15:46:27 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+92 silly get     'cf-ray': '48fceb8ae2fcb11c-HKG',
+92 silly get     'expect-ct':
+92 silly get      'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+92 silly get     vary: 'Accept-Encoding',
+92 silly get     server: 'cloudflare' } ]
+93 silly fetchPackageMetaData Error: Not found : @legos/wqvue
+93 silly fetchPackageMetaData     at makeError (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+93 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+93 silly fetchPackageMetaData     at Request._callback (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+93 silly fetchPackageMetaData     at Request.self.callback (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/request/request.js:187:22)
+93 silly fetchPackageMetaData     at Request.emit (events.js:182:13)
+93 silly fetchPackageMetaData     at Request.<anonymous> (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/request/request.js:1048:10)
+93 silly fetchPackageMetaData     at Request.emit (events.js:182:13)
+93 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/request/request.js:969:12)
+93 silly fetchPackageMetaData     at IncomingMessage.emit (events.js:187:15)
+93 silly fetchPackageMetaData     at endReadableNT (_stream_readable.js:1081:12)
+93 silly fetchPackageMetaData  error for @legos/wqvue@^1.1.16 { Error: Not found : @legos/wqvue
+93 silly fetchPackageMetaData     at makeError (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+93 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+93 silly fetchPackageMetaData     at Request._callback (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+93 silly fetchPackageMetaData     at Request.self.callback (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/request/request.js:187:22)
+93 silly fetchPackageMetaData     at Request.emit (events.js:182:13)
+93 silly fetchPackageMetaData     at Request.<anonymous> (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/request/request.js:1048:10)
+93 silly fetchPackageMetaData     at Request.emit (events.js:182:13)
+93 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/request/request.js:969:12)
+93 silly fetchPackageMetaData     at IncomingMessage.emit (events.js:187:15)
+93 silly fetchPackageMetaData     at endReadableNT (_stream_readable.js:1081:12) pkgid: '@legos/wqvue', statusCode: 404, code: 'E404' }
+94 silly rollbackFailedOptional Starting
+95 silly rollbackFailedOptional Finishing
+96 silly runTopLevelLifecycles Finishing
+97 silly install printInstalled
+98 verbose stack Error: Not found : @legos/wqvue
+98 verbose stack     at makeError (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+98 verbose stack     at CachingRegistryClient.<anonymous> (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+98 verbose stack     at Request._callback (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+98 verbose stack     at Request.self.callback (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/request/request.js:187:22)
+98 verbose stack     at Request.emit (events.js:182:13)
+98 verbose stack     at Request.<anonymous> (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/request/request.js:1048:10)
+98 verbose stack     at Request.emit (events.js:182:13)
+98 verbose stack     at IncomingMessage.<anonymous> (/Users/huruji/Documents/github/saso/node_modules/npm/node_modules/request/request.js:969:12)
+98 verbose stack     at IncomingMessage.emit (events.js:187:15)
+98 verbose stack     at endReadableNT (_stream_readable.js:1081:12)
+99 verbose statusCode 404
+100 verbose pkgid @legos/wqvue
+101 verbose cwd /Users/huruji/Documents/github/saso/packages/updater
+102 error Darwin 18.0.0
+103 error argv "/usr/local/bin/node" "/Users/huruji/Documents/github/saso/node_modules/.bin/npm" "install"
+104 error node v10.8.0
+105 error npm  v3.10.10
+106 error code E404
+107 error 404 Not found : @legos/wqvue
+108 error 404
+109 error 404 '@legos/wqvue' is not in the npm registry.
+110 error 404 You should bug the author to publish it (or use the name yourself!)
+111 error 404 It was specified as a dependency of '@saso/updater'
+112 error 404 Note that you can also install from a
+113 error 404 tarball, folder, http url, or git url.
+114 verbose exit [ 1, true ]
