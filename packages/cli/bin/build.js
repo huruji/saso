@@ -1,5 +1,8 @@
 const log = require('@saso/log')
+const config = require('../util/config')
+const notifier = require('../util/notifier')
 
-module.exports = (opt, cmd) => {
-
+module.exports = async (opt, cmd) => {
+  config.initConfig();
+  notifier();
 }

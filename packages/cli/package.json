@@ -1,5 +1,5 @@
 {
-  "name": "@saso/cli",
+  "name": "@legos/wqvue",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "@saso/log": "^1.0.0",
-    "commander": "^2.19.0"
+    "commander": "^2.19.0",
+    "find-up": "^3.0.0",
+    "update-notifier": "^2.5.0",
+    "update-notifier-plus": "^1.0.1"
   }
 }
