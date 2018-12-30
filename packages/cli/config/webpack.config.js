@@ -1,5 +1,8 @@
 const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const InertEntryPlugin = require('inert-entry-webpack-plugin');
 const exclude = require('./exclude')
+
 
 function initConfig(CFG) {
   console.log(CFG.distDir)
@@ -13,6 +16,17 @@ function initConfig(CFG) {
     devtool: 'cheap-source-map',
     module: {
       rules: [{
+        test: /\.html$/,
+        use: ExtractTextPlugin.extract({
+          loader: require.resolve('html-loader'),
+          options: {
+            attrs: [
+              'link:href',
+              'script:src'
+            ]
+          }
+        })
+      }, {
         test: /\.js$/,
         exclude,
         use: [{
@@ -23,8 +37,20 @@ function initConfig(CFG) {
             ]
           }
         }]
+      }, {
+        test: /index\.js$/,
+        exclude,
+        use: [{
+          loader: require.resolve('spawn-loader'),
+          options: {
+            name: '[name].js'
+          }
+        }]
       }]
-    }
+    },
+    plugins: [
+      new ExtractTextPlugin('index.html')
+    ]
   }
   return defaultConfig
 }

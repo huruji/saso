@@ -13,7 +13,7 @@ const defaultConfig = {
   sourceDir: path.resolve(process.cwd(), 'src'),
   resourceDomain: 'wq.360buyimg.com',
   pkgDirName: 'public',
-  pagePath: path.resolve(process.cwd(), 'src', 'index.js')
+  pagePath: path.resolve(process.cwd(), 'src', 'index.html')
 }
 
 // const getRootPath = () => {

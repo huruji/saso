@@ -18,9 +18,20 @@
     "@saso/log": "^1.0.0",
     "babel-loader": "^8.0.4",
     "chain-get": "^1.0.2",
+    "cheerio": "^1.0.0-rc.2",
+    "colors": "^1.3.3",
     "commander": "^2.19.0",
+    "entry-loader": "^0.2.0",
+    "extract-loader": "^3.1.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "find-up": "^3.0.0",
+    "html-loader": "^0.5.5",
+    "spawn-loader": "^6.0.0",
     "update-notifier": "^2.5.0",
-    "webpack": "^4.28.2"
+    "webpack": "^4.28.2",
+    "webpack-stats-logger": "^1.0.1"
+  },
+  "devDependencies": {
+    "inert-entry-webpack-plugin": "^4.0.2"
   }
 }
