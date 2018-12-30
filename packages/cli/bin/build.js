@@ -12,6 +12,8 @@ module.exports = async (opt, cmd) => {
   const compiler = webpack(webpackConfig)
   compiler.run((err, stats) => {
     if (err) console.log(err);
-    console.log(stats.toString())
+    console.log(stats.toString({
+      colors: true
+    }))
   })
 }
