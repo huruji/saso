@@ -27,6 +27,7 @@
     "url": "https://github.com/huruji/saso/issues"
   },
   "dependencies": {
+    "@babel/core": "^7.2.2",
     "cli-color": "^1.4.0"
   }
 }

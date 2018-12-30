@@ -1,8 +1,9 @@
 const path = require('path');
-const Cookie = require('./service/cookie');
-const helper = require('./helper');
+const chainGet = require('chain-get')
+// const Cookie = require('./service/cookie');
+// const helper = require('./helper');
 
-let config = {};
+const config = {};
 
 const findConfigPath = require('./find-config-path')
 
@@ -11,7 +12,8 @@ const defaultConfig = {
   distDir: path.resolve(process.cwd(), 'dist'),
   sourceDir: path.resolve(process.cwd(), 'src'),
   resourceDomain: 'wq.360buyimg.com',
-  pkgDirName: 'public'
+  pkgDirName: 'public',
+  pagePath: path.resolve(process.cwd(), 'src', 'index.js')
 }
 
 // const getRootPath = () => {
@@ -20,6 +22,10 @@ const defaultConfig = {
 function initConfig() {
   const configPath = findConfigPath();
   config.packageRoot = configPath ? path.dirname(configPath) : process.cwd();
+
+  // if (configPath) {
+
+  // }
 
   // config.packageRoot = (function () {
   //   const cwd = process.cwd();
@@ -42,7 +48,7 @@ function initConfig() {
   config.gbLibPath = path.resolve(config.packageRoot, '@jdc/gb/static/sass')
   config.gbWidgetPath = path.resolve(config.packageRoot, '@jdc/gb/widget')
   config.gbPath = path.resolve(config.packageRoot, '@jdc/gb')
-  config = Object.assign({}, defaultConfig, config)
+  const cfg = Object.assign({}, defaultConfig, config)
   const tempData = {};
   config.setTempData = function (key, value) {
     // console.log('设置临时数据',key)
@@ -52,6 +58,7 @@ function initConfig() {
     // console.log('取出临时数据',key)
     return tempData[key]
   }
+  return cfg
 }
 config.initConfig = initConfig;
 

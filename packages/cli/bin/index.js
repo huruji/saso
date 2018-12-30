@@ -1,4 +1,6 @@
-const program = require('commander')
+#!/usr/bin/env node --max_old_space_size=4096
+
+const program = require('commander');
 const build = require('./build')
 
 program

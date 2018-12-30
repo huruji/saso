@@ -6,4 +6,6 @@ const configNames = [
   'saso.js'
 ]
 
-module.exports = (cwd = process.cwd()) => findUp(configNames, { cwd })
+module.exports = (cwd = process.cwd()) => findUp.sync(configNames, {
+  cwd
+})
