@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 const chainGet = require('chain-get')
 // const Cookie = require('./service/cookie');
 // const helper = require('./helper');
@@ -6,6 +6,7 @@ const chainGet = require('chain-get')
 const config = {};
 
 const findConfigPath = require('./find-config-path')
+const getPagePath = require('./getPagePath')
 
 const defaultConfig = {
   cwd: process.cwd(),
@@ -22,6 +23,7 @@ const defaultConfig = {
 function initConfig() {
   const configPath = findConfigPath();
   config.packageRoot = configPath ? path.dirname(configPath) : process.cwd();
+
 
   // if (configPath) {
 
@@ -49,6 +51,11 @@ function initConfig() {
   config.gbWidgetPath = path.resolve(config.packageRoot, '@jdc/gb/widget')
   config.gbPath = path.resolve(config.packageRoot, '@jdc/gb')
   const cfg = Object.assign({}, defaultConfig, config)
+
+  if (!cfg.pagePath) {
+    cfg.pagePath = getPagePath(cfg.sourceDir)
+  }
+
   const tempData = {};
   config.setTempData = function (key, value) {
     // console.log('设置临时数据',key)
