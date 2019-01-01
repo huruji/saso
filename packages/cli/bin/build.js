@@ -41,8 +41,8 @@ module.exports = async (opt, cmd) => {
       console.log(`\nStarting server on http://localhost:${cfg.port}`);
     })
   } else {
-    // compiler.run((err, stats) => {
-    //   statsLog(err, stats)
-    // })
+    compiler.run((err, stats) => {
+      statsLog(err, stats)
+    })
   }
 }
