@@ -1,15 +1,15 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const InertEntryPlugin = require('inert-entry-webpack-plugin')
-const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin2')
 const exclude = require('./exclude')
 
 
 function initConfig(CFG) {
-  console.log(CFG.distDir)
+  console.log(CFG.pagePath)
   const defaultConfig = {
     context: CFG.sourceDir,
-    entry: CFG.pagePath,
+    entry: CFG.pagePath || CFG.entry,
     output: {
       path: CFG.distDir,
       filename: path.basename(CFG.pagePath)
@@ -30,7 +30,9 @@ function initConfig(CFG) {
       }]
     },
     plugins: [
-      new ProgressBarPlugin(),
+      new ProgressBarPlugin({
+        clear: false
+      }),
     ]
   }
 

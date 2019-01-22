@@ -15,7 +15,6 @@
   "dependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
-    "@saso/log": "^1.0.0",
     "babel-loader": "^8.0.4",
     "chain-get": "^1.0.2",
     "cheerio": "^1.0.0-rc.2",
@@ -35,6 +34,7 @@
     "webpack-stats-logger": "^1.0.1"
   },
   "devDependencies": {
-    "inert-entry-webpack-plugin": "^4.0.2"
+    "inert-entry-webpack-plugin": "^4.0.2",
+    "progress-bar-webpack-plugin2": "^1.0.0"
   }
 }
