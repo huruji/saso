@@ -27,10 +27,12 @@ function initConfig() {
   config.gbPath = path.resolve(config.packageRoot, '@jdc/gb')
   const cfg = Object.assign({}, defaultConfig, config)
   // 获取入口
-  if (!cfg.pagePath && !cfg.entry) {
+  if (cfg.pagePath) {
+    cfg.entry = cfg.pagePath
+  } else if (!cfg.pagePath && !cfg.entry) {
     cfg.entry = findEntryPoint(cfg.page)
   }
-
+  console.log(cfg.entry)
   // if (!cfg.pagePath) {
   //   cfg.pagePath = getPagePath(cfg.sourceDir)
   // }

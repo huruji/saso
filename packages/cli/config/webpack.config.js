@@ -6,13 +6,14 @@ const exclude = require('./exclude')
 
 
 function initConfig(CFG) {
-  console.log(CFG.pagePath)
+  console.log(CFG.distDir)
+  console.log(path.basename(CFG.entry))
   const defaultConfig = {
     context: CFG.sourceDir,
-    entry: CFG.pagePath || CFG.entry,
+    entry: CFG.entry,
     output: {
       path: CFG.distDir,
-      filename: path.basename(CFG.pagePath)
+      filename: path.basename(CFG.entry)
     },
     devtool: 'cheap-source-map',
     module: {
@@ -36,7 +37,7 @@ function initConfig(CFG) {
     ]
   }
 
-  if (path.extname(CFG.pagePath) === '.html') {
+  if (path.extname(CFG.entry) === '.html') {
     defaultConfig.module.rules.push({
       test: /\.html$/,
       use: ExtractTextPlugin.extract({
@@ -59,7 +60,7 @@ function initConfig(CFG) {
       }]
     })
 
-    defaultConfig.plugins.push(new ExtractTextPlugin(path.basename(CFG.pagePath)))
+    defaultConfig.plugins.push(new ExtractTextPlugin(path.basename(CFG.entry)))
   }
   return defaultConfig
 }
