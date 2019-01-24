@@ -27,6 +27,7 @@
     "no-param-reassign": ["error", {
       "props": false
     }],
-    "no-console": 0
+    "no-console": 0,
+
   }
 }
