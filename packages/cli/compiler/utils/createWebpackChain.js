@@ -10,8 +10,9 @@ module.exports = (config) => {
     .add(config.entry)
     .end()
     .output
-    .path(config.ouputPath)
-    .filename(config.ouputFile)
+    .path(config.outputPath)
+    .filename(config.outputFile)
     .end()
+    .mode(config.mode)
   return Chain
 }

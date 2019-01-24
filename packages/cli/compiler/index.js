@@ -47,6 +47,8 @@ class Compiler {
   initPlugins() {
     const plugins = [{
       resolve: require.resolve('../plugins/test-plugin/test.js')
+    }, {
+      resolve: require.resolve('../plugins/js-plugin')
     }]
     this.plugins = plugins
   }
