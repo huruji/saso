@@ -1,4 +1,17 @@
 const WebpackChain = require('webpack-chain')
 
+const Chain = new WebpackChain()
 
-class WebpackConfig extends
+const path = require('path')
+
+module.exports = (config) => {
+  Chain
+    .entry(config.entry)
+    .add(config.entry)
+    .end()
+    .output
+    .path(config.ouputPath)
+    .filename(config.ouputFile)
+    .end()
+  return Chain
+}

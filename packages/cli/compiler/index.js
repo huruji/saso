@@ -1,14 +1,24 @@
 const fs = require('fs')
 const path = require('path')
 
+const webpack = require('webpack')
+const webpackChain = require('webpack-chain')
+
 const getConfig = require('./utils/get-config.js')
 const Hook = require('./Hook')
+const createWebpackChain = require('./utils/createWebpackChain')
 
 class Compiler {
-  constructor() {
+  constructor(opt) {
+    this.watch = opt.watch
     this.config = getConfig()
     this.findEntry(this.config)
+    this.setOutput()
     this.hooks = new Hook()
+    if (!this.config.entry) {
+      throw new Error('an entry point is needed')
+    }
+    this.config.webpackChain = createWebpackChain(this.config)
     this.initPlugins()
     this.applyPlugins()
   }
@@ -16,8 +26,22 @@ class Compiler {
   // run() {
   // }
   run() {
-    this.hooks.invoke('beforeCompile', this.config)
-    console.log('start Compile')
+    this.hooks.invoke('beforeCompile', this.config.webpackChain)
+    const webpackConfig = this.config.webpackChain.toConfig()
+    const webpackCompiler = webpack(webpackConfig)
+    webpackCompiler.run((err, stats) => {
+      if (err) console.log(err)
+
+      const info = stats.toJson()
+
+      if (stats.hasWarnings()) {
+        console.warn(info.warnings)
+      }
+
+      if (stats.hasErrors()) {
+        console.error(info.errors);
+      }
+    })
   }
 
   initPlugins() {
@@ -56,7 +80,18 @@ class Compiler {
       files = files.concat(jsfiles)
     }
     files = files.concat(htmlFiles)
-    this.config.entry = files.filter(e => fs.existsSync(path.resolve(process.cwd(), e)))[0]
+    this.config.entry = files
+      .map(file => path.resolve(process.cwd(), file))
+      .filter(file => fs.existsSync(file))[0]
+  }
+
+  setOutput() {
+    if (!this.config.outputPath) {
+      this.config.outputPath = path.resolve(process.cwd(), './dist')
+    }
+    if (!this.config.outputFile) {
+      this.config.outputFile = path.basename(this.config.entry)
+    }
   }
 }
 

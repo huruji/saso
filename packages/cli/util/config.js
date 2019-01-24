@@ -32,7 +32,6 @@ function initConfig() {
   } else if (!cfg.pagePath && !cfg.entry) {
     cfg.entry = findEntryPoint(cfg.page)
   }
-  console.log(cfg.entry)
   // if (!cfg.pagePath) {
   //   cfg.pagePath = getPagePath(cfg.sourceDir)
   // }

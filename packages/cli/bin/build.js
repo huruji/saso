@@ -9,8 +9,7 @@ const setPort = require('../util/setPort')
 const Compiler = require('../compiler/index')
 
 module.exports = async (opt, cmd) => {
-  console.log(opt.watch)
-  const wpc = new Compiler()
+  const wpc = new Compiler(opt)
   wpc.run(opt)
   // const cfg = config.initConfig()
   // notifier()

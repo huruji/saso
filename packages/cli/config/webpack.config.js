@@ -6,8 +6,6 @@ const exclude = require('./exclude')
 
 
 function initConfig(CFG) {
-  console.log(CFG.distDir)
-  console.log(path.basename(CFG.entry))
   const defaultConfig = {
     context: CFG.sourceDir,
     entry: CFG.entry,
