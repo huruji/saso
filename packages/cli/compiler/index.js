@@ -2,7 +2,6 @@ const fs = require('fs')
 const path = require('path')
 
 const webpack = require('webpack')
-const webpackChain = require('webpack-chain')
 
 const getConfig = require('./utils/get-config.js')
 const Hook = require('./Hook')
