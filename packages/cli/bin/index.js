@@ -8,6 +8,8 @@ program
   .command('build')
   .description('start build ')
   .option('-w, --watch')
+  .option('-d, --dev, --development')
+  .option('-p, --prod, --production')
   .action(build)
 
 if (!process.argv.slice(2).length) {

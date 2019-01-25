@@ -10,7 +10,15 @@ const createWebpackChain = require('./utils/createWebpackChain')
 class Compiler {
   constructor(opt) {
     this.watch = opt.watch
-    this.config = getConfig()
+    if (opt.dev) {
+      this.mode = 'development'
+    }
+    if (opt.prod) {
+      this.mode = 'production'
+    }
+    this.config = getConfig({
+      mode: this.mode
+    })
     this.findEntry(this.config)
     this.setOutput()
     this.hooks = new Hook()
@@ -28,6 +36,7 @@ class Compiler {
     this.hooks.invoke('beforeCompile', this.config.webpackChain)
     const webpackConfig = this.config.webpackChain.toConfig()
     const webpackCompiler = webpack(webpackConfig)
+    console.log(this.config.webpackChain.toConfig().mode)
     webpackCompiler.run((err, stats) => {
       if (err) console.log(err)
 
