@@ -1,12 +1,14 @@
-const paht = require('path')
+const path = require('path')
 const AuthorWebpackPlugin = require('author-webpack-plugin')
 
 module.exports.apply = (compiler) => {
   const pkg = require.resolve(path.resolve(process.cwd(), 'package.json'))
   if (!pkg) return
-  let args = {}
-  let pkgInfo = require(pkg)
+  const args = {}
+  /* eslint-disable*/
+  const pkgInfo = require(pkg)
 
+  /* eslint-enable */
   if (pkgInfo.author) {
     args.author = pkgInfo.author
   }
