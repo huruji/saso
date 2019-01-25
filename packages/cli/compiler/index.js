@@ -48,6 +48,8 @@ class Compiler {
       resolve: require.resolve('../plugins/test-plugin/test.js')
     }, {
       resolve: require.resolve('../plugins/js-plugin')
+    }, {
+      resolve: require.resolve('../plugins/progress-plugin')
     }]
     this.plugins = plugins
   }
