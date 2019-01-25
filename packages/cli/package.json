@@ -30,6 +30,7 @@
     "progress-bar-webpack-plugin": "^1.11.0",
     "spawn-loader": "^6.0.0",
     "update-notifier": "^2.5.0",
+    "vue-loader": "^15.6.0",
     "webpack": "^4.28.2",
     "webpack-chain": "^5.1.0",
     "webpack-dev-server": "^3.1.14",
