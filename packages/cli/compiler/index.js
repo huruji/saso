@@ -10,9 +10,7 @@ const createWebpackChain = require('./utils/createWebpackChain');
 class Compiler {
   constructor(opt) {
     this.watch = opt.watch;
-    if (opt.dev) {
-      this.mode = 'development';
-    }
+    this.mode = 'development'
     if (opt.prod) {
       this.mode = 'production';
     }
@@ -56,20 +54,20 @@ class Compiler {
 
   initPlugins() {
     const plugins = [{
-      resolve: require.resolve('../plugins/test-plugin/test.js')
-    },
-    {
-      resolve: require.resolve('../plugins/js-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/progress-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/author-info-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/size-table-plugin')
-    }
+        resolve: require.resolve('../plugins/test-plugin/test.js')
+      },
+      {
+        resolve: require.resolve('../plugins/js-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/progress-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/author-info-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/size-table-plugin')
+      }
     ];
     this.plugins = plugins;
   }
