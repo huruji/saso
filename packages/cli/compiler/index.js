@@ -41,11 +41,15 @@ class Compiler {
       const info = stats.toJson();
 
       if (stats.hasWarnings()) {
-        console.warn(info.warnings);
+        for (const warn of info.warnings) {
+          console.warn(warn)
+        }
       }
 
       if (stats.hasErrors()) {
-        console.error(info.errors);
+        for (const error of info.errors) {
+          console.error(error)
+        }
       }
     });
   }
