@@ -51,8 +51,7 @@ class Compiler {
   }
 
   initPlugins() {
-    const plugins = [
-      {
+    const plugins = [{
         resolve: require.resolve('../plugins/test-plugin/test.js')
       },
       {
@@ -63,6 +62,9 @@ class Compiler {
       },
       {
         resolve: require.resolve('../plugins/author-info-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/size-table-plugin')
       }
     ];
     this.plugins = plugins;
@@ -75,8 +77,8 @@ class Compiler {
   applyPlugins() {
     this.plugins.forEach((plugin) => {
       /* eslint-disable */
-			plugin.resolve = require(plugin.resolve);
-			/* eslint-enable */
+      plugin.resolve = require(plugin.resolve);
+      /* eslint-enable */
       plugin.resolve.apply(this);
     });
   }

@@ -15,7 +15,7 @@
   "dependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
-    "author-webpack-plugin": "^1.0.0",
+    "author-webpack-plugin": "^1.0.1",
     "babel-loader": "^8.0.4",
     "chain-get": "^1.0.2",
     "cheerio": "^1.0.0-rc.2",
@@ -29,6 +29,7 @@
     "html-loader": "^0.5.5",
     "jsonfile": "^5.0.0",
     "progress-bar-webpack-plugin": "^1.12.0",
+    "size-table-webpack-plugin": "^1.1.0",
     "spawn-loader": "^6.0.0",
     "update-notifier": "^2.5.0",
     "vue-loader": "^15.6.0",
