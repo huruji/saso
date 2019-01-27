@@ -23,16 +23,17 @@ class Compiler {
     if (!this.config.entry) {
       throw new Error('an entry point is needed');
     }
-    this.config.webpackChain = createWebpackChain(this.config);
     this.initPlugins();
     this.applyPlugins();
+    this.hooks.invoke('afterConfigure', this.config);
+    this.config.webpackChain = createWebpackChain(this.config);
   }
 
   run() {
     this.hooks.invoke('beforeCompile', this.config.webpackChain);
     const webpackConfig = this.config.webpackChain.toConfig();
     const webpackCompiler = webpack(webpackConfig);
-    console.log(this.config.webpackChain.toConfig().mode);
+    console.log(JSON.stringify(this.config.webpackChain.toConfig(), null, 2));
     webpackCompiler.run((err, stats) => {
       if (err) console.log(err);
 
@@ -53,21 +54,25 @@ class Compiler {
   }
 
   initPlugins() {
+    console.log('resolve:', require.resolve('../plugins/html-entry-plugin'))
     const plugins = [{
-      resolve: require.resolve('../plugins/test-plugin/test.js')
-    },
-    {
-      resolve: require.resolve('../plugins/js-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/progress-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/author-info-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/size-table-plugin')
-    }
+        resolve: require.resolve('../plugins/test-plugin/test.js')
+      },
+      {
+        resolve: require.resolve('../plugins/js-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/progress-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/author-info-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/size-table-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/html-entry-plugin')
+      }
     ];
     this.plugins = plugins;
   }

@@ -10,5 +10,6 @@ module.exports.apply = (compiler) => {
           require.resolve('@babel/preset-env')
         ]
       })
+      .end()
   })
 }
