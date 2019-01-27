@@ -1,8 +1,12 @@
 const path = require('path')
 const AuthorWebpackPlugin = require('author-webpack-plugin')
+const fs = require('fs')
 
 module.exports.apply = (compiler) => {
-  const pkg = require.resolve(path.resolve(process.cwd(), 'package.json'))
+  const pkgfile = path.resolve(process.cwd(), 'package.json')
+  if (!fs.existsSync(pkgfile)) return
+  const pkg = require.resolve(pkgfile)
+  console.log(pkg)
   if (!pkg) return
   const args = {}
   /* eslint-disable*/
