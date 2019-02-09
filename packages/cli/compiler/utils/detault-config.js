@@ -4,5 +4,6 @@ module.exports = {
   pagePath: '',
   path: false,
   watch: false,
-  mode: 'development'
+  mode: 'development',
+  htmlEntryMode: 'normal'
 }

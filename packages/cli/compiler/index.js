@@ -56,24 +56,32 @@ class Compiler {
   initPlugins() {
     console.log('resolve:', require.resolve('../plugins/html-entry-plugin'))
     const plugins = [{
-        resolve: require.resolve('../plugins/test-plugin/test.js')
-      },
-      {
-        resolve: require.resolve('../plugins/js-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/progress-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/author-info-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/size-table-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/html-entry-plugin')
-      }
+      resolve: require.resolve('../plugins/test-plugin/test.js')
+    },
+    {
+      resolve: require.resolve('../plugins/js-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/progress-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/author-info-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/size-table-plugin')
+    },
     ];
+    console.log(this.config.htmlEntryMode)
+    if (this.config.htmlEntryMode === 'normal') {
+      plugins.push({
+        resolve: require.resolve('../plugins/html-multi-entry-plugin')
+      })
+    } else {
+      plugins.push({
+        resolve: require.resolve('../plugins/html-entry-plugin')
+      })
+    }
+
     this.plugins = plugins;
   }
 
@@ -102,13 +110,15 @@ class Compiler {
       this.config.entry = config.pagePath;
       return;
     }
+    console.log(config.page)
+    files = files.concat(htmlFiles);
     if (!config.page) {
       files = files.concat(jsfiles);
     }
-    files = files.concat(htmlFiles);
     this.config.entry = files
       .map(file => path.resolve(process.cwd(), file))
       .filter(file => fs.existsSync(file))[0];
+    console.log(this.config.entry)
   }
 
   setOutput() {
