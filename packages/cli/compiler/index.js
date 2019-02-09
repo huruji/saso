@@ -72,6 +72,9 @@ class Compiler {
     },
     {
       resolve: require.resolve('../plugins/vue-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/css-plugin')
     }
     ];
     console.log(this.config.htmlEntryMode)
