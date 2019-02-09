@@ -6,13 +6,9 @@ module.exports.apply = (compiler) => {
       .rule('compile vue')
       .test(/\.vue$/)
       .use('vue-loader')
-      .loader(require.resolve('babel-loader'))
-      .options({
-        presets: [
-          require.resolve('@babel/preset-env')
-        ]
-      })
+      .loader(require.resolve('vue-loader'))
       .end()
+    config
       .plugin('vue-loader-plugin')
       .use(VueLoaderPlugin)
       .end()

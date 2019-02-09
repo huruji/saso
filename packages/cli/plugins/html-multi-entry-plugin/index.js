@@ -32,8 +32,6 @@ module.exports.apply = (compiler) => {
     config
       .entryPoints
       .delete(entry)
-    console.log('7676767')
-    console.log(files)
     for (let i = 0; i < files.length; i++) {
       const exists = fs.existsSync(files[i])
       if (exists) {
