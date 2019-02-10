@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const JSDOM = require('jsdom').JSDOM
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const isUrl = require('nice-is-url')
 
 module.exports.apply = (compiler) => {
   let entry
@@ -20,7 +21,19 @@ module.exports.apply = (compiler) => {
     if (!isHtmlEntry) return
     const content = fs.readFileSync(config.entry);
     const dom = new JSDOM(content)
-    srcFiles = Array.from(dom.window.document.querySelectorAll('script')).map(e => e.src)
+    srcFiles = Array.from(dom.window.document.querySelectorAll('script'))
+      .map(e => e.src)
+      .filter((e) => {
+        const srcIsUrl = isUrl(e)
+        if (srcIsUrl) return false
+        const dir = path.dirname(entry)
+        const exists = fs.existsSync(path.resolve(dir, e))
+        if (!exists) {
+          console.log(`file ${e} is not exists`)
+          return false
+        }
+        return true
+      })
     files = srcFiles.map((src) => {
       const dir = path.dirname(entry)
       return path.resolve(dir, src)
