@@ -10,7 +10,7 @@ const Compiler = require('../compiler/index')
 
 module.exports = async (opt, cmd) => {
   const wpc = new Compiler(opt)
-  wpc.run(opt)
+  await wpc.run(opt)
   // const cfg = config.initConfig()
   // notifier()
 

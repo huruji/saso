@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const getConfig = require('./utils/get-config.js');
 const Hook = require('./Hook');
 const createWebpackChain = require('./utils/createWebpackChain');
+const setPort = require('../util/setPort')
 
 class Compiler {
   constructor(opt) {
@@ -25,11 +26,17 @@ class Compiler {
     }
     this.initPlugins();
     this.applyPlugins();
-    this.hooks.invoke('afterConfigure', this.config);
-    this.config.webpackChain = createWebpackChain(this.config);
   }
 
-  run() {
+  async run() {
+    console.log(this.config.port)
+    this.config.port = await setPort({
+      port: this.config.port
+    })
+    this.hooks.invoke('afterConfigure', this.config);
+
+    this.config.webpackChain = createWebpackChain(this.config);
+
     this.hooks.invoke('beforeCompile', this.config.webpackChain);
     const webpackConfig = this.config.webpackChain.toConfig();
     const webpackCompiler = webpack(webpackConfig);
