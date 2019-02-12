@@ -25,9 +25,9 @@ module.exports.apply = (compiler) => {
       decodeEntities: false
     })
 
-    srcFiles = $('script')
+    srcFiles = $('script, link')
       .map(function () {
-        const src = $(this).attr('src')
+        const src = $(this).attr('src') || $(this).attr('href')
         const srcIsUrl = isUrl(src)
         if (!src) return false
         if (srcIsUrl) return false
