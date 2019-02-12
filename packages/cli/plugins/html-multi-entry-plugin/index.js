@@ -25,7 +25,7 @@ module.exports.apply = (compiler) => {
       decodeEntities: false
     })
 
-    srcFiles = $('script, link')
+    srcFiles = $('script, link, img')
       .map(function () {
         const src = $(this).attr('src') || $(this).attr('href')
         const srcIsUrl = isUrl(src)
@@ -91,11 +91,15 @@ module.exports.apply = (compiler) => {
         template: templateFile
       }])
     if (templateFile) {
+      const outputPath = config.toConfig().output.path
       config
         .plugin('filemanager-webpack-plugin')
         .use(FileManagerPlugin, [{
           onEnd: {
             delete: [templateFile]
+          },
+          onStart: {
+            delete: [outputPath]
           }
         }])
     }
