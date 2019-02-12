@@ -1,5 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
+const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries')
 
 module.exports.apply = (compiler) => {
   compiler.hook('beforeCompile', (config) => {
@@ -49,5 +49,8 @@ module.exports.apply = (compiler) => {
       .use(MiniCssExtractPlugin, [{
         filename: '[name].css'
       }])
+
+    config.plugin('fix style entry')
+      .use(FixStyleOnlyEntriesPlugin)
   })
 }
