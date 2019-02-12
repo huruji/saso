@@ -49,7 +49,8 @@ class Compiler {
         compress: false,
         hot: true,
         historyApiFallback: true,
-        stats: 'none'
+        stats: 'errors-only',
+        watchContentBase: true
       }
       const server = new WebpackDevServer(webpackCompiler, devServerOptions)
       server.listen(this.config.port, '127.0.0.1', () => {
@@ -78,26 +79,29 @@ class Compiler {
 
   initPlugins() {
     const plugins = [{
-        resolve: require.resolve('../plugins/test-plugin/test.js')
-      },
-      {
-        resolve: require.resolve('../plugins/js-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/progress-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/author-info-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/size-table-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/vue-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/css-plugin')
-      }
+      resolve: require.resolve('../plugins/test-plugin/test.js')
+    },
+    {
+      resolve: require.resolve('../plugins/js-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/progress-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/author-info-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/size-table-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/vue-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/css-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/img-plugin')
+    }
     ];
     if (this.config.htmlEntryMode === 'normal') {
       plugins.push({
