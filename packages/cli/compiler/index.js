@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server')
 
 const getConfig = require('./utils/get-config.js');
 const Hook = require('./Hook');
@@ -16,7 +17,8 @@ class Compiler {
       this.mode = 'production';
     }
     this.config = getConfig({
-      mode: this.mode
+      mode: this.mode,
+      watch: this.watch
     });
     this.findEntry(this.config);
     this.setOutput();
@@ -37,26 +39,41 @@ class Compiler {
     this.config.webpackChain = createWebpackChain(this.config);
 
     this.hooks.invoke('beforeCompile', this.config.webpackChain);
-    const webpackConfig = this.config.webpackChain.toConfig();
-    const webpackCompiler = webpack(webpackConfig);
     console.log(JSON.stringify(this.config.webpackChain.toConfig(), null, 2));
-    webpackCompiler.run((err, stats) => {
-      if (err) console.log(err);
-
-      const info = stats.toJson();
-
-      if (stats.hasWarnings()) {
-        for (const warn of info.warnings) {
-          console.warn(warn)
-        }
+    const webpackConfig = this.config.webpackChain.toConfig();
+    console.log(this.config.watch)
+    const webpackCompiler = webpack(webpackConfig);
+    if (this.config.watch) {
+      const devServerOptions = {
+        contentBase: webpackConfig.output.path,
+        compress: false,
+        hot: true,
+        historyApiFallback: true,
+        stats: 'none'
       }
+      const server = new WebpackDevServer(webpackCompiler, devServerOptions)
+      server.listen(this.config.port, '127.0.0.1', () => {
+        console.log(`\nStarting server on http://localhost:${this.config.port}`);
+      })
+    } else {
+      webpackCompiler.run((err, stats) => {
+        if (err) console.log(err);
 
-      if (stats.hasErrors()) {
-        for (const error of info.errors) {
-          console.error(error)
+        const info = stats.toJson();
+
+        if (stats.hasWarnings()) {
+          for (const warn of info.warnings) {
+            console.warn(warn)
+          }
         }
-      }
-    });
+
+        if (stats.hasErrors()) {
+          for (const error of info.errors) {
+            console.error(error)
+          }
+        }
+      });
+    }
   }
 
   initPlugins() {
