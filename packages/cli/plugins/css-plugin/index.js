@@ -3,6 +3,7 @@ const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries')
 
 module.exports.apply = (compiler) => {
   compiler.hook('beforeCompile', (config) => {
+    const isProd = config.toConfig().mode === 'production'
     const sassRule = config.module
       .rule('compile sass')
       .test(/\.s[a|c]ss$/)
@@ -47,7 +48,7 @@ module.exports.apply = (compiler) => {
 
     config.plugin('extra css')
       .use(MiniCssExtractPlugin, [{
-        filename: '[name].css'
+        filename: isProd ? '[name].[hash].css' : '[name].css'
       }])
 
     config.plugin('fix style entry')
