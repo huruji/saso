@@ -67,6 +67,8 @@ module.exports.apply = (compiler) => {
     })
   })
   compiler.hook('beforeCompile', (config) => {
+    const isProd = config.toConfig().mode === 'production'
+
     if (!isHtmlEntry) return
     config
       .entryPoints
@@ -83,7 +85,7 @@ module.exports.apply = (compiler) => {
     }
     config.output
       .path(outputDir)
-      .filename('[name].js')
+      .filename(isProd ? '[name].[hash].js' : '[name].js')
       .end()
     config
       .plugin('html-webpack-plugin')
