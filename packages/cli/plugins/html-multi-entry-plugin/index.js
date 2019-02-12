@@ -15,15 +15,12 @@ module.exports.apply = (compiler) => {
   // let outputFileName
   let templateFile
   compiler.hook('afterConfigure', (config) => {
-    console.log('7777')
     entry = config.entry
-    console.log(entry)
     outputDir = config.outputPath
     // outputFileName = config.outputFile
     if (['.html', '.shtml', '.xhtml'].includes(path.extname(entry))) isHtmlEntry = true
     if (!isHtmlEntry) return
     const content = fs.readFileSync(config.entry);
-    console.log(content)
     const $ = cheerio.load(content, {
       decodeEntities: false
     })
@@ -31,8 +28,6 @@ module.exports.apply = (compiler) => {
     srcFiles = $('script')
       .map(function () {
         const src = $(this).attr('src')
-        console.log(src)
-        console.log('srcsrc')
         const srcIsUrl = isUrl(src)
         if (!src) return false
         if (srcIsUrl) return false
@@ -70,7 +65,6 @@ module.exports.apply = (compiler) => {
       const dir = path.dirname(entry)
       return path.resolve(dir, src)
     })
-    console.log(files)
   })
   compiler.hook('beforeCompile', (config) => {
     if (!isHtmlEntry) return

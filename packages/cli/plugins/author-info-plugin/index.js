@@ -6,7 +6,6 @@ module.exports.apply = (compiler) => {
   const pkgfile = path.resolve(process.cwd(), 'package.json')
   if (!fs.existsSync(pkgfile)) return
   const pkg = require.resolve(pkgfile)
-  console.log(pkg)
   if (!pkg) return
   const args = {}
   /* eslint-disable*/
