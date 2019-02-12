@@ -47,7 +47,7 @@ module.exports.apply = (compiler) => {
 
     config.plugin('extra css')
       .use(MiniCssExtractPlugin, [{
-        filename: 'index.css'
+        filename: '[name].css'
       }])
   })
 }
