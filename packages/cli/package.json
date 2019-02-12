@@ -27,6 +27,7 @@
     "extract-loader": "^3.1.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^3.0.1",
+    "filemanager-webpack-plugin": "^2.0.5",
     "find-up": "^3.0.0",
     "get-port": "^4.1.0",
     "html-entry-webpack-plugin": "^0.0.0",
@@ -60,7 +61,6 @@
     "webpack-stats-logger": "^1.0.1"
   },
   "devDependencies": {
-    "filemanager-webpack-plugin": "^2.0.5",
     "inert-entry-webpack-plugin": "^4.0.2",
     "progress-bar-webpack-plugin2": "^1.0.0"
   }
