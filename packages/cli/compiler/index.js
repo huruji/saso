@@ -79,29 +79,32 @@ class Compiler {
 
   initPlugins() {
     const plugins = [{
-      resolve: require.resolve('../plugins/test-plugin/test.js')
-    },
-    {
-      resolve: require.resolve('../plugins/js-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/progress-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/author-info-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/size-table-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/vue-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/css-plugin')
-    },
-    {
-      resolve: require.resolve('../plugins/img-plugin')
-    }
+        resolve: require.resolve('../plugins/test-plugin/test.js')
+      },
+      {
+        resolve: require.resolve('../plugins/js-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/progress-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/author-info-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/size-table-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/vue-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/css-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/img-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/optimization-plugin')
+      }
     ];
     if (this.config.htmlEntryMode === 'normal') {
       plugins.push({
