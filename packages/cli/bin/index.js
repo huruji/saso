@@ -1,8 +1,8 @@
 #!/usr/bin/env node --max_old_space_size=4096
 
 const program = require('commander');
-const build = require('./build')
-const cmdPlugin = require
+const build = require('./build');
+const cmdPlugin = require('../cmdPlugin');
 
 program
   .usage('<commander> <usage>')
@@ -11,11 +11,14 @@ program
   .option('-w, --watch')
   .option('-d, --dev, --development')
   .option('-p, --prod, --production')
-  .action(build)
+  .action(build);
 
-
-if (!process.argv.slice(2).length) {
-  program.outputHelp()
+if (cmdPlugin.length) {
+  cmdPlugin.forEach(plugin => plugin.cli.apply(null, [program]));
 }
 
-program.parse(process.argv)
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
+}
+
+program.parse(process.argv);
