@@ -2,6 +2,7 @@
 
 const program = require('commander');
 const build = require('./build')
+const cmdPlugin = require
 
 program
   .usage('<commander> <usage>')
@@ -11,6 +12,7 @@ program
   .option('-d, --dev, --development')
   .option('-p, --prod, --production')
   .action(build)
+
 
 if (!process.argv.slice(2).length) {
   program.outputHelp()
