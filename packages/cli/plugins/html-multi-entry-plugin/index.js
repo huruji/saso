@@ -1,52 +1,54 @@
-const path = require('path')
-const fs = require('fs')
+const path = require('path');
+const fs = require('fs');
 // const JSDOM = require('jsdom').JSDOM
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const isUrl = require('nice-is-url')
-const cheerio = require('cheerio')
-const FileManagerPlugin = require('filemanager-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const isUrl = require('nice-is-url');
+const cheerio = require('cheerio');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 module.exports.apply = (compiler) => {
-  let entry
-  let isHtmlEntry
-  let files = []
-  let srcFiles = []
-  let outputDir
+  let entry;
+  let isHtmlEntry;
+  let files = [];
+  let srcFiles = [];
+  let outputDir;
   // let outputFileName
-  let templateFile
+  let templateFile;
+  let isWatch = false;
   compiler.hook('afterConfigure', (config) => {
-    entry = config.entry
-    outputDir = config.outputPath
+    isWatch = config.watch;
+    entry = config.entry;
+    outputDir = config.outputPath;
     // outputFileName = config.outputFile
-    if (['.html', '.shtml', '.xhtml'].includes(path.extname(entry))) isHtmlEntry = true
-    if (!isHtmlEntry) return
+    if (['.html', '.shtml', '.xhtml'].includes(path.extname(entry))) isHtmlEntry = true;
+    if (!isHtmlEntry) return;
     const content = fs.readFileSync(config.entry);
     const $ = cheerio.load(content, {
       decodeEntities: false
-    })
+    });
 
     srcFiles = $('script, link, img')
       .map(function () {
-        const src = $(this).attr('src') || $(this).attr('href')
-        const srcIsUrl = isUrl(src)
-        if (!src) return false
-        if (srcIsUrl) return false
-        const dir = path.dirname(entry)
-        const exists = fs.existsSync(path.resolve(dir, src))
+        const src = $(this).attr('src') || $(this).attr('href');
+        const srcIsUrl = isUrl(src);
+        if (!src) return false;
+        if (srcIsUrl) return false;
+        const dir = path.dirname(entry);
+        const exists = fs.existsSync(path.resolve(dir, src));
         if (!exists) {
-          console.log(`file ${src} is not exists`)
-          return false
+          console.log(`file ${src} is not exists`);
+          return false;
         }
-        $(this).remove()
-        return src
+        $(this).remove();
+        return src;
       })
       .get()
-      .filter(e => e)
-    templateFile = path.resolve(path.dirname(entry), 'template.html')
+      .filter(e => e);
+    templateFile = path.resolve(path.dirname(entry), 'saso-template.html');
     fs.writeFileSync(templateFile, $.html(), {
       encoding: 'utf-8',
       flag: 'w+'
-    })
+    });
     // const dom = new JSDOM(content)
     // srcFiles = Array.from(dom.window.document.querySelectorAll('script'))
     //   .map(e => e.src)
@@ -62,48 +64,47 @@ module.exports.apply = (compiler) => {
     //     return true
     //   })
     files = srcFiles.map((src) => {
-      const dir = path.dirname(entry)
-      return path.resolve(dir, src)
-    })
-  })
+      const dir = path.dirname(entry);
+      return path.resolve(dir, src);
+    });
+  });
   compiler.hook('beforeCompile', (config) => {
-    const isProd = config.toConfig().mode === 'production'
+    const isProd = config.toConfig().mode === 'production';
 
-    if (!isHtmlEntry) return
-    config
-      .entryPoints
-      .delete(entry)
+    if (!isHtmlEntry) return;
+    config.entryPoints.delete(entry);
     for (let i = 0; i < files.length; i++) {
-      const exists = fs.existsSync(files[i])
+      const exists = fs.existsSync(files[i]);
       if (exists) {
-        const extname = path.extname(files[i])
-        const file = path.basename(files[i], extname)
-        config.entry(file)
+        const extname = path.extname(files[i]);
+        const file = path.basename(files[i], extname);
+        config
+          .entry(file)
           .add(files[i])
-          .end()
+          .end();
       }
     }
     config.output
       .path(outputDir)
       .filename(isProd ? '[name].[hash].js' : '[name].js')
-      .end()
-    config
-      .plugin('html-webpack-plugin')
-      .use(HtmlWebpackPlugin, [{
+      .end();
+    config.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [
+      {
         template: templateFile
-      }])
+      }
+    ]);
     if (templateFile) {
-      const outputPath = config.toConfig().output.path
-      config
-        .plugin('filemanager-webpack-plugin')
-        .use(FileManagerPlugin, [{
+      const outputPath = config.toConfig().output.path;
+      config.plugin('filemanager-webpack-plugin').use(FileManagerPlugin, [
+        {
           onEnd: {
-            delete: [templateFile]
+            delete: isWatch ? [] : [templateFile]
           },
           onStart: {
             delete: [outputPath]
           }
-        }])
+        }
+      ]);
     }
-  })
-}
+  });
+};
