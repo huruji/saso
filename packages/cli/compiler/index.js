@@ -2,17 +2,17 @@ const fs = require('fs');
 const path = require('path');
 
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server')
+const WebpackDevServer = require('webpack-dev-server');
 
 const getConfig = require('./utils/get-config.js');
 const Hook = require('./Hook');
 const createWebpackChain = require('./utils/createWebpackChain');
-const setPort = require('../util/setPort')
+const setPort = require('../util/setPort');
 
 class Compiler {
   constructor(opt) {
     this.watch = opt.watch;
-    this.mode = 'development'
+    this.mode = 'development';
     if (opt.prod) {
       this.mode = 'production';
     }
@@ -33,7 +33,7 @@ class Compiler {
   async run() {
     this.config.port = await setPort({
       port: this.config.port
-    })
+    });
     this.hooks.invoke('afterConfigure', this.config);
 
     this.config.webpackChain = createWebpackChain(this.config);
@@ -41,7 +41,7 @@ class Compiler {
     this.hooks.invoke('beforeCompile', this.config.webpackChain);
     console.log(JSON.stringify(this.config.webpackChain.toConfig(), null, 2));
     const webpackConfig = this.config.webpackChain.toConfig();
-    console.log(this.config.watch)
+    console.log(this.config.watch);
     const webpackCompiler = webpack(webpackConfig);
     if (this.config.watch) {
       const devServerOptions = {
@@ -51,11 +51,11 @@ class Compiler {
         historyApiFallback: true,
         stats: 'errors-only',
         watchContentBase: true
-      }
-      const server = new WebpackDevServer(webpackCompiler, devServerOptions)
+      };
+      const server = new WebpackDevServer(webpackCompiler, devServerOptions);
       server.listen(this.config.port, '127.0.0.1', () => {
         console.log(`\nStarting server on http://localhost:${this.config.port}`);
-      })
+      });
     } else {
       webpackCompiler.run((err, stats) => {
         if (err) console.log(err);
@@ -64,13 +64,13 @@ class Compiler {
 
         if (stats.hasWarnings()) {
           for (const warn of info.warnings) {
-            console.warn(warn)
+            console.warn(warn);
           }
         }
 
         if (stats.hasErrors()) {
           for (const error of info.errors) {
-            console.error(error)
+            console.error(error);
           }
         }
       });
@@ -78,7 +78,8 @@ class Compiler {
   }
 
   initPlugins() {
-    const plugins = [{
+    const plugins = [
+      {
         resolve: require.resolve('../plugins/test-plugin/test.js')
       },
       {
@@ -109,11 +110,11 @@ class Compiler {
     if (this.config.htmlEntryMode === 'normal') {
       plugins.push({
         resolve: require.resolve('../plugins/html-multi-entry-plugin')
-      })
+      });
     } else {
       plugins.push({
         resolve: require.resolve('../plugins/html-entry-plugin')
-      })
+      });
     }
 
     this.plugins = plugins;
@@ -126,8 +127,8 @@ class Compiler {
   applyPlugins() {
     this.plugins.forEach((plugin) => {
       /* eslint-disable */
-      plugin.resolve = require(plugin.resolve);
-      /* eslint-enable */
+			plugin.resolve = require(plugin.resolve);
+			/* eslint-enable */
       plugin.resolve.apply(this);
     });
   }
@@ -148,9 +149,7 @@ class Compiler {
     if (!config.page) {
       files = files.concat(jsfiles);
     }
-    this.config.entry = files
-      .map(file => path.resolve(process.cwd(), file))
-      .filter(file => fs.existsSync(file))[0];
+    this.config.entry = files.map(file => path.resolve(process.cwd(), file)).filter(file => fs.existsSync(file))[0];
   }
 
   setOutput() {
