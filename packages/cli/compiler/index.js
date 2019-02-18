@@ -105,6 +105,9 @@ class Compiler {
       },
       {
         resolve: require.resolve('../plugins/optimization-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/analyzer-plugin')
       }
     ];
     if (this.config.htmlEntryMode === 'normal') {
