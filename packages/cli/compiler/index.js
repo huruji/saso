@@ -35,10 +35,13 @@ class Compiler {
       port: this.config.port
     });
     this.hooks.invoke('afterConfigure', this.config);
+    await this.hooks.invokePromise('afterConfigure', this.config);
 
     this.config.webpackChain = createWebpackChain(this.config);
 
     this.hooks.invoke('beforeCompile', this.config.webpackChain);
+    await this.hooks.invokePromise('beforeCompileAsync', this.config.webpackChain);
+
     console.log(JSON.stringify(this.config.webpackChain.toConfig(), null, 2));
     const webpackConfig = this.config.webpackChain.toConfig();
     console.log(this.config.watch);
