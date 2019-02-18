@@ -3,6 +3,23 @@ const path = require('path');
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const koaWebpack = require('koa-webpack');
+const { webpackServer } = require('koa-webpack-server');
+const Koa = require('koa');
+const express = require('express');
+
+const serve = require('webpack-serve');
+const argv = {
+hmr: true,
+reload: true,
+open: true,
+port: 7000
+};
+
+const eapp = express();
+const webpackDev = require('express-webpack-dev');
+
+const app = new Koa();
 
 const getConfig = require('./utils/get-config.js');
 const Hook = require('./Hook');
@@ -47,16 +64,43 @@ class Compiler {
     console.log(this.config.watch);
     const webpackCompiler = webpack(webpackConfig);
     if (this.config.watch) {
+      // serve(argv, { config: webpackConfig }).then((result) => {
+      //   // ...
+      //   server.on('listening', ({ server, options }) => {
+      //     console.log('happy fun time');
+      //   })
+      // });
+
+      // webpackDev(eapp, {
+      //   configs: {
+      //     webpack: webpackConfig
+      //   }
+      // });
+      // app.listen(this.config.port, () => {
+      //   console.log(`\nStarting server on http://localhost:${this.config.port}`);
+      // });
+
+      // const middleware = await koaWebpack({ compiler: webpackCompiler });
+      // app.use(async (ctx) => {
+      //   const filename = path.resolve(webpackConfig.output.path, 'index.html');
+      //   ctx.response.type = 'html';
+      //   ctx.response.body = middleware.devMiddleware.fileSystem.createReadStream(filename);
+      // });
+
       const devServerOptions = {
         contentBase: webpackConfig.output.path,
         compress: false,
         hot: true,
         historyApiFallback: true,
         stats: 'errors-only',
-        watchContentBase: true
+        watchContentBase: true,
+        inline: true,
+        open: `http://localhost:${this.config.port}`
       };
+      WebpackDevServer.addDevServerEntrypoints(webpackConfig, devServerOptions);
       const server = new WebpackDevServer(webpackCompiler, devServerOptions);
-      server.listen(this.config.port, '127.0.0.1', () => {
+      server.listen(this.config.port, '127.0.0.1', (err) => {
+        if(err) console.log(err)
         console.log(`\nStarting server on http://localhost:${this.config.port}`);
       });
     } else {
@@ -111,6 +155,9 @@ class Compiler {
       },
       {
         resolve: require.resolve('../plugins/analyzer-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/devServer-plugin')
       }
     ];
     if (this.config.htmlEntryMode === 'normal') {

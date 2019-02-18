@@ -8,6 +8,7 @@ module.exports = (config) => {
     .end()
     .output.path(config.outputPath)
     .filename(config.outputFile)
+    .publicPath('/')
     .end()
     .mode(config.mode);
 
