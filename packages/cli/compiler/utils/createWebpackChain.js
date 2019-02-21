@@ -1,7 +1,9 @@
 const WebpackChain = require('webpack-chain');
 
 const Chain = new WebpackChain();
+const clear = require('console-clear');
 
+/* eslint-enable */
 module.exports = (config) => {
   Chain.entry(config.entry)
     .add(config.entry)
@@ -27,5 +29,7 @@ module.exports = (config) => {
     .add('.svg')
     .add('.md')
     .add('.html');
+
+  // Chain.plugin('clear console').use(ClearConsole);
   return Chain;
 };

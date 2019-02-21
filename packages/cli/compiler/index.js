@@ -7,13 +7,15 @@ const koaWebpack = require('koa-webpack');
 const { webpackServer } = require('koa-webpack-server');
 const Koa = require('koa');
 const express = require('express');
-
+const clear = require('console-clear')
+var c = require('clear_screen');
 const serve = require('webpack-serve');
+
 const argv = {
-hmr: true,
-reload: true,
-open: true,
-port: 7000
+  hmr: true,
+  reload: true,
+  open: true,
+  port: 7000
 };
 
 const eapp = express();
@@ -60,6 +62,8 @@ class Compiler {
     await this.hooks.invokePromise('beforeCompileAsync', this.config.webpackChain);
 
     console.log(JSON.stringify(this.config.webpackChain.toConfig(), null, 2));
+    // clear(true);
+    c()
     const webpackConfig = this.config.webpackChain.toConfig();
     console.log(this.config.watch);
     const webpackCompiler = webpack(webpackConfig);
@@ -88,7 +92,7 @@ class Compiler {
       // });
 
       const devServerOptions = {
-        contentBase: webpackConfig.output.path,
+        contentBase: '/src/',
         compress: false,
         hot: true,
         historyApiFallback: true,
@@ -100,7 +104,7 @@ class Compiler {
       WebpackDevServer.addDevServerEntrypoints(webpackConfig, devServerOptions);
       const server = new WebpackDevServer(webpackCompiler, devServerOptions);
       server.listen(this.config.port, '127.0.0.1', (err) => {
-        if(err) console.log(err)
+        if (err) console.log(err);
         console.log(`\nStarting server on http://localhost:${this.config.port}`);
       });
     } else {
