@@ -110,7 +110,7 @@ class Compiler {
       });
     } else {
       webpackCompiler.run((err, stats) => {
-        if (err) console.log(err);
+        if (err) logger.error(err);
 
         const info = stats.toJson();
 

@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isUrl = require('nice-is-url');
 const cheerio = require('cheerio');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
+const logger = require('saso-log');
 
 module.exports.apply = (compiler) => {
   let entry;
@@ -36,7 +37,7 @@ module.exports.apply = (compiler) => {
         const dir = path.dirname(entry);
         const exists = fs.existsSync(path.resolve(dir, src));
         if (!exists) {
-          console.log(`file ${src} is not exists`);
+          logger.error(`file ${src} is not exists`);
           return false;
         }
         $(this).remove();
