@@ -66,7 +66,6 @@ class Compiler {
     // clear(true);
     c()
     const webpackConfig = this.config.webpackChain.toConfig();
-    console.log(this.config.watch);
     const webpackCompiler = webpack(webpackConfig);
     if (this.config.watch) {
       // serve(argv, { config: webpackConfig }).then((result) => {

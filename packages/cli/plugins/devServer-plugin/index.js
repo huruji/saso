@@ -22,7 +22,6 @@ module.exports.apply = (compiler) => {
   let isWatch = false;
   let port = 7000;
   compiler.hook('afterConfigure', (config) => {
-    console.log('ffffff');
     isWatch = config.watch;
     port = config.port;
   });
