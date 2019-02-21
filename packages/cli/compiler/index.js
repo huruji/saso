@@ -10,6 +10,7 @@ const express = require('express');
 const clear = require('console-clear')
 var c = require('clear_screen');
 const serve = require('webpack-serve');
+const logger = require('saso-log')
 
 const argv = {
   hmr: true,
@@ -104,8 +105,8 @@ class Compiler {
       WebpackDevServer.addDevServerEntrypoints(webpackConfig, devServerOptions);
       const server = new WebpackDevServer(webpackCompiler, devServerOptions);
       server.listen(this.config.port, '127.0.0.1', (err) => {
-        if (err) console.log(err);
-        console.log(`\nStarting server on http://localhost:${this.config.port}`);
+        if (err) logger.error(err);
+        logger.notice(`\nStarting server on http://localhost:${this.config.port}`);
       });
     } else {
       webpackCompiler.run((err, stats) => {
