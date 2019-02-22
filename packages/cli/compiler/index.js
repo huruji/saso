@@ -64,33 +64,10 @@ class Compiler {
 
     console.log(JSON.stringify(this.config.webpackChain.toConfig(), null, 2));
     // clear(true);
-    c()
+    // c()
     const webpackConfig = this.config.webpackChain.toConfig();
     const webpackCompiler = webpack(webpackConfig);
     if (this.config.watch) {
-      // serve(argv, { config: webpackConfig }).then((result) => {
-      //   // ...
-      //   server.on('listening', ({ server, options }) => {
-      //     console.log('happy fun time');
-      //   })
-      // });
-
-      // webpackDev(eapp, {
-      //   configs: {
-      //     webpack: webpackConfig
-      //   }
-      // });
-      // app.listen(this.config.port, () => {
-      //   console.log(`\nStarting server on http://localhost:${this.config.port}`);
-      // });
-
-      // const middleware = await koaWebpack({ compiler: webpackCompiler });
-      // app.use(async (ctx) => {
-      //   const filename = path.resolve(webpackConfig.output.path, 'index.html');
-      //   ctx.response.type = 'html';
-      //   ctx.response.body = middleware.devMiddleware.fileSystem.createReadStream(filename);
-      // });
-
       const devServerOptions = {
         contentBase: '/src/',
         compress: false,
