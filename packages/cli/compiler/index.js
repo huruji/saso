@@ -141,6 +141,9 @@ class Compiler {
       },
       {
         resolve: require.resolve('../plugins/size-table-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/build-info-plugin')
       }
     ];
     if (this.config.htmlEntryMode === 'normal') {
