@@ -7,10 +7,10 @@ const koaWebpack = require('koa-webpack');
 const { webpackServer } = require('koa-webpack-server');
 const Koa = require('koa');
 const express = require('express');
-const clear = require('console-clear')
-var c = require('clear_screen');
+const clear = require('console-clear');
+const c = require('clear_screen');
 const serve = require('webpack-serve');
-const logger = require('saso-log')
+const logger = require('saso-log');
 
 const argv = {
   hmr: true,
@@ -38,7 +38,8 @@ class Compiler {
     }
     this.config = getConfig({
       mode: this.mode,
-      watch: this.watch
+      watch: this.watch,
+      webpackconfig: opt.webpackconfig
     });
     this.findEntry(this.config);
     this.setOutput();
@@ -70,8 +71,18 @@ class Compiler {
     const webpackConfig = this.config.webpackChain.toConfig();
     const webpackCompiler = webpack(webpackConfig);
     if (this.config.watch) {
+      const contentBase = [];
+      const entries = webpackConfig.entry;
+      Object.values(entries).forEach((entry) => {
+        entry.forEach((e) => {
+          const dir = path.dirname(e);
+          if (!contentBase.includes(dir)) {
+            contentBase.push(dir);
+          }
+        });
+      });
       const devServerOptions = {
-        contentBase: '/src/',
+        contentBase,
         compress: false,
         hot: true,
         historyApiFallback: true,

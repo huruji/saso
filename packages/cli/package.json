@@ -72,7 +72,7 @@
     "webpack": "^4.28.2",
     "webpack-bundle-analyzer": "^3.0.4",
     "webpack-chain": "^5.1.0",
-    "webpack-dev-server": "3.1.10",
+    "webpack-dev-server": "^3.2.0",
     "webpack-fix-style-only-entries": "^0.2.0",
     "webpack-serve": "^2.0.3",
     "webpack-stats-logger": "^1.0.1"

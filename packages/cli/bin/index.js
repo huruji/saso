@@ -11,6 +11,7 @@ program
   .option('-w, --watch')
   .option('-d, --dev, --development')
   .option('-p, --prod, --production')
+  .option('--webpack, --webpackconfig')
   .action(build);
 
 if (cmdPlugin.length) {

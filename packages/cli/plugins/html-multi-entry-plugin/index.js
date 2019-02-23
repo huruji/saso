@@ -16,9 +16,11 @@ module.exports.apply = (compiler) => {
   // let outputFileName
   let templateFile;
   let isWatch = false;
+  let port = false;
   compiler.hook('afterConfigure', (config) => {
     isWatch = config.watch;
     entry = config.entry;
+    port = config.port;
     outputDir = config.outputPath;
     // outputFileName = config.outputFile
     if (['.html', '.shtml', '.xhtml'].includes(path.extname(entry))) isHtmlEntry = true;
@@ -79,10 +81,18 @@ module.exports.apply = (compiler) => {
       if (exists) {
         const extname = path.extname(files[i]);
         const file = path.basename(files[i], extname);
-        config
-          .entry(file)
-          .add(files[i])
-          .end();
+        if (isWatch) {
+          config
+            .entry(file)
+            .add(`${require.resolve('webpack-dev-server/client')}?http://localhost:${port}`)
+            .add(files[i])
+            .end();
+        } else {
+          config
+            .entry(file)
+            .add(files[i])
+            .end();
+        }
       }
     }
     config.output
