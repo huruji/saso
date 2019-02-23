@@ -61,8 +61,10 @@ class Compiler {
 
     this.hooks.invoke('beforeCompile', this.config.webpackChain);
     await this.hooks.invokePromise('beforeCompileAsync', this.config.webpackChain);
-
-    console.log(JSON.stringify(this.config.webpackChain.toConfig(), null, 2));
+    if (this.config.webpackconfig) {
+      logger.notice(JSON.stringify(this.config.webpackChain.toConfig(), null, 2));
+    }
+    // console.log(JSON.stringify(this.config.webpackChain.toConfig(), null, 2));
     // clear(true);
     // c()
     const webpackConfig = this.config.webpackChain.toConfig();

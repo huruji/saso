@@ -5,5 +5,6 @@ module.exports = {
   path: false,
   watch: false,
   mode: 'development',
-  htmlEntryMode: 'normal'
+  htmlEntryMode: 'normal',
+  webpackconfig: false
 }
