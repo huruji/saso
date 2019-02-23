@@ -61,7 +61,7 @@
     "progress-bar-webpack-plugin": "^1.12.0",
     "saso-log": "^1.1.0",
     "sass-loader": "^7.1.0",
-    "size-table-webpack-plugin": "^4.0.1",
+    "size-table-webpack-plugin": "^4.0.2",
     "spawn-loader": "^6.0.0",
     "style-loader": "^0.23.1",
     "update-notifier": "^2.5.0",
