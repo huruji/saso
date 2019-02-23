@@ -2,7 +2,12 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const setPort = require('../../util/setPort');
 
 module.exports.apply = (compiler) => {
+  let needAnalyzer
+  compiler.hook('afterConfigure', (config) => {
+    if (config.analyzer) needAnalyzer = true
+  })
   compiler.hook('beforeCompileAsync', async (config) => {
+    if (!needAnalyzer) return
     const port = await setPort({
       port: 8888
     });

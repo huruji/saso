@@ -6,5 +6,6 @@ module.exports = {
   watch: false,
   mode: 'development',
   htmlEntryMode: 'normal',
-  webpackconfig: false
+  webpackconfig: false,
+  analyzer: false
 }
