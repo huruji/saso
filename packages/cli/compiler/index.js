@@ -122,9 +122,6 @@ class Compiler {
         resolve: require.resolve('../plugins/author-info-plugin')
       },
       {
-        resolve: require.resolve('../plugins/size-table-plugin')
-      },
-      {
         resolve: require.resolve('../plugins/vue-plugin')
       },
       {
@@ -141,6 +138,9 @@ class Compiler {
       },
       {
         resolve: require.resolve('../plugins/devServer-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/size-table-plugin')
       }
     ];
     if (this.config.htmlEntryMode === 'normal') {
