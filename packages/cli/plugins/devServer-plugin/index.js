@@ -1,5 +1,6 @@
 const { HotModuleReplacementPlugin } = require('webpack');
 const OpenBrowserPlugin = require('open-browser-plugin');
+const AddServerClientPlugin = require('add-server-client-script-webpack-plugin');
 
 module.exports.apply = (compiler) => {
   let isWatch = false;
@@ -20,6 +21,7 @@ module.exports.apply = (compiler) => {
       .watchContentBase(true);
 
     config.plugin('openbrowser').use(OpenBrowserPlugin, [`http://localhost:${port}`]);
+    config.plugin('add server client script').use(AddServerClientPlugin, [`http://localhost:${port}`]);
     config.plugin('hot').use(HotModuleReplacementPlugin);
   });
 };

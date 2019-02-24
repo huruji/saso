@@ -84,7 +84,7 @@ module.exports.apply = (compiler) => {
         if (isWatch) {
           config
             .entry(file)
-            .add(`${require.resolve('webpack-dev-server/client')}?http://localhost:${port}`)
+          // .add(`${require.resolve('webpack-dev-server/client')}?http://localhost:${port}`)
             .add(files[i])
             .end();
         } else {
