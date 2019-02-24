@@ -56,6 +56,7 @@
     "mini-css-extract-plugin": "^0.5.0",
     "nice-is-url": "^1.0.2",
     "open": "^0.0.5",
+    "open-browser-plugin": "^1.0.3",
     "ora": "^3.1.0",
     "postcss-loader": "^3.0.0",
     "posthtml": "^0.11.3",
