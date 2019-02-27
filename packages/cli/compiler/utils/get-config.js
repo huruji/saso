@@ -6,7 +6,8 @@ module.exports = (cliConfig) => {
   let config = defaultConfig
   const configFile = findConfigPath()
   if (configFile) {
-    const userConfig = jsonFile.readFileSync(configFile)
+    // eslint-disable-next-line
+    const userConfig = require(configFile)
     config = Object.assign(config, userConfig)
   }
   config = Object.assign(config, cliConfig)

@@ -12,16 +12,8 @@ const setPort = require('../util/setPort');
 
 class Compiler {
   constructor(opt) {
-    this.watch = opt.watch;
-    this.mode = 'development';
-    if (opt.prod) {
-      this.mode = 'production';
-    }
-    this.config = getConfig({
-      mode: this.mode,
-      watch: this.watch,
-      webpackconfig: opt.webpackconfig
-    });
+    this.handleCliOpts(opt)
+    this.config = getConfig(this.config);
     this.findEntry(this.config);
     this.setOutput();
     this.hooks = new Hook();
@@ -158,8 +150,8 @@ class Compiler {
   applyPlugins() {
     this.plugins.forEach((plugin) => {
       /* eslint-disable */
-			plugin.resolve = require(plugin.resolve);
-			/* eslint-enable */
+      plugin.resolve = require(plugin.resolve);
+      /* eslint-enable */
       plugin.resolve.apply(this);
     });
   }
@@ -189,6 +181,26 @@ class Compiler {
     }
     if (!this.config.outputFile) {
       this.config.outputFile = path.basename(this.config.entry);
+    }
+  }
+
+  handleCliOpts(opt) {
+    this.config = {};
+    if (opt.watch) {
+      this.watch = true;
+      this.config.watch = this.watch;
+    }
+    if (opt.prod) {
+      this.mode = 'production';
+      this.config.mode = this.mode;
+    }
+    if (opt.dev) {
+      this.mode = 'development'
+      this.config.mode = this.mode;
+    }
+    if (opt.webpackconfig) {
+      this.webpackconfig = true
+      this.config.webpackconfig = this.webpackconfig
     }
   }
 }
