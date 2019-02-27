@@ -1,5 +1,5 @@
 module.exports = {
-  port: 7000,
+  port: 10000,
   entry: '',
   pagePath: '',
   path: false,

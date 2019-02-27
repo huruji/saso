@@ -3,26 +3,7 @@ const path = require('path');
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const koaWebpack = require('koa-webpack');
-const { webpackServer } = require('koa-webpack-server');
-const Koa = require('koa');
-const express = require('express');
-const clear = require('console-clear');
-const c = require('clear_screen');
-const serve = require('webpack-serve');
 const logger = require('saso-log');
-
-const argv = {
-  hmr: true,
-  reload: true,
-  open: true,
-  port: 7000
-};
-
-const eapp = express();
-const webpackDev = require('express-webpack-dev');
-
-const app = new Koa();
 
 const getConfig = require('./utils/get-config.js');
 const Hook = require('./Hook');
