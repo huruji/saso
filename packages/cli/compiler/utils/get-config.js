@@ -7,7 +7,6 @@ module.exports = (cliConfig) => {
   const explorer = cosmiconfig('saso')
   const result = explorer.searchSync()
   if (result && result.config) {
-    // eslint-disable-next-line
     config = Object.assign(config, result.config)
   }
   config = Object.assign(config, cliConfig)
