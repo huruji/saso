@@ -29,7 +29,7 @@ class Compiler {
       port: this.config.port
     });
     this.hooks.invoke('afterConfigure', this.config);
-    await this.hooks.invokePromise('afterConfigure', this.config);
+    await this.hooks.invokePromise('afterConfigureAsync', this.config);
 
     this.config.webpackChain = createWebpackChain(this.config);
 
