@@ -1,5 +1,5 @@
 const cosmiconfig = require('cosmiconfig')
-const defaultConfig = require('./detault-config')
+const defaultConfig = require('./defaultConfig')
 
 
 module.exports = (cliConfig) => {

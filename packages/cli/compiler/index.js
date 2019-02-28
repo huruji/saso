@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const logger = require('saso-log');
 
-const getConfig = require('./utils/get-config.js');
+const getConfig = require('./utils/getConfig');
 const Hook = require('./Hook');
 const createWebpackChain = require('./utils/createWebpackChain');
 const setPort = require('../util/setPort');
