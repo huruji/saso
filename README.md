@@ -48,6 +48,14 @@ Default: `development`
 
 Type: `Boolean` `Object`
 
++ **plugins**
+
+Type: `Array`
+
++ **cliPlugins**
+
+Type: `Array`
+
 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 的配置 `options`，默认不开启 `webpack-bundle-analyzer` 这个插件，当这个配置有值的时候，则开启
 
 
