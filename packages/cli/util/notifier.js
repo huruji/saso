@@ -1,7 +1,7 @@
 const updateNotifier = require('update-notifier')
-const pkg = require('../package.json');
+const pkg = require('../package.json')
 
 module.exports = () => {
-  const notifier = updateNotifier({ pkg, updateCheckInterval: 1 })
-  notifier.notify();
+	const notifier = updateNotifier({ pkg, updateCheckInterval: 1 })
+	notifier.notify()
 }

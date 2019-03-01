@@ -29,6 +29,7 @@
     "no-param-reassign": ["error", {
       "props": false
     }],
+    "quotes": ["always", "single"],
     "no-console": 0,
     "no-restricted-syntax": 0
   }
