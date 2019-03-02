@@ -13,6 +13,8 @@ module.exports = config => {
 		.end()
 		.mode(config.mode)
 
+	Chain.devtool('source-map')
+
 	Chain.resolve.extensions
 		.add('.js')
 		.add('.jsx')
