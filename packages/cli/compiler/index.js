@@ -203,12 +203,6 @@ class Compiler {
 			this.config.webpackconfig = this.webpackconfig
 		}
 	}
-	get config() {
-		return this.config
-	}
-	get webpackChain() {
-		return this.config ? this.config.webpackChain : null
-	}
 }
 
 module.exports = Compiler
