@@ -12,7 +12,7 @@ module.exports.apply = compiler => {
 		if (typeof config.authorInfo === 'boolean') {
 			const pkgFile = await pkgUp()
 			if (pkgFile) {
-				authorInfo = require(pkg)
+				authorInfo = require(pkgFile)
 			}
 		} else {
 			authorInfo = config.authorInfo
