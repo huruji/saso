@@ -8,7 +8,7 @@ const logger = require('saso-log')
 const getConfig = require('./utils/getConfig')
 const Hook = require('./Hook')
 const createWebpackChain = require('./utils/createWebpackChain')
-const setPort = require('../util/setPort')
+const setPort = require('./utils/setPort')
 
 class Compiler {
 	constructor(opt) {

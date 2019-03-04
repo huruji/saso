@@ -1,7 +1,7 @@
 const getPort = require('get-port')
 
 module.exports = async cfg => {
-	const basePort = +cfg.port || 7000
+	const basePort = +cfg.port || 10000
 	const ports = Array.from({
 		length: 10
 	}).map((e, i) => basePort + i)

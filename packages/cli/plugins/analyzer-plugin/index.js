@@ -1,5 +1,5 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const setPort = require('../../util/setPort')
+const setPort = require('../../compiler/utils/setPort')
 
 module.exports.apply = compiler => {
 	let analyzerConfig
