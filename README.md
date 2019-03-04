@@ -52,6 +52,14 @@ Default: `development`
 
 Type: `Boolean` `Object`
 
+[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 的配置 `options`，默认不开启 `webpack-bundle-analyzer` 这个插件，当这个配置有值的时候，则开启。
+
++ **authorInfo**
+
+Type: `Boolean` `Object`
+
+[author-webpack-plugin](https://github.com/huruji/author-webpack-plugin) 的配置`options`，如果为 `Boolean` 值 `true` 则从最近的 `package.json` 中获取作者信息，如果为 `Boolean` 值 `false` 则不使用 [author-webpack-plugin](https://github.com/huruji/author-webpack-plugin) 插件。
+
 + **plugins**
 
 Type: `Array`
@@ -60,7 +68,6 @@ Type: `Array`
 
 Type: `Array`
 
-[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 的配置 `options`，默认不开启 `webpack-bundle-analyzer` 这个插件，当这个配置有值的时候，则开启
 
 
 ## Hooks
