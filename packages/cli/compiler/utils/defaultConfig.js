@@ -7,5 +7,6 @@ module.exports = {
 	mode: 'development',
 	htmlEntryMode: 'normal',
 	webpackconfig: false,
-	analyzer: false
+  analyzer: false,
+  authorInfo: true
 }

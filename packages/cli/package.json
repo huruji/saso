@@ -59,6 +59,7 @@
     "open": "^0.0.5",
     "open-browser-plugin": "^1.0.3",
     "ora": "^3.1.0",
+    "pkg-up": "^2.0.0",
     "postcss-loader": "^3.0.0",
     "posthtml": "^0.11.3",
     "progress-bar-webpack-plugin": "^1.12.0",
