@@ -33,6 +33,7 @@ class Compiler {
 
 		this.config.webpackChain = createWebpackChain(this.config)
 
+		this.config.webpackChain.sasoConfig = this.config
 		this.hooks.invoke('beforeCompile', this.config.webpackChain)
 		await this.hooks.invokePromise('beforeCompileAsync', this.config.webpackChain)
 		if (this.config.webpackconfig) {
