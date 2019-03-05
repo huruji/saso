@@ -17,6 +17,25 @@ npm i saso -g
 saso build --watch
 ```
 
+## 内置的 command
+
+### `saso build`
+
+编译打包项目。
+
+这个命令有以下 `options` :
+
+**`-w  --watch`** : 开启 `watch` 模式
+
+**`-d  --dev  --development`** : 使用 `development` 模式
+
+**`-p  --prod  --production`** : 使用 `production` 模式
+
+**`--webpack  --webpackconfig`** : 编译时输出相应的 `webpack` 配置信息
+
+**`-a  --analyzer`** : 使用 `[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)` 分析 `bundle`
+
+
 ## 编写 `saso` 配置文件
 
 saso 的配置文件和其他开源工具一样，支持在 `package.json` 中的属性定义，也支持 rc 文件、`.json` 、`.yaml`、`.yml`、`.js`文件，如可以在项目的文件夹中使用名为 `saso.config.js` 文件配置 `saso`

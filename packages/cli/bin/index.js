@@ -12,6 +12,7 @@ program
 	.option('-d, --dev, --development')
 	.option('-p, --prod, --production')
 	.option('--webpack, --webpackconfig')
+	.option('-a, --analyzer')
 	.action(build)
 
 if (cmdPlugin.length) {
