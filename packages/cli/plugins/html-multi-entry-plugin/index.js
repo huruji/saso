@@ -1,11 +1,13 @@
 const path = require('path')
 const fs = require('fs')
-// const JSDOM = require('jsdom').JSDOM
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const isUrl = require('nice-is-url')
 const cheerio = require('cheerio')
 const FileManagerPlugin = require('filemanager-webpack-plugin')
 const logger = require('saso-log')
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
+
+const ALI_CDN = '//polyfill.alicdn.com/polyfill.min.js'
 
 module.exports.apply = compiler => {
 	let entry
@@ -17,10 +19,14 @@ module.exports.apply = compiler => {
 	let templateFile
 	let isWatch = false
 	let port = false
+	let prod = false
+	let polyfillService = false
 	compiler.hook('afterConfigure', config => {
 		isWatch = config.watch
 		entry = config.entry
 		port = config.port
+		prod = config.mode === 'production'
+		polyfillService = config.polyfillService
 		outputDir = config.outputPath
 		// outputFileName = config.outputFile
 		if (['.html', '.shtml', '.xhtml'].includes(path.extname(entry))) isHtmlEntry = true
@@ -52,20 +58,7 @@ module.exports.apply = compiler => {
 			encoding: 'utf-8',
 			flag: 'w+'
 		})
-		// const dom = new JSDOM(content)
-		// srcFiles = Array.from(dom.window.document.querySelectorAll('script'))
-		//   .map(e => e.src)
-		//   .filter((e) => {
-		//     const srcIsUrl = isUrl(e)
-		//     if (srcIsUrl) return false
-		//     const dir = path.dirname(entry)
-		//     const exists = fs.existsSync(path.resolve(dir, e))
-		//     if (!exists) {
-		//       console.log(`file ${e} is not exists`)
-		//       return false
-		//     }
-		//     return true
-		//   })
+
 		files = srcFiles.map(src => {
 			const dir = path.dirname(entry)
 			return path.resolve(dir, src)
@@ -101,7 +94,8 @@ module.exports.apply = compiler => {
 			.end()
 		config.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [
 			{
-				template: templateFile
+				template: templateFile,
+				minify: prod ? true : false
 			}
 		])
 		if (templateFile) {
@@ -116,6 +110,32 @@ module.exports.apply = compiler => {
 					}
 				}
 			])
+			if (polyfillService) {
+				let filePath = ''
+				if (typeof polyfillService === 'boolean') {
+					filePath = ALI_CDN
+				}
+
+				if (typeof polyfillService === 'string') {
+					filePath = polyfillService
+				}
+
+				config.plugin('include-assets').use(HtmlWebpackIncludeAssetsPlugin, [
+					{
+						assets: [
+							{
+								path: filePath,
+								type: 'js',
+								attributes: {
+									crossorigin: 'anonymous'
+								}
+							}
+						],
+						resolvePaths: false,
+						append: false
+					}
+				])
+			}
 		}
 	})
 }
