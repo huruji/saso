@@ -7,7 +7,7 @@ const FileManagerPlugin = require('filemanager-webpack-plugin')
 const logger = require('saso-log')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 
-const ALI_CDN = '//polyfill.alicdn.com/polyfill.min.js'
+const ALI_CDN = '/polyfill.alicdn.com/polyfill.min.js'
 
 module.exports.apply = compiler => {
 	let entry
