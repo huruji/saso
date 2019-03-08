@@ -9,5 +9,6 @@ module.exports = {
 	webpackconfig: false,
 	analyzer: false,
 	authorInfo: true,
-	polyfillService: false
+	polyfillService: false,
+	proxy: {}
 }

@@ -11,7 +11,9 @@ module.exports.apply = compiler => {
 
 		const cssRule = config.module.rule('compile css').test(/\.css$/)
 
-		const lessRule = config.module.rule('compile less').test(/\.less/)
+		const lessRule = config.module.rule('compile less').test(/\.less$/)
+
+		const stylusRule = config.module.rule('compile stylus').test(/\.styl$/)
 
 		sassRule.use('style-loader').loader(require.resolve('style-loader'))
 		sassRule.use('css-loader').loader(require.resolve('css-loader'))
@@ -51,6 +53,18 @@ module.exports.apply = compiler => {
 				}
 			})
 		lessRule.use('less-loader').loader(require.resolve('less-loader'))
+
+		stylusRule.use('style-loader').loader(require.resolve('style-loader'))
+		stylusRule.use('css-loader').loader(require.resolve('css-loader'))
+		stylusRule
+			.use('postcss-loader')
+			.loader(require.resolve('postcss-loader'))
+			.options({
+				config: {
+					path: postcssConfig ? path.dirname(postcssConfig.filepath) : path.resolve(__dirname, '../../config')
+				}
+			})
+		stylusRule.use('stylus-loader').loader(require.resolve('stylus-loader'))
 
 		config.plugin('extra css').use(MiniCssExtractPlugin, [
 			{

@@ -59,11 +59,14 @@ class Compiler {
 				contentBase,
 				compress: false,
 				hot: true,
-				historyApiFallback: true,
+				// historyApiFallback: true,
 				stats: 'errors-only',
 				watchContentBase: true,
 				inline: true,
 				open: `http://localhost:${this.config.port}`
+			}
+			if (this.config.proxy) {
+				devServerOptions.proxy = this.config.proxy
 			}
 			WebpackDevServer.addDevServerEntrypoints(webpackConfig, devServerOptions)
 			const server = new WebpackDevServer(webpackCompiler, devServerOptions)
