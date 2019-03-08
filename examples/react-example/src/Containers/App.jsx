@@ -6,12 +6,14 @@ const URL =
 export default class App extends React.Component {
 	constructor(props) {
 		super(props)
+		this.container = React.createRef()
 		this.state = {
-			list: []
+			list: [],
+			imgHeight: 0,
+			imgWidth: 0
 		}
 	}
 	componentWillMount() {
-		debugger
 		fetch('/imgapi?c=WallPaperAndroid&a=getAppsByCategory&cid=9&start=0&count=99', {
 			method: 'GET',
 			mode: 'no-cors'
@@ -22,10 +24,15 @@ export default class App extends React.Component {
 			.then(json => {
 				if (json.errno == '0' && chainGet(json, []).data().length) {
 					const imgs = []
-					json.data.forEach(img => imgs.push({ url: img.url }))
-					debugger
+					json.data.forEach(img =>
+						imgs.push({
+							url: img.url,
+							loaded: false
+						})
+					)
+					this.preloadImg(imgs, this.state.list.length)
 					this.setState({
-						list: this.state.list.concat(imgs)
+						list: [...this.state.list, ...imgs]
 					})
 				}
 			})
@@ -33,18 +40,49 @@ export default class App extends React.Component {
 				console.log(e)
 			})
 	}
+	componentDidMount() {
+		const width = this.container.current.clientWidth
+		const height = width / 1920 * 1200
+		this.setState({
+			imgHeight: height + 'px',
+			imgWidth: width + 'px'
+		})
+	}
+
+	preloadImg(imgs, base) {
+		imgs.forEach((img, i) => {
+			const image = new Image()
+			image.src = img.url
+			image.onload = () => {
+				const list = this.state.list
+				list[base + i] = {
+					url: img.url,
+					loaded: true
+				}
+				debugger
+				this.setState(prevState => ({
+					list
+				}))
+			}
+		})
+	}
 
 	render() {
-		const { list } = this.state
+		const { list, imgWidth, imgHeight } = this.state
 		return (
-			<div>
+			<div className="img-container" ref={this.container}>
 				<ul>
-					{list.map(img => (
-						<li key={img.url}>
-							<img src={img.url} />
+					{' '}
+					{list.map((img, i) => (
+						<li key={`${img.url}_${i}`} className="img-item">
+							{img.loaded ? (
+								<img src={img.url} />
+							) : (
+								<div style={{ width: imgWidth, height: imgHeight, background: '#ccc' }} />
+							)}
 						</li>
-					))}
-				</ul>
+					))}{' '}
+				</ul>{' '}
 			</div>
 		)
 	}
