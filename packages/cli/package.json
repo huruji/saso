@@ -58,6 +58,7 @@
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.5.0",
     "nice-is-url": "^1.0.2",
+    "node-sass": "^4.11.0",
     "open": "^0.0.5",
     "open-browser-plugin": "^1.0.3",
     "ora": "^3.1.0",
