@@ -12,7 +12,7 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    fetch('/imgapi?c=WallPaperAndroid&a=getAppsByCategory&cid=9&start=0&count=99', {
+    fetch('/imgapi?c=WallPaperAndroid&a=getAppsByCategory&cid=6&start=0&count=99', {
       method: 'GET',
       mode: 'no-cors'
     })
@@ -37,7 +37,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    const width = this.container.current.clientWidth
+    const width = this.container.clientWidth
     const height = width / 1920 * 1200
     this.setState({
       imgHeight: `${height}px`,
