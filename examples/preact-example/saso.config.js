@@ -7,5 +7,8 @@ module.exports = {
         '^/imgapi': ''
       }
     }
+  },
+  jsx: {
+    pragma: 'h'
   }
 }

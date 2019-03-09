@@ -17,6 +17,7 @@
     "eslint-plugin-react": "^7.12.4"
   },
   "dependencies": {
+    "chain-get": "^1.0.2",
     "preact": "^8.4.2"
   }
 }
