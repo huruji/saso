@@ -16,7 +16,7 @@
   },
   "rules": {
     "comma-dangle": ["error", "only-multiline"],
-    "semi": ["never", {
+    "semi": [2, "never", {
       "beforeStatementContinuationChars": "always"
     }],
     "func-names": 0,
@@ -29,7 +29,7 @@
     "no-param-reassign": ["error", {
       "props": false
     }],
-    "quotes": ["always", "single"],
+    "quotes": [2, "single"],
     "no-console": 0,
     "no-restricted-syntax": 0
   }
