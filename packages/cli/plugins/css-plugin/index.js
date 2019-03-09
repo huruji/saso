@@ -7,64 +7,74 @@ module.exports.apply = compiler => {
 	compiler.hook('beforeCompile', config => {
 		const isProd = config.toConfig().mode === 'production'
 		const postcssConfig = cosmiconfig('postcss').searchSync()
-		const sassRule = config.module.rule('compile sass').test(/\.s[a|c]ss$/)
 
 		const cssRule = config.module.rule('compile css').test(/\.css$/)
-
+		const sassRule = config.module.rule('compile sass').test(/\.s[a|c]ss$/)
 		const lessRule = config.module.rule('compile less').test(/\.less$/)
-
 		const stylusRule = config.module.rule('compile stylus').test(/\.styl$/)
 
-		sassRule.use('style-loader').loader(require.resolve('style-loader'))
+		const postcssOptions = {
+			config: {
+				path: postcssConfig ? path.dirname(postcssConfig.filepath) : path.resolve(__dirname, '../../config')
+			}
+		}
+
+		if (isProd) {
+			cssRule.use('css-style-loader').loader(require.resolve('style-loader'))
+			sassRule.use('sass-style-loader').loader(require.resolve('style-loader'))
+			lessRule.use('less-style-loader').loader(require.resolve('style-loader'))
+			stylusRule.use('stylus-style-loader').loader(require.resolve('style-loader'))
+		} else {
+			cssRule.use('css-mini-css').loader(MiniCssExtractPlugin.loader)
+			sassRule.use('sass-mini-css').loader(MiniCssExtractPlugin.loader)
+			lessRule.use('less-mini-css').loader(MiniCssExtractPlugin.loader)
+			stylusRule.use('stylus-mini-css').loader(MiniCssExtractPlugin.loader)
+		}
+
+		// set css-loader
+		cssRule.use('css-loader').loader(require.resolve('css-loader'))
 		sassRule.use('css-loader').loader(require.resolve('css-loader'))
-		sassRule
-			.use('postcss-loader')
+		lessRule.use('css-loader').loader(require.resolve('css-loader'))
+		stylusRule.use('css-loader').loader(require.resolve('css-loader'))
+
+		// set postcss
+		cssRule
+			.use('css-postcss-loader')
 			.loader(require.resolve('postcss-loader'))
-			.options({
-				config: {
-					path: postcssConfig ? path.dirname(postcssConfig.filepath) : path.resolve(__dirname, '../../config')
-				}
-			})
+			.options(postcssOptions)
+
+		sassRule
+			.use('sass-postcss-loader')
+			.loader(require.resolve('postcss-loader'))
+			.options(postcssOptions)
+
+		lessRule
+			.use('less-postcss-loader')
+			.loader(require.resolve('postcss-loader'))
+			.options(postcssOptions)
+
+		stylusRule
+			.use('stylus-postcss-loader')
+			.loader(require.resolve('postcss-loader'))
+			.options(postcssOptions)
+
+		// set sass-loader
 		sassRule
 			.use('sass-loader')
 			.loader(require.resolve('sass-loader'))
 			.end()
 
-		// cssRule.use('mini-css').loader(MiniCssExtractPlugin.loader);
-		cssRule.use('style-loader').loader(require.resolve('style-loader'))
-		cssRule.use('css-loader').loader(require.resolve('css-loader'))
-		cssRule
-			.use('postcss-loader')
-			.loader(require.resolve('postcss-loader'))
-			.options({
-				config: {
-					path: postcssConfig ? path.dirname(postcssConfig.filepath) : path.resolve(__dirname, '../../config')
-				}
-			})
-
-		lessRule.use('style-loader').loader(require.resolve('style-loader'))
-		lessRule.use('css-loader').loader(require.resolve('css-loader'))
+		// set less-loader
 		lessRule
-			.use('postcss-loader')
-			.loader(require.resolve('postcss-loader'))
-			.options({
-				config: {
-					path: postcssConfig ? path.dirname(postcssConfig.filepath) : path.resolve(__dirname, '../../config')
-				}
-			})
-		lessRule.use('less-loader').loader(require.resolve('less-loader'))
+			.use('less-loader')
+			.loader(require.resolve('less-loader'))
+			.end()
 
-		stylusRule.use('style-loader').loader(require.resolve('style-loader'))
-		stylusRule.use('css-loader').loader(require.resolve('css-loader'))
+		// set stylus-loader
 		stylusRule
-			.use('postcss-loader')
-			.loader(require.resolve('postcss-loader'))
-			.options({
-				config: {
-					path: postcssConfig ? path.dirname(postcssConfig.filepath) : path.resolve(__dirname, '../../config')
-				}
-			})
-		stylusRule.use('stylus-loader').loader(require.resolve('stylus-loader'))
+			.use('stylus-loader')
+			.loader(require.resolve('stylus-loader'))
+			.end()
 
 		config.plugin('extra css').use(MiniCssExtractPlugin, [
 			{
