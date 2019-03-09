@@ -1,8 +1,6 @@
 import React from 'react'
 import chainGet from 'chain-get'
 
-const URL =
-	'//api.tuchong.com/feed-app?os_api=22&device_type=MI&device_platform=android&ssmix=a&manifest_version_code=232&dpi=400&abflag=0&uuid=651384659521356&version_code=232&app_name=tuchong&version_name=2.3.2&openudid=65143269dafd1f3a5&resolution=1280*1000&os_version=5.8.1&ac=wifi&aid=0&page=1&type=refresh'
 export default class App extends React.Component {
 	constructor(props) {
 		super(props)
@@ -73,16 +71,26 @@ export default class App extends React.Component {
 			<div className="img-container" ref={this.container}>
 				<ul>
 					{' '}
+					{' '}
 					{list.map((img, i) => (
 						<li key={`${img.url}_${i}`} className="img-item">
+							{' '}
 							{img.loaded ? (
 								<img src={img.url} />
 							) : (
-								<div style={{ width: imgWidth, height: imgHeight, background: '#ccc' }} />
-							)}
+								<div
+									style={{
+										width: imgWidth,
+										height: imgHeight,
+										background: '#ccc'
+									}}
+								/>
+							)}{' '}
 						</li>
 					))}{' '}
+					{' '}
 				</ul>{' '}
+				{' '}
 			</div>
 		)
 	}
