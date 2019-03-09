@@ -17,6 +17,7 @@
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.2.3",
     "add-server-client-script-webpack-plugin": "^1.0.2",
+    "assign-deep": "^1.0.0",
     "author-webpack-plugin": "^1.0.1",
     "autoprefixer": "^9.4.7",
     "babel-loader": "^8.0.4",
