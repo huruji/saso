@@ -1,7 +1,7 @@
 module.exports.apply = (compiler) => {
   compiler.hook('beforeCompile', (config) => {
     const sasoConfig = config.sasoConfig
-    const jsxConfig = sasoConfig.jsxConfig
+    const jsxConfig = sasoConfig.jsx
     const plugins = [[require.resolve('@babel/plugin-transform-react-jsx'), jsxConfig]]
     const prodPlugins = [require.resolve('babel-plugin-no-debugging')]
 
