@@ -1,1 +1,3 @@
 node_modules
+*/**/saso-template.html
+examples/**/dist
