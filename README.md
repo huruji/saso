@@ -1,5 +1,5 @@
 # saso
-一个**零配置**、**渐进式**的 web 打包工具，能让你更加无痛的维护旧的 web 应用
+一个**零配置**、**渐进式**的 web 打包工具，既能让你更加无痛的维护旧的 web 应用，也能让你更快开发现代化的 web 应用。
 
 ## 为什么使用 `saso`
 
@@ -49,29 +49,12 @@ module.exports = {
 
 ### `saso` 的配置项
 
-+ **watch**
-
-Type: `Boolean`
-
-Default: `false`
-
-+ **port**
-
-Type: `Number`
-
-Default: `1000`
-
-+ **mode**
-
-Type: `String`
-
-Default: `development`
-
 + **analyzer**
 
 Type: `Boolean` `Object`
 
 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 的配置 `options`，默认不开启 `webpack-bundle-analyzer` 这个插件，当这个配置有值的时候，则开启。
+
 
 + **authorInfo**
 
@@ -79,13 +62,11 @@ Type: `Boolean` `Object`
 
 [author-webpack-plugin](https://github.com/huruji/author-webpack-plugin) 的配置`options`，如果为 `Boolean` 值 `true` 则从最近的 `package.json` 中获取作者信息，如果为 `Boolean` 值 `false` 则不使用 [author-webpack-plugin](https://github.com/huruji/author-webpack-plugin) 插件。
 
-+ **plugins**
-
-Type: `Array`
 
 + **cliPlugins**
 
 Type: `Array`
+
 
 + **entry**
 
@@ -96,6 +77,18 @@ Type: `String`
 如果不指定 `entry` 时，`saso` 会依次寻找以下文件作为入口文件 `index.html`、 `src/index.html`、`index.js`、`main.js`、`src/index.js`、 `src/main.js`。
 
 
++ **mode**
+
+Type: `String`
+
+Default: `development`
+
+
++ **plugins**
+
+Type: `Array`
+
+
 + **polyfillService**
 
 Type: `Boolean` `String`
@@ -103,6 +96,14 @@ Type: `Boolean` `String`
 Default: `false`
 
 [polyfill-service](https://github.com/Financial-Times/polyfill-service) 的链接，当为 `Boolean` 值 true 的时候，默认使用国内阿里的CDN `//polyfill.alicdn.com/polyfill.min.js` 。
+
+
++ **port**
+
+Type: `Number`
+
+Default: `1000`
+
 
 ## Hooks
 
