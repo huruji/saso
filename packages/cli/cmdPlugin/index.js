@@ -1,3 +1,3 @@
-const publish = require('./publish');
+const publish = require('./publish')
 
-module.exports = [publish];
+module.exports = [publish]

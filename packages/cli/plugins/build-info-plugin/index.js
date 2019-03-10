@@ -2,7 +2,7 @@ const ora = require('ora')
 const chalk = require('chalk')
 
 class BuildInfo {
-	/* eslint-disable */
+  /* eslint-disable */
 	apply(compiler) {
 		compiler.hooks.afterEmit.tap('buildInfo', stats => {
 			// const time = new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
