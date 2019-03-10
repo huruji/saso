@@ -32,6 +32,9 @@
     "quotes": [2, "single"],
     "no-console": 0,
     "no-restricted-syntax": 0,
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "react/no-array-index-key": 0
   }
 }
