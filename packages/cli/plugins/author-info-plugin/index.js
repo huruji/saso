@@ -27,8 +27,8 @@ module.exports.apply = (compiler) => {
       args.homepage = authorInfo.homepage
     }
 
-    compiler.hook('beforeCompile', () => {
-      config.plugin('author webpack plugin').use(AuthorWebpackPlugin, [args])
+    compiler.hook('beforeCompile', (cfg) => {
+      cfg.plugin('author webpack plugin').use(AuthorWebpackPlugin, [args])
     })
   })
 }
