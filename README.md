@@ -35,6 +35,11 @@ saso build --watch
 
 **`-a  --analyzer`** : 使用 `[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)` 分析 `bundle`
 
+**`--config <configFile>`** : 通过命令行指定 `saso` 的配置文件
+
+**`--entry <entryFile>`** : 通过命令行指定打包的入口文件
+
+**`--port <port>`** : 通过命令行指定端口，指定了 `port` 时，则必定开启监听模式
 
 ## 编写 `saso` 配置文件
 
