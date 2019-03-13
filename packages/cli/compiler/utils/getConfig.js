@@ -5,7 +5,9 @@ const defaultConfig = require('./defaultConfig')
 module.exports = (cliConfig) => {
   let config = defaultConfig
   const explorer = cosmiconfig('saso')
-  const result = explorer.searchSync()
+  let result
+  if (cliConfig.configFile) result = explorer.loadSync(cliConfig.configFile)
+  else result = explorer.searchSync()
   if (result && result.config) {
     config = assign(config, result.config)
   }

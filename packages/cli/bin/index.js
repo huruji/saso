@@ -14,6 +14,7 @@ program
   .option('--webpack, --webpackconfig')
   .option('--entry <entry>')
   .option('--port <port>')
+  .option('--config <configFile>')
   .option('-a, --analyzer')
   .action(build)
 
