@@ -9,6 +9,7 @@ const getConfig = require('./utils/getConfig')
 const Hook = require('./Hook')
 const createWebpackChain = require('./utils/createWebpackChain')
 const setPort = require('./utils/setPort')
+const pick = require('./utils/pick')
 
 class Compiler {
   constructor(opt) {
@@ -187,10 +188,15 @@ class Compiler {
 
   handleCliOpts(opt) {
     this.config = {}
-    if (opt.watch) {
-      this.watch = true
-      this.config.watch = this.watch
-    }
+    const cliOpts = ['watch', 'prod', 'dev', 'webpack', 'port', 'entry']
+    // eslint-disable-next-line prefer-spread
+    const results = pick.apply(null, [opt].concat(cliOpts))
+    Object.assign(this.config, results)
+    Object.assign(this, results)
+    // if (opt.watch) {
+    //   this.watch = true
+    //   this.config.watch = this.watch
+    // }
     if (opt.prod) {
       this.mode = 'production'
       this.config.mode = this.mode
@@ -199,10 +205,10 @@ class Compiler {
       this.mode = 'development'
       this.config.mode = this.mode
     }
-    if (opt.webpackconfig) {
-      this.webpackconfig = true
-      this.config.webpackconfig = this.webpackconfig
-    }
+    // if (opt.webpackconfig) {
+    //   this.webpackconfig = true
+    //   this.config.webpackconfig = this.webpackconfig
+    // }
   }
 }
 

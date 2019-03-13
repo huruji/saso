@@ -1,4 +1,4 @@
-#!/usr/bin/env node --max_old_space_size=4096
+#!/usr/bin/env node --max_old_space_size=4096 --inspect-brk
 
 const program = require('commander')
 const build = require('./build')
@@ -12,6 +12,8 @@ program
   .option('-d, --dev, --development')
   .option('-p, --prod, --production')
   .option('--webpack, --webpackconfig')
+  .option('--entry <entry>')
+  .option('--port <port>')
   .option('-a, --analyzer')
   .action(build)
 
