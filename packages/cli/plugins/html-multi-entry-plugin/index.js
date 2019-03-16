@@ -7,7 +7,7 @@ const cheerio = require('cheerio')
 const logger = require('saso-log')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 const escapeStringRegexp = require('escape-string-regexp')
-const RemoveTagsPlugin = require('./removeTags')
+const RemoveTagsPlugin = require('remove-tags-webpack-plugin')
 
 const ALI_CDN = '//polyfill.alicdn.com/polyfill.min.js'
 
@@ -26,7 +26,6 @@ module.exports.apply = (compiler) => {
   compiler.hook('afterConfigure', (config) => {
     isWatch = config.watch
     entry = config.entry
-    console.log(entry)
     prod = config.mode === 'production'
     polyfillService = config.polyfillService
     outputDir = config.outputPath
