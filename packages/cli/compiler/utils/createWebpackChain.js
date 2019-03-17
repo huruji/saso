@@ -32,6 +32,5 @@ module.exports = (config) => {
     .add('.md')
     .add('.html')
 
-  // Chain.plugin('clear console').use(ClearConsole);
   return Chain
 }
