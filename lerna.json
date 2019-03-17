@@ -1,6 +1,7 @@
 {
   "packages": [
-    "packages/*"
+    "packages/cli",
+    "packages/log"
   ],
   "version": "independent"
 }
