@@ -5,7 +5,6 @@ module.exports = {
   path: false,
   watch: false,
   mode: 'development',
-  htmlEntryMode: 'normal',
   webpackconfig: false,
   analyzer: false,
   authorInfo: true,

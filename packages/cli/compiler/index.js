@@ -127,17 +127,11 @@ class Compiler {
       },
       {
         resolve: require.resolve('../plugins/build-info-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/html-multi-entry-plugin')
       }
     ]
-    if (this.config.htmlEntryMode === 'normal') {
-      plugins.push({
-        resolve: require.resolve('../plugins/html-multi-entry-plugin')
-      })
-    } else {
-      plugins.push({
-        resolve: require.resolve('../plugins/html-entry-plugin')
-      })
-    }
 
     this.plugins = plugins
   }
