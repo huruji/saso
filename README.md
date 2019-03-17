@@ -3,6 +3,12 @@
 </p>
 
 # saso
+
+<p align="center">
+<img src="./example.gif" alt="saso">
+</p>
+
+
 一个**零配置**、**渐进式**的 web 打包工具，既能让你**更加无痛**的维护旧的 web 应用，也能让你**更快开发现代化**的 web 应用。
 
 ## 为什么使用 `saso`
