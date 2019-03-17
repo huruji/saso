@@ -3,7 +3,6 @@ const fs = require('fs')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const isUrl = require('nice-is-url')
 const cheerio = require('cheerio')
-// const FileManagerPlugin = require('filemanager-webpack-plugin')
 const logger = require('saso-log')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 const escapeStringRegexp = require('escape-string-regexp')
@@ -17,19 +16,18 @@ module.exports.apply = (compiler) => {
   let files = []
   let srcFiles = []
   let outputDir
-  // let outputFileName
-  // let templateFile
   let isWatch = false
   let prod = false
   let polyfillService = false
   const tags = []
+
   compiler.hook('afterConfigure', (config) => {
     isWatch = config.watch
     entry = config.entry
     prod = config.mode === 'production'
     polyfillService = config.polyfillService
     outputDir = config.outputPath
-    // outputFileName = config.outputFile
+
     if (['.html', '.shtml', '.xhtml'].includes(path.extname(entry))) isHtmlEntry = true
     if (!isHtmlEntry) return
     const content = fs.readFileSync(config.entry)
@@ -50,7 +48,6 @@ module.exports.apply = (compiler) => {
           logger.error(`file ${src} is not exists`)
           return false
         }
-        // $(this).remove()
         return src
       })
       .get()
@@ -77,34 +74,12 @@ module.exports.apply = (compiler) => {
 
     srcFiles = [].concat(scripts, styles)
 
-    // srcFiles = $('script, link, img')
-    //   .map(function () {
-    //     const src = $(this).attr('src') || $(this).attr('href')
-    //     const srcIsUrl = isUrl(src)
-    //     if (!src) return false
-    //     if (srcIsUrl) return false
-    //     const dir = path.dirname(entry)
-    //     const exists = fs.existsSync(path.resolve(dir, src))
-    //     if (!exists) {
-    //       logger.error(`file ${src} is not exists`)
-    //       return false
-    //     }
-    //     // $(this).remove()
-    //     return src
-    //   })
-    //   .get()
-    //   .filter(e => e)
-    // templateFile = path.resolve(path.dirname(entry), 'saso-template.html')
-    // fs.writeFileSync(templateFile, $.html(), {
-    //   encoding: 'utf-8',
-    //   flag: 'w+'
-    // })
-
     files = srcFiles.map((src) => {
       const dir = path.dirname(entry)
       return path.resolve(dir, src)
     })
   })
+
   compiler.hook('beforeCompile', (config) => {
     const isProd = config.toConfig().mode === 'production'
 
@@ -118,7 +93,6 @@ module.exports.apply = (compiler) => {
         if (isWatch) {
           config
             .entry(file)
-          // .add(`${require.resolve('webpack-dev-server/client')}?http://localhost:${port}`)
             .add(files[i])
             .end()
         } else {
@@ -139,25 +113,13 @@ module.exports.apply = (compiler) => {
         minify: !!prod
       }
     ])
-    console.log(config.entry)
     config.plugin('remove-tags').use(RemoveTagsPlugin, [
       {
         file: new RegExp(escapeStringRegexp(path.basename(entry))),
         tags
       }
     ])
-    // if (templateFile) {
-    // const outputPath = config.toConfig().output.path
-    // config.plugin('filemanager-webpack-plugin').use(FileManagerPlugin, [
-    //   {
-    //     onEnd: {
-    //       delete: isWatch ? [] : [templateFile]
-    //     },
-    //     onStart: {
-    //       delete: [outputPath]
-    //     }
-    //   }
-    // ])
+
     if (polyfillService) {
       let filePath = ''
       if (typeof polyfillService === 'boolean') {
@@ -185,6 +147,5 @@ module.exports.apply = (compiler) => {
         }
       ])
     }
-    // }
   })
 }

@@ -40,9 +40,6 @@ class Compiler {
     if (this.config.webpackconfig) {
       logger.notice(JSON.stringify(this.config.webpackChain.toConfig(), null, 2))
     }
-    // console.log(JSON.stringify(this.config.webpackChain.toConfig(), null, 2));
-    // clear(true);
-    // c()
     const webpackConfig = this.config.webpackChain.toConfig()
     const webpackCompiler = webpack(webpackConfig)
     if (this.config.watch) {
@@ -193,10 +190,7 @@ class Compiler {
     const results = pick.apply(null, [opt].concat(cliOpts))
     Object.assign(this.config, results)
     Object.assign(this, results)
-    // if (opt.watch) {
-    //   this.watch = true
-    //   this.config.watch = this.watch
-    // }
+
     if (opt.prod) {
       this.mode = 'production'
       this.config.mode = this.mode
@@ -205,10 +199,6 @@ class Compiler {
       this.mode = 'development'
       this.config.mode = this.mode
     }
-    // if (opt.webpackconfig) {
-    //   this.webpackconfig = true
-    //   this.config.webpackconfig = this.webpackconfig
-    // }
   }
 }
 
