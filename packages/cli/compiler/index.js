@@ -184,13 +184,11 @@ class Compiler {
     const results = pick.apply(null, [opt].concat(cliOpts))
     Object.assign(this.config, results)
     Object.assign(this, results)
-
-    if (opt.prod) {
-      this.mode = 'production'
-      this.config.mode = this.mode
-    }
     if (opt.dev) {
       this.mode = 'development'
+      this.config.mode = this.mode
+    } else {
+      this.mode = 'production'
       this.config.mode = this.mode
     }
   }

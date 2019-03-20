@@ -15,7 +15,7 @@ module.exports.cli = (program) => {
     .option('-a, --analyzer')
     .action(async (opt) => {
       opt.watch = true
-      opt.development = true
+      opt.dev = true
       const wpc = new Compiler(opt)
       await wpc.run(opt)
     })

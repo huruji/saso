@@ -13,7 +13,6 @@ module.exports.apply = (compiler) => {
     const lessRule = config.module.rule('compile less').test(/\.less$/)
     const stylusRule = config.module.rule('compile stylus').test(/\.styl(us)?$/)
 
-    console.log(postcssConfig)
     const postcssOptions = {
       config: {
         path: postcssConfig ? path.dirname(postcssConfig.filepath) : path.resolve(__dirname, '../../config')
