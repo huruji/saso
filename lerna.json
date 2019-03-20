@@ -3,5 +3,8 @@
     "packages/cli",
     "packages/log"
   ],
+  "publish": {
+    "message": "chore(release): publish"
+  },
   "version": "independent"
 }
