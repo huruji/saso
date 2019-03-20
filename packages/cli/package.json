@@ -1,6 +1,6 @@
 {
   "name": "saso",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -51,7 +51,7 @@
     "postcss-loader": "^3.0.0",
     "progress-bar-webpack-plugin": "^1.12.0",
     "remove-tags-webpack-plugin": "^1.0.0",
-    "saso-log": "^1.2.2",
+    "saso-log": "^1.3.0",
     "sass-loader": "^7.1.0",
     "size-table-webpack-plugin": "^4.0.4",
     "style-loader": "^0.23.1",
