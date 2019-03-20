@@ -3,7 +3,9 @@ const chalk = require('chalk')
 
 module.exports.apply = (compiler) => {
   compiler.hook('afterConfigure', (config) => {
-    const { watch: isWatch, port, analyzer } = config
+    const {
+      watch: isWatch, port, analyzer, clear
+    } = config
     let postmessage = isWatch && port ? `Starting server on http://localhost:${port}` : ''
     if (analyzer) {
       postmessage += `\nwebpack-bundle-analyzer is listening http://${analyzer.analyzerHost || '127.0.0.1'}:${
@@ -15,7 +17,7 @@ module.exports.apply = (compiler) => {
       cfg.plugin('sizeTableWebpackPlugin')
         .use(SizeTableWebpackPlugin, [
           {
-            clear: true,
+            clear,
             postmessage
           }
         ])

@@ -179,7 +179,7 @@ class Compiler {
 
   handleCliOpts(opt) {
     this.config = {}
-    const cliOpts = ['watch', 'prod', 'dev', 'webpack', 'port', 'entry', 'configFile']
+    const cliOpts = ['watch', 'prod', 'dev', 'webpack', 'port', 'entry', 'configFile', 'clear']
     // eslint-disable-next-line prefer-spread
     const results = pick.apply(null, [opt].concat(cliOpts))
     Object.assign(this.config, results)

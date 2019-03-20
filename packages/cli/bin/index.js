@@ -16,6 +16,7 @@ program
   .option('--port <port>')
   .option('--config <configFile>')
   .option('-a, --analyzer')
+  .option('--no-clear')
   .action(build)
 
 if (cmdPlugin.length) {

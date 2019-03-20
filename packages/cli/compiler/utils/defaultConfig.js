@@ -13,5 +13,6 @@ module.exports = {
   jsx: {
     pragma: 'React.createElement',
     useBuiltIns: false
-  }
+  },
+  clear: true
 }
