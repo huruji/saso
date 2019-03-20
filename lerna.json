@@ -3,8 +3,11 @@
     "packages/cli",
     "packages/log"
   ],
-  "publish": {
-    "message": "chore(release): publish"
+  "command": {
+    "publish": {
+      "ignoreChanges": ["*.md"],
+      "message": "chore(release): publish"
+    }
   },
   "version": "independent"
 }
