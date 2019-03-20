@@ -7,5 +7,6 @@ module.exports = {
         '^/imgapi': ''
       }
     }
-  }
+  },
+  entry: './src/index.js'
 }
