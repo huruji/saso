@@ -11,19 +11,20 @@ module.exports.apply = (compiler) => {
     const cssRule = config.module.rule('compile css').test(/\.css$/)
     const sassRule = config.module.rule('compile sass').test(/\.s[a|c]ss$/)
     const lessRule = config.module.rule('compile less').test(/\.less$/)
-    const stylusRule = config.module.rule('compile stylus').test(/\.styl$/)
+    const stylusRule = config.module.rule('compile stylus').test(/\.styl(us)?$/)
 
+    console.log(postcssConfig)
     const postcssOptions = {
       config: {
         path: postcssConfig ? path.dirname(postcssConfig.filepath) : path.resolve(__dirname, '../../config')
       }
     }
 
-    if (isProd) {
-      cssRule.use('css-style-loader').loader(require.resolve('style-loader'))
-      sassRule.use('sass-style-loader').loader(require.resolve('style-loader'))
-      lessRule.use('less-style-loader').loader(require.resolve('style-loader'))
-      stylusRule.use('stylus-style-loader').loader(require.resolve('style-loader'))
+    if (!isProd) {
+      cssRule.use('vue-style-loader').loader(require.resolve('vue-style-loader'))
+      sassRule.use('vue-style-loader').loader(require.resolve('vue-style-loader'))
+      lessRule.use('vue-style-loader').loader(require.resolve('vue-style-loader'))
+      stylusRule.use('vue-style-loader').loader(require.resolve('vue-style-loader'))
     } else {
       cssRule.use('css-mini-css').loader(MiniCssExtractPlugin.loader)
       sassRule.use('sass-mini-css').loader(MiniCssExtractPlugin.loader)
