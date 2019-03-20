@@ -65,6 +65,12 @@ saso build --watch
 
 **`--port <port>`** : 通过命令行指定端口，指定了 `port` 时，则必定开启监听模式
 
+**`--no-clear`** : `saso` 默认会清除上一次的编译信息以保持命令行的干净，使用这个参数则不会清除
+
+### `saso dev`
+
+`saso build --watch` 的简写，同样可以使用以上的options
+
 ## 编写 `saso` 配置文件
 
 saso 的配置文件和其他开源工具一样，支持在 `package.json` 中的属性定义，也支持 rc 文件、`.json` 、`.yaml`、`.yml`、`.js`文件，如可以在项目的文件夹中使用名为 `saso.config.js` 文件配置 `saso`
