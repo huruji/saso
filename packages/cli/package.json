@@ -30,6 +30,7 @@
     "commander": "^2.19.0",
     "cosmiconfig": "^5.0.7",
     "css-loader": "^2.1.0",
+    "cssnano": "^4.1.10",
     "escape-string-regexp": "^1.0.5",
     "get-port": "^4.1.0",
     "html-webpack-include-assets-plugin": "^1.0.7",

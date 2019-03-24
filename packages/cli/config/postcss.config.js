@@ -17,5 +17,5 @@ if (!browserlistConfig) {
 }
 module.exports = {
   // eslint-disable-next-line
-	plugins: [require('autoprefixer')(opts)]
+	plugins: [require('autoprefixer')(opts), require('cssnano')]
 }
