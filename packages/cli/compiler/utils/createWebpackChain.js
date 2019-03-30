@@ -13,7 +13,7 @@ module.exports = (config) => {
     .end()
     .mode(config.mode)
 
-  Chain.devtool('source-map')
+  Chain.devtool(config.prod ? 'source-map' : 'inline-source-map')
 
   Chain.resolve.extensions
     .add('.js')
