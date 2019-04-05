@@ -6,7 +6,9 @@ const path = require('path')
 module.exports.apply = (compiler) => {
   compiler.hook('beforeCompile', (config) => {
     const isProd = config.toConfig().mode === 'production'
-    const postcssConfig = cosmiconfig('postcss').searchSync()
+    const postcssConfig = cosmiconfig('postcss', {
+      stopDir: process.cwd()
+    }).searchSync()
 
     const cssRule = config.module.rule('compile css').test(/\.css$/)
     const sassRule = config.module.rule('compile sass').test(/\.s[a|c]ss$/)

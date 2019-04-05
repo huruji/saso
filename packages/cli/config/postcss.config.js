@@ -1,6 +1,8 @@
 const cosmiconfig = require('cosmiconfig')
 
-const browserlistConfig = cosmiconfig('browserslist').searchSync()
+const browserlistConfig = cosmiconfig('browserslist', {
+  stopDir: process.cwd()
+}).searchSync()
 const opts = {}
 if (!browserlistConfig) {
   opts.browsers = [
