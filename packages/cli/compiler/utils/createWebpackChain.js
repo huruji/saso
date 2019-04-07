@@ -20,6 +20,7 @@ module.exports = (config) => {
     .add('.jsx')
     .add('.tx')
     .add('.tsx')
+    .add('.json')
     .add('.vue')
     .add('.css')
     .add('.scss')
