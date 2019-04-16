@@ -107,18 +107,14 @@ module.exports.apply = (compiler) => {
       .path(outputDir)
       .filename(isProd ? '[name].[hash].js' : '[name].js')
       .end()
-    config.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [
-      {
-        template: entry,
-        minify: !!prod
-      }
-    ])
-    config.plugin('remove-tags').use(RemoveTagsPlugin, [
-      {
-        file: new RegExp(escapeStringRegexp(path.basename(entry))),
-        tags
-      }
-    ])
+    config.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [{
+      template: entry,
+      minify: !!prod
+    }])
+    config.plugin('remove-tags').use(RemoveTagsPlugin, [{
+      file: new RegExp(escapeStringRegexp(path.basename(entry))),
+      tags
+    }])
 
     if (polyfillService) {
       let filePath = ''
@@ -130,22 +126,18 @@ module.exports.apply = (compiler) => {
         filePath = polyfillService
       }
 
-      config.plugin('include-assets').use(HtmlWebpackIncludeAssetsPlugin, [
-        {
-          assets: [
-            {
-              path: filePath,
-              type: 'js',
-              attributes: {
-                crossorigin: 'anonymous'
-              }
-            }
-          ],
-          publicPath: false,
-          resolvePaths: false,
-          append: false
-        }
-      ])
+      config.plugin('include-assets').use(HtmlWebpackIncludeAssetsPlugin, [{
+        assets: [{
+          path: filePath,
+          type: 'js',
+          attributes: {
+            crossorigin: 'anonymous'
+          }
+        }],
+        publicPath: false,
+        resolvePaths: false,
+        append: false
+      }])
     }
   })
 }

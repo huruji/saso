@@ -1,7 +1,8 @@
 {
   "packages": [
     "packages/cli",
-    "packages/log"
+    "packages/log",
+    "packages/template-typescript"
   ],
   "command": {
     "publish": {

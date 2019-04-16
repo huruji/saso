@@ -1,0 +1,26 @@
+{
+  "name": "saso-template-typescript",
+  "version": "1.0.0",
+  "description": "saso template for typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.1",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "prettier": "^1.17.0",
+    "typescript": "^3.4.1"
+  }
+}

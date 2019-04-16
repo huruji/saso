@@ -1,0 +1,29 @@
+{
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "esnext",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "checkJs": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "es6",
+      "es7",
+      "dom"
+    ],
+    "types": []
+  },
+  "include": [
+    "src/**/*",
+    "index.ts"
+  ]
+}
