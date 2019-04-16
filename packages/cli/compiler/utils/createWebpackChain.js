@@ -18,7 +18,7 @@ module.exports = (config) => {
   Chain.resolve.extensions
     .add('.js')
     .add('.jsx')
-    .add('.tx')
+    .add('.ts')
     .add('.tsx')
     .add('.json')
     .add('.vue')
