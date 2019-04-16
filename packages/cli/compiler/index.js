@@ -94,43 +94,42 @@ class Compiler {
   }
 
   initPlugins() {
-    const plugins = [
-      {
-        resolve: require.resolve('../plugins/js-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/progress-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/author-info-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/vue-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/css-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/img-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/optimization-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/analyzer-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/devServer-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/size-table-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/build-info-plugin')
-      },
-      {
-        resolve: require.resolve('../plugins/html-multi-entry-plugin')
-      }
+    const plugins = [{
+      resolve: require.resolve('../plugins/js-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/progress-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/author-info-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/vue-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/css-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/img-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/optimization-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/analyzer-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/devServer-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/size-table-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/build-info-plugin')
+    },
+    {
+      resolve: require.resolve('../plugins/html-multi-entry-plugin')
+    }
     ]
 
     this.plugins = plugins
@@ -143,8 +142,8 @@ class Compiler {
   applyPlugins() {
     this.plugins.forEach((plugin) => {
       /* eslint-disable */
-			plugin.resolve = require(plugin.resolve)
-			/* eslint-enable */
+      plugin.resolve = require(plugin.resolve)
+      /* eslint-enable */
       plugin.resolve.apply(this)
     })
   }
@@ -166,6 +165,10 @@ class Compiler {
       files = files.concat(jsfiles)
     }
     this.config.entry = files.map(file => path.resolve(process.cwd(), file)).filter(file => fs.existsSync(file))[0]
+    if (!fs.existsSync(this.config.entry)) {
+      logger.error('entrypoint file not found, you should make a file as entrypoint.')
+      process.exit(0)
+    }
   }
 
   setOutput() {
