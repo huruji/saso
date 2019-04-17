@@ -166,7 +166,7 @@ class Compiler {
     }
     this.config.entry = files.map(file => path.resolve(process.cwd(), file)).filter(file => fs.existsSync(file))[0]
     if (!fs.existsSync(this.config.entry)) {
-      logger.error('entrypoint file not found, you should make a file as entrypoint.')
+      logger.error('entrypoint file is not found, you should make a file as entrypoint.')
       process.exit(0)
     }
   }
