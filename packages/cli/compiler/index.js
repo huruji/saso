@@ -4,11 +4,12 @@ const path = require('path')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const logger = require('saso-log')
+const portfinder = require('portfinder')
 
 const getConfig = require('./utils/getConfig')
 const Hook = require('./Hook')
 const createWebpackChain = require('./utils/createWebpackChain')
-const setPort = require('./utils/setPort')
+// const setPort = require('./utils/setPort')
 const pick = require('./utils/pick')
 
 class Compiler {
@@ -26,9 +27,8 @@ class Compiler {
   }
 
   async run() {
-    this.config.port = await setPort({
-      port: this.config.port
-    })
+    portfinder.basePort = this.config.port
+    this.config.port = await portfinder.getPortPromise()
     this.hooks.invoke('afterConfigure', this.config)
     await this.hooks.invokePromise('afterConfigureAsync', this.config)
 

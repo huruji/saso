@@ -137,7 +137,7 @@ Default: `false`
 
 Type: `Number`
 
-Default: `1000`
+Default: `10000`
 
 
 ## Hooks
