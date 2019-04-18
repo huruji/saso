@@ -5,17 +5,17 @@ module.exports.apply = (compiler) => {
   compiler.hook('afterConfigureAsync', async (config) => {
     if (!config.authorInfo) return
     const args = {}
-    let authorInfo
+    let authorInfo = config.authorInfo
 
     if (typeof config.authorInfo === 'boolean') {
       const pkgFile = await pkgUp()
       if (pkgFile) {
         // eslint-disable-next-line
-				authorInfo = require(pkgFile)
+        authorInfo = require (pkgFile);
       }
-    } else {
-      authorInfo = config.authorInfo
     }
+
+    console.log(authorInfo)
 
     if (authorInfo.author) {
       args.author = authorInfo.author
