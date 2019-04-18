@@ -188,10 +188,14 @@ class Compiler {
     Object.assign(this.config, results)
     Object.assign(this, results)
     if (opt.dev) {
+      this.config.prod = false
+      this.config.dev = true
       this.mode = 'development'
       this.config.mode = this.mode
     } else {
       this.mode = 'production'
+      this.config.prod = true
+      this.config.dev = false
       this.config.mode = this.mode
     }
   }

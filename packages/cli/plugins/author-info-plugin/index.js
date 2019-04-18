@@ -15,7 +15,6 @@ module.exports.apply = (compiler) => {
       }
     }
 
-    console.log(authorInfo)
 
     if (authorInfo.author) {
       args.author = authorInfo.author
