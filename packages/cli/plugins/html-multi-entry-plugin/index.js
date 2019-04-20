@@ -7,6 +7,7 @@ const logger = require('saso-log')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 const escapeStringRegexp = require('escape-string-regexp')
 const RemoveTagsPlugin = require('remove-tags-webpack-plugin')
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 
 const ALI_CDN = '//polyfill.alicdn.com/polyfill.min.js'
 
@@ -16,13 +17,13 @@ module.exports.apply = (compiler) => {
   let files = []
   let srcFiles = []
   let outputDir
-  let isWatch = false
+  // let isWatch = false
   let prod = false
   let polyfillService = false
   const tags = []
 
   compiler.hook('afterConfigure', (config) => {
-    isWatch = config.watch
+    // isWatch = config.watch
     entry = config.entry
     prod = config.mode === 'production'
     polyfillService = config.polyfillService
@@ -48,7 +49,17 @@ module.exports.apply = (compiler) => {
           logger.error(`file ${src} is not exists`)
           return false
         }
-        return src
+        const async = $(this).attr('async')
+        const crossorigin = $(this).attr('async')
+        const defer = $(this).attr('defer')
+        return {
+          src,
+          attrs: {
+            async,
+            crossorigin,
+            defer
+          }
+        }
       })
       .get()
       .filter(e => e)
@@ -67,16 +78,20 @@ module.exports.apply = (compiler) => {
           return false
         }
         // $(this).remove()
-        return src
+        return {
+          src
+        }
       })
       .get()
       .filter(e => e)
 
     srcFiles = [].concat(scripts, styles)
 
-    files = srcFiles.map((src) => {
+    files = srcFiles.map((file) => {
       const dir = path.dirname(entry)
-      return path.resolve(dir, src)
+      file.originSrc = file.src
+      file.src = path.resolve(dir, file.src)
+      return file
     })
   })
 
@@ -85,32 +100,41 @@ module.exports.apply = (compiler) => {
 
     if (!isHtmlEntry) return
     config.entryPoints.delete(entry)
+    const attributesConfig = []
     for (let i = 0; i < files.length; i++) {
-      const exists = fs.existsSync(files[i])
+      const exists = fs.existsSync(files[i].src)
       if (exists) {
-        const extname = path.extname(files[i])
-        const file = path.basename(files[i], extname)
-        if (isWatch) {
-          config
-            .entry(file)
-            .add(files[i])
-            .end()
-        } else {
-          config
-            .entry(file)
-            .add(files[i])
-            .end()
-        }
+        const extname = path.extname(files[i].src)
+        const file = path.basename(files[i].src, extname)
+        config
+          .entry(file)
+          .add(files[i].src)
+          .end()
+        // eslint-disable-next-line
+        Object.entries(files[i].attrs).forEach((attr) => {
+          attributesConfig.push({
+            test: files[i].originSrc.split('/').pop(),
+            attribute: attr[0],
+            value: attr[1]
+          })
+        })
       }
     }
+
     config.output
       .path(outputDir)
       .filename(isProd ? '[name].[hash].js' : '[name].js')
       .end()
+
     config.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [{
       template: entry,
       minify: !!prod
     }])
+
+    config.plugin('config attribute').use(ScriptExtHtmlWebpackPlugin, [{
+      custom: attributesConfig
+    }])
+
     config.plugin('remove-tags').use(RemoveTagsPlugin, [{
       file: new RegExp(escapeStringRegexp(path.basename(entry))),
       tags
