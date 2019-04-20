@@ -1,4 +1,5 @@
 const WebpackChain = require('webpack-chain')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const Chain = new WebpackChain()
 
@@ -32,6 +33,9 @@ module.exports = (config) => {
     .add('.svg')
     .add('.md')
     .add('.html')
+
+  Chain.plugin('clean dist')
+    .use(CleanWebpackPlugin)
 
   return Chain
 }
