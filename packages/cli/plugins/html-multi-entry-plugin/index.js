@@ -5,9 +5,7 @@ const isUrl = require('nice-is-url')
 const cheerio = require('cheerio')
 const logger = require('saso-log')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
-const escapeStringRegexp = require('escape-string-regexp')
-const RemoveTagsPlugin = require('remove-tags-webpack-plugin')
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
+const ReplaceUrlHtmlWebpackPlugin = require('replace-url-html-webpack-plugin')
 
 const ALI_CDN = '//polyfill.alicdn.com/polyfill.min.js'
 
@@ -17,15 +15,11 @@ module.exports.apply = (compiler) => {
   let files = []
   let srcFiles = []
   let outputDir
-  // let isWatch = false
-  let prod = false
   let polyfillService = false
   const tags = []
 
   compiler.hook('afterConfigure', (config) => {
-    // isWatch = config.watch
     entry = config.entry
-    prod = config.mode === 'production'
     polyfillService = config.polyfillService
     outputDir = config.outputPath
 
@@ -128,17 +122,17 @@ module.exports.apply = (compiler) => {
 
     config.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [{
       template: entry,
-      minify: !!prod
+      minify: isProd ? {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      } : false
     }])
 
-    config.plugin('config attribute').use(ScriptExtHtmlWebpackPlugin, [{
-      custom: attributesConfig
-    }])
-
-    config.plugin('remove-tags').use(RemoveTagsPlugin, [{
-      file: new RegExp(escapeStringRegexp(path.basename(entry))),
-      tags
-    }])
+    config.plugin('replace url').use(ReplaceUrlHtmlWebpackPlugin, [])
 
     if (polyfillService) {
       let filePath = ''
