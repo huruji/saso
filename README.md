@@ -111,6 +111,13 @@ Type: `String`
 
 如果不指定 `entry` 时，`saso` 会依次寻找以下文件作为入口文件 `index.html`、 `src/index.html`、`index.js`、`main.js`、`src/index.js`、 `src/main.js`。
 
++ **htmlMinify**
+
+Type: `Boolean` | `Object`
+
+> 只在 `production` 模式下生效
+
+`production` 模式下对 `html` 文件的压缩处理，参考[minification](https://github.com/jantimon/html-webpack-plugin#minification) 
 
 + **mode**
 
