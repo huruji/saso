@@ -91,6 +91,7 @@ module.exports.apply = (compiler) => {
 
   compiler.hook('beforeCompile', (config) => {
     const isProd = config.toConfig().mode === 'production'
+    const { htmlMinify } = { ...config.sasoConfig }
 
     if (!isHtmlEntry) return
     config.entryPoints.delete(entry)
@@ -122,14 +123,7 @@ module.exports.apply = (compiler) => {
 
     config.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [{
       template: entry,
-      minify: isProd ? {
-        collapseWhitespace: true,
-        removeComments: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true
-      } : false
+      minify: isProd ? htmlMinify : false
     }])
 
     config.plugin('replace url').use(ReplaceUrlHtmlWebpackPlugin, [])

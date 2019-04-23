@@ -14,5 +14,13 @@ module.exports = {
     pragma: 'React.createElement',
     useBuiltIns: false
   },
-  clear: true
+  clear: true,
+  htmlMinify: {
+    collapseWhitespace: true,
+    removeComments: true,
+    removeRedundantAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true,
+    useShortDoctype: true
+  }
 }
