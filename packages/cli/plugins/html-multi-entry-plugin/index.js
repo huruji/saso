@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const isUrl = require('nice-is-url')
+const isUrl = require('is-url')
 const cheerio = require('cheerio')
 const logger = require('saso-log')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
@@ -106,7 +106,7 @@ module.exports.apply = (compiler) => {
           .add(files[i].src)
           .end()
         // eslint-disable-next-line
-        Object.entries(files[i].attrs).forEach((attr) => {
+				Object.entries(files[i].attrs).forEach(attr => {
           attributesConfig.push({
             test: files[i].originSrc.split('/').pop(),
             attribute: attr[0],
@@ -121,10 +121,12 @@ module.exports.apply = (compiler) => {
       .filename(isProd ? '[name].[hash].js' : '[name].js')
       .end()
 
-    config.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [{
-      template: entry,
-      minify: isProd ? htmlMinify : false
-    }])
+    config.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [
+      {
+        template: entry,
+        minify: isProd ? htmlMinify : false
+      }
+    ])
 
     config.plugin('replace url').use(ReplaceUrlHtmlWebpackPlugin, [])
 
@@ -138,18 +140,22 @@ module.exports.apply = (compiler) => {
         filePath = polyfillService
       }
 
-      config.plugin('include-assets').use(HtmlWebpackIncludeAssetsPlugin, [{
-        assets: [{
-          path: filePath,
-          type: 'js',
-          attributes: {
-            crossorigin: 'anonymous'
-          }
-        }],
-        publicPath: false,
-        resolvePaths: false,
-        append: false
-      }])
+      config.plugin('include-assets').use(HtmlWebpackIncludeAssetsPlugin, [
+        {
+          assets: [
+            {
+              path: filePath,
+              type: 'js',
+              attributes: {
+                crossorigin: 'anonymous'
+              }
+            }
+          ],
+          publicPath: false,
+          resolvePaths: false,
+          append: false
+        }
+      ])
     }
   })
 }
