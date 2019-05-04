@@ -3,11 +3,10 @@ module.exports.apply = (compiler) => {
     const sasoConfig = config.sasoConfig
     const jsxConfig = sasoConfig.jsx
     const jsPlugins = [
-      [require.resolve('@babel/plugin-transform-react-jsx'), jsxConfig]
+      [require.resolve('@babel/plugin-transform-react-jsx'), jsxConfig],
+      [require.resolve('@babel/plugin-syntax-dynamic-import')]
     ]
-    const tsPlugins = [].concat(jsPlugins, [
-      [require.resolve('@babel/plugin-transform-typescript')]
-    ])
+    const tsPlugins = [].concat(jsPlugins, [[require.resolve('@babel/plugin-transform-typescript')]])
     const prodPlugins = [require.resolve('babel-plugin-no-debugging')]
 
     config.module
