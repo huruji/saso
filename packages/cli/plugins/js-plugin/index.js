@@ -4,7 +4,10 @@ module.exports.apply = (compiler) => {
     const jsxConfig = sasoConfig.jsx
     const jsPlugins = [
       [require.resolve('@babel/plugin-transform-react-jsx'), jsxConfig],
-      [require.resolve('@babel/plugin-syntax-dynamic-import')]
+      [require.resolve('@babel/plugin-syntax-dynamic-import')],
+      [require.resolve('@babel/plugin-syntax-import-meta')],
+      [require.resolve('@babel/plugin-proposal-class-properties'), { loose: false }],
+      [require.resolve('@babel/plugin-proposal-json-strings')]
     ]
     const tsPlugins = [].concat(jsPlugins, [[require.resolve('@babel/plugin-transform-typescript')]])
     const prodPlugins = [require.resolve('babel-plugin-no-debugging')]
