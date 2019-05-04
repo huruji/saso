@@ -1,55 +1,57 @@
 {
-  "root": true,
-  "extends": [
-    "airbnb",
-    "plugin:vue/base"
-  ],
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true,
-    "jest": true
-  },
-  "plugins": [],
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "ecmaFeatures": {
-      "impliedStrict": true
-    }
-  },
-  "rules": {
-    "comma-dangle": ["error", "only-multiline"],
-    "semi": [2, "never", {
-      "beforeStatementContinuationChars": "always"
-    }],
-    "func-names": 0,
-    "eqeqeq": 0,
-    "no-plusplus": 0,
-    "prefer-destructuring": ["error", {
-      "array": false,
-      "object": false
-    }],
-    "no-param-reassign": ["error", {
-      "props": false
-    }],
-    "quotes": [2, "single"],
-    "no-console": 0,
-    "no-restricted-syntax": 0,
-    "react/jsx-filename-extension": 0,
-    "jsx-a11y/no-noninteractive-element-interactions": 0,
-    "jsx-a11y/click-events-have-key-events": 0,
-    "react/no-array-index-key": 0
-  },
-  "settings": {
-    "import/resolver": {
-      "alias": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".json",
-          ".vue"
-        ]
-      }
-    }
-  }
+	"root": true,
+	"extends": [ "airbnb", "plugin:vue/base" ],
+	"env": {
+		"es6": true,
+		"browser": true,
+		"node": true,
+		"jest": true
+	},
+	"plugins": [],
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"ecmaFeatures": {
+			"impliedStrict": true
+		}
+	},
+	"rules": {
+		"comma-dangle": [ "error", "only-multiline" ],
+		"semi": [
+			2,
+			"never",
+			{
+				"beforeStatementContinuationChars": "always"
+			}
+		],
+		"func-names": 0,
+		"eqeqeq": 0,
+		"no-plusplus": 0,
+		"prefer-destructuring": [
+			"error",
+			{
+				"array": false,
+				"object": false
+			}
+		],
+		"no-param-reassign": [
+			"error",
+			{
+				"props": false
+			}
+		],
+		"quotes": [ 2, "single" ],
+		"no-console": 0,
+		"no-restricted-syntax": 0,
+		"react/jsx-filename-extension": 0,
+		"jsx-a11y/no-noninteractive-element-interactions": 0,
+		"jsx-a11y/click-events-have-key-events": 0,
+		"react/no-array-index-key": 0
+	},
+	"settings": {
+		"import/resolver": {
+			"alias": {
+				"extensions": [ ".js", ".jsx", ".json", ".vue" ]
+			}
+		}
+	}
 }

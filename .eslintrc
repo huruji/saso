@@ -49,5 +49,12 @@
 				"code": 500
 			}
 		]
+	},
+	"settings": {
+		"import/resolver": {
+			"alias": {
+				"extensions": [ ".js", ".jsx", ".json", ".vue" ]
+			}
+		}
 	}
 }
