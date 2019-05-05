@@ -55,7 +55,7 @@ saso build --watch
 
 **`-p  --prod  --production`** : 使用 `production` 模式
 
-**`--webpack  --webpackconfig`** : 编译时输出相应的 `webpack` 配置信息
+**`--debu`** : debug 模式，会辅助输出部分内容
 
 **`-a  --analyzer`** : 使用 `[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)` 分析 `bundle`
 
@@ -117,7 +117,7 @@ Type: `Boolean` | `Object`
 
 > 只在 `production` 模式下生效
 
-`production` 模式下对 `html` 文件的压缩处理，参考[minification](https://github.com/jantimon/html-webpack-plugin#minification) 
+`production` 模式下对 `html` 文件的压缩处理，参考[minification](https://github.com/jantimon/html-webpack-plugin#minification)
 
 + **mode**
 
