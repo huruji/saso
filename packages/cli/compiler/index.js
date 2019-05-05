@@ -37,9 +37,9 @@ class Compiler {
     this.config.webpackChain.sasoConfig = this.config
     this.hooks.invoke('beforeCompile', this.config.webpackChain)
     await this.hooks.invokePromise('beforeCompileAsync', this.config.webpackChain)
-    if (this.config.webpackconfig) {
-      logger.notice(JSON.stringify(this.config.webpackChain.toConfig(), null, 2))
-    }
+
+    logger.debug(JSON.stringify(this.config.webpackChain.toConfig(), null, 2))
+
     const webpackConfig = this.config.webpackChain.toConfig()
     const webpackCompiler = webpack(webpackConfig)
     if (this.config.watch) {
@@ -143,8 +143,8 @@ class Compiler {
   applyPlugins() {
     this.plugins.forEach((plugin) => {
       /* eslint-disable */
-			plugin.resolve = require(plugin.resolve)
-			/* eslint-enable */
+      plugin.resolve = require(plugin.resolve)
+      /* eslint-enable */
       plugin.resolve.apply(this)
     })
   }
@@ -183,7 +183,7 @@ class Compiler {
 
   handleCliOpts(opt) {
     this.config = {}
-    const cliOpts = ['watch', 'prod', 'dev', 'webpack', 'port', 'entry', 'configFile', 'clear']
+    const cliOpts = ['clear', 'configFile', 'debug', 'dev', 'entry', 'port', 'prod', 'watch']
     // eslint-disable-next-line prefer-spread
     const results = pick.apply(null, [opt].concat(cliOpts))
     Object.assign(this.config, results)
@@ -198,6 +198,9 @@ class Compiler {
       this.config.prod = true
       this.config.dev = false
       this.config.mode = this.mode
+    }
+    if (this.config.debug) {
+      global.debug = true
     }
   }
 }
