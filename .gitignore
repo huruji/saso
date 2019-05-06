@@ -120,3 +120,6 @@ typings/
 
 */**/saso-template.html
 examples/**/dist
+
+examples/tree-shaking/
+examples/tree-shaking*
