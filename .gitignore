@@ -123,3 +123,5 @@ examples/**/dist
 
 examples/tree-shaking/
 examples/tree-shaking*
+
+test
