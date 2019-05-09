@@ -1,7 +1,8 @@
 {
 	"name": "saso",
 	"version": "3.3.0",
-	"description": "",
+	"description": "Zero config bundler to help you to build fantastic APP",
+	"homepage": "https://github.com/huruji/saso#readme",
 	"main": "index.js",
 	"bin": {
 		"saso": "bin/index.js"
