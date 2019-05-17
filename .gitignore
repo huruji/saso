@@ -123,5 +123,6 @@ examples/**/dist
 
 examples/tree-shaking/
 examples/tree-shaking*
+examples/hooks
 
 test
