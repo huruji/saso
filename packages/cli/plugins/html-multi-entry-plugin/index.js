@@ -5,7 +5,8 @@ const isUrl = require('is-url')
 const cheerio = require('cheerio')
 const logger = require('saso-log')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
-const ReplaceUrlHtmlWebpackPlugin = require('replace-url-html-webpack-plugin')
+const escapeStringRegexp = require('escape-string-regexp')
+const ReplaceUrlHtmlWebpackPlugin = require('../html-replace-url-plugin')
 
 const ALI_CDN = '//polyfill.alicdn.com/polyfill.min.js'
 
@@ -43,17 +44,7 @@ module.exports.apply = (compiler) => {
           logger.error(`file ${src} is not exists`)
           return false
         }
-        const async = $(this).attr('async')
-        const crossorigin = $(this).attr('async')
-        const defer = $(this).attr('defer')
-        return {
-          src,
-          attrs: {
-            async,
-            crossorigin,
-            defer
-          }
-        }
+        return { src }
       })
       .get()
       .filter(e => e)
@@ -71,10 +62,7 @@ module.exports.apply = (compiler) => {
           logger.error(`file ${src} is not exists`)
           return false
         }
-        // $(this).remove()
-        return {
-          src
-        }
+        return { src }
       })
       .get()
       .filter(e => e)
@@ -95,7 +83,7 @@ module.exports.apply = (compiler) => {
 
     if (!isHtmlEntry) return
     config.entryPoints.delete(entry)
-    const attributesConfig = []
+    const replaceOptions = []
     for (let i = 0; i < files.length; i++) {
       const exists = fs.existsSync(files[i].src)
       if (exists) {
@@ -105,13 +93,13 @@ module.exports.apply = (compiler) => {
           .entry(file)
           .add(files[i].src)
           .end()
-        // eslint-disable-next-line
-				Object.entries(files[i].attrs).forEach(attr => {
-          attributesConfig.push({
-            test: files[i].originSrc.split('/').pop(),
-            attribute: attr[0],
-            value: attr[1]
-          })
+
+        const originUrl = files[i].originSrc
+
+        const testStr = files[i].originSrc.split('/').pop().split('.')[0]
+        replaceOptions.push({
+          originUrl,
+          test: new RegExp(escapeStringRegexp(testStr))
         })
       }
     }
@@ -128,7 +116,7 @@ module.exports.apply = (compiler) => {
       }
     ])
 
-    config.plugin('replace url').use(ReplaceUrlHtmlWebpackPlugin, [])
+    config.plugin('replace url').use(ReplaceUrlHtmlWebpackPlugin, [replaceOptions])
 
     if (polyfillService) {
       let filePath = ''
