@@ -10,5 +10,6 @@ module.exports = {
   },
   jsx: {
     pragma: 'h'
-  }
+  },
+  htmlMinify: false
 }
