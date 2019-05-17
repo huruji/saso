@@ -1,13 +1,10 @@
 {
-  "packages": [
-    "packages/cli",
-    "packages/log"
-  ],
-  "command": {
-    "publish": {
-      "ignoreChanges": ["*.md"],
-      "message": "chore(release): publish"
-    }
-  },
-  "version": "independent"
+	"packages": [ "packages/cli", "packages/log", "packages/template-typescript" ],
+	"command": {
+		"publish": {
+			"ignoreChanges": [ "*.md" ],
+			"message": "chore(release): publish"
+		}
+	},
+	"version": "independent"
 }
