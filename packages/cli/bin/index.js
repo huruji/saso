@@ -3,6 +3,7 @@
 const program = require('commander')
 const build = require('./build')
 const cmdPlugin = require('../cmdPlugin')
+const initPlugin = require('./init')
 
 program
   .usage('<commander> <usage>')
@@ -23,6 +24,8 @@ program
 if (cmdPlugin.length) {
   cmdPlugin.forEach(plugin => plugin.cli.apply(null, [program]))
 }
+
+initPlugin.cli.apply(null, [program])
 
 if (!process.argv.slice(2).length) {
   program.outputHelp()
