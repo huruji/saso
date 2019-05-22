@@ -1,38 +1,57 @@
 
 const isUrl = require('is-url')
-const downloadNpmPackage = require('download-npm-package')
-const mkdirp = require('mkdirp')
 const fs = require('fs')
+const downloadNpmPackage = require('download-npm-package')
+const to = require('await-to-js').default
+const gitClone = require('gitclone')
 const path = require('path')
 const util = require('util')
+const logger = require('saso-log')
 
-const mkdir = util.promisify(mkdirp)
+
+const gitClonePromise = util.promisify(gitClone)
 
 async function initAction(project, dir) {
-  console.log(project, dir)
+  if (!project) {
+    logger.error('project name is needed')
+  }
   if (!dir || dir.length < 1) {
-    console.log('return')
     return
   }
-  console.log(process.cwd())
+  const isExist = fs.existsSync(path.resolve(process.cwd(), dir[0]))
+  if (isExist) {
+    logger.error(`${dir[0]} is not an empty directory!\n`)
+    return
+  }
   const isgit = isUrl(project)
   if (isgit) {
-    /* TODO: git download */
-    console.log('isgit')
+    console.log(to)
+    const [err] = await to(gitClonePromise(project, {
+      dest: dir[0]
+    }))
+
+    if (err) {
+      logger.error(err)
+      return
+    }
   } else {
-    const isExist = fs.existsSync(path.resolve(process.cwd(), dir[0]))
+    const isExistProject = fs.existsSync(path.resolve(process.cwd(), project))
+    if (isExistProject) {
+      logger.error(`${project} is not an empty directory!\n`)
+      return
+    }
 
-    if (isExist) return
-
-    await mkdir(dir[0])
-
-    await downloadNpmPackage({
-      arg: `${project}@latest`, // for example, npm@2 or @mic/version@latest etc
-      dir: dir[0] // package will be downlodaded to ${dir}/packageName
-    })
-
-    console.log('success')
+    const [err] = await to(downloadNpmPackage({
+      arg: `${project}@latest`,
+      dir: process.cwd()
+    }))
+    if (err) {
+      logger.error(err)
+      return
+    }
+    fs.renameSync(path.resolve(process.cwd(), project), path.resolve(process.cwd(), dir[0]))
   }
+  logger.success('init successful, just enjoy!\n')
 }
 
 
