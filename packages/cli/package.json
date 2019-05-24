@@ -53,6 +53,7 @@
 		"imagemin-svgo": "^7.0.0",
 		"img-loader": "^3.0.1",
 		"is-url": "^1.2.4",
+		"less": "^3.9.0",
 		"less-loader": "^4.1.0",
 		"mini-css-extract-plugin": "^0.5.0",
 		"mkdirp": "^0.5.1",
