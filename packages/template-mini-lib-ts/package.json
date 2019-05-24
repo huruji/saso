@@ -1,0 +1,47 @@
+{
+	"name": "saso-template-mini-lib-ts",
+	"version": "1.0.0",
+	"description": "",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"source": "index.ts",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "microbundle build --entry index.ts --output dist/index.js",
+		"release": "npm run build && standard-version && git push --follow-tags origin master && legos publish",
+		"release:first": "npm run build && standard-version --first-release && git push --follow-tags origin master && legos publish",
+		"release:major": "npm run build && standard-version --release-as major && git push --follow-tags origin master && legos publish",
+		"release:minor": "npm run build && standard-version --release-as minor && git push --follow-tags origin master && legos publish",
+		"release:patch": "npm run build && standard-version --release-as patch && git push --follow-tags origin master && legos publish"
+	},
+	"homepage": "https://github.com/huruji/saso#readme",
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"keywords": [],
+	"author": "huruji",
+	"license": "ISC",
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^1.6.0",
+		"@typescript-eslint/parser": "^1.6.0",
+		"bili": "^4.7.2",
+		"eslint": "^5.16.0",
+		"eslint-config-prettier": "^4.1.0",
+		"eslint-config-standard": "^12.0.0",
+		"eslint-plugin-import": "^2.17.1",
+		"eslint-plugin-node": "^8.0.1",
+		"eslint-plugin-prettier": "^3.0.1",
+		"eslint-plugin-promise": "^4.1.1",
+		"eslint-plugin-standard": "^4.0.0",
+		"microbundle": "^0.11.0",
+		"prettier": "^1.17.0",
+		"rollup-plugin-typescript2": "^0.20.1",
+		"standard-version": "^5.0.2",
+		"typescript": "^3.4.1"
+	},
+	"dependencies": {
+		"@types/jquery": "^3.3.29",
+		"@types/scroll-to-element": "^2.0.0"
+	}
+}
