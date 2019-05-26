@@ -9,7 +9,6 @@ module.exports.apply = (compiler) => {
       [require.resolve('@babel/plugin-proposal-class-properties'), { loose: false }],
       [require.resolve('@babel/plugin-proposal-json-strings')]
     ]
-    const tsPlugins = [].concat(jsPlugins, [[require.resolve('@babel/plugin-transform-typescript')]])
     const prodPlugins = [require.resolve('babel-plugin-no-debugging')]
 
     config.module
@@ -35,7 +34,7 @@ module.exports.apply = (compiler) => {
       .end()
 
     config.module
-      .rule('compile ss')
+      .rule('compile ts')
       .exclude.add(/node_modules/)
       .end()
       .test(/\.tsx?$/)
@@ -44,6 +43,13 @@ module.exports.apply = (compiler) => {
       .options({
         presets: [
           [
+            require.resolve('@babel/preset-typescript'),
+            {
+              isTSX: true,
+              allExtensions: true
+            }
+          ],
+          [
             require.resolve('@babel/preset-env'),
             {
               useBuiltIns: false,
@@ -51,7 +57,7 @@ module.exports.apply = (compiler) => {
             }
           ]
         ],
-        plugins: sasoConfig.mode === 'development' ? tsPlugins : tsPlugins.concat(prodPlugins),
+        plugins: sasoConfig.mode === 'development' ? jsPlugins : jsPlugins.concat(prodPlugins),
         cacheDirectory: true
       })
       .end()
