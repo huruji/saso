@@ -23,6 +23,7 @@
 	"author": "huruji",
 	"license": "ISC",
 	"devDependencies": {
+		"@commitlint/cli": "^7.5.2",
 		"@typescript-eslint/eslint-plugin": "^1.6.0",
 		"@typescript-eslint/parser": "^1.6.0",
 		"bili": "^4.7.2",
@@ -34,6 +35,8 @@
 		"eslint-plugin-prettier": "^3.0.1",
 		"eslint-plugin-promise": "^4.1.1",
 		"eslint-plugin-standard": "^4.0.0",
+		"husky": "^1.3.1",
+		"lint-staged": "^8.1.5",
 		"microbundle": "^0.11.0",
 		"prettier": "^1.17.0",
 		"rollup-plugin-typescript2": "^0.20.1",
