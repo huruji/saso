@@ -36,6 +36,10 @@ module.exports.apply = (compiler) => {
     // set css-loader
     cssRule.use('css-loader').loader(require.resolve('css-loader'))
     sassRule.use('css-loader').loader(require.resolve('css-loader'))
+      .options({
+        sourceMap: true,
+        importLoaders: 1
+      })
     lessRule.use('css-loader').loader(require.resolve('css-loader'))
     stylusRule.use('css-loader').loader(require.resolve('css-loader'))
 
@@ -61,9 +65,23 @@ module.exports.apply = (compiler) => {
       .options(postcssOptions)
 
     // set sass-loader
+    console.log('9909090909')
+    sassRule
+      .use('resolve-url-loader')
+      .loader(require.resolve('resolve-url-loader'))
+      .options({
+        sourceMap: true,
+        keepQuery: true,
+        debug: true
+      })
+
     sassRule
       .use('sass-loader')
       .loader(require.resolve('sass-loader'))
+      .options({
+        sourceMap: true,
+        sourceMapContents: false
+      })
       .end()
 
     // set less-loader
