@@ -8,11 +8,11 @@
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "microbundle build --entry index.ts --output dist/index.js",
-		"release": "npm run build && standard-version && git push --follow-tags origin master && legos publish",
-		"release:first": "npm run build && standard-version --first-release && git push --follow-tags origin master && legos publish",
-		"release:major": "npm run build && standard-version --release-as major && git push --follow-tags origin master && legos publish",
-		"release:minor": "npm run build && standard-version --release-as minor && git push --follow-tags origin master && legos publish",
-		"release:patch": "npm run build && standard-version --release-as patch && git push --follow-tags origin master && legos publish"
+		"release": "npm run build && standard-version && git push --follow-tags origin master && npm publish",
+		"release:first": "npm run build && standard-version --first-release && git push --follow-tags origin master && npm publish",
+		"release:major": "npm run build && standard-version --release-as major && git push --follow-tags origin master && npm publish",
+		"release:minor": "npm run build && standard-version --release-as minor && git push --follow-tags origin master && npm publish",
+		"release:patch": "npm run build && standard-version --release-as patch && git push --follow-tags origin master && npm publish"
 	},
 	"homepage": "https://github.com/huruji/saso#readme",
 	"repository": {
