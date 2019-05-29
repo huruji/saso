@@ -72,7 +72,7 @@ module.exports.apply = (compiler) => {
       .options({
         sourceMap: true,
         keepQuery: true,
-        debug: true
+        debug: false
       })
 
     sassRule
