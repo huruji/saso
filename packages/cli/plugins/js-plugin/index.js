@@ -9,7 +9,9 @@ module.exports.apply = (compiler) => {
       [require.resolve('@babel/plugin-proposal-class-properties'), { loose: false }],
       [require.resolve('@babel/plugin-proposal-json-strings')]
     ]
-    const prodPlugins = [require.resolve('babel-plugin-no-debugging'), require.resolve('babel-plugin-transform-react-remove-prop-types')]
+    const prodPlugins = [require.resolve('babel-plugin-no-debugging'),
+      //  require.resolve('babel-plugin-transform-react-remove-prop-types')
+    ]
 
     config.module
       .rule('compile js')
@@ -46,7 +48,8 @@ module.exports.apply = (compiler) => {
             require.resolve('@babel/preset-typescript'),
             {
               isTSX: true,
-              allExtensions: true
+              allExtensions: true,
+              jsxPragma: jsxConfig.pragma
             }
           ],
           [
