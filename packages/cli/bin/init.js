@@ -25,7 +25,6 @@ async function initAction(project, dir) {
   }
   const isgit = isUrl(project)
   if (isgit) {
-    console.log(to)
     const [err] = await to(gitClonePromise(project, {
       dest: dir[0]
     }))

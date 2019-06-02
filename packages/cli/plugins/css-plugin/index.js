@@ -65,7 +65,6 @@ module.exports.apply = (compiler) => {
       .options(postcssOptions)
 
     // set sass-loader
-    console.log('9909090909')
     sassRule
       .use('resolve-url-loader')
       .loader(require.resolve('resolve-url-loader'))
