@@ -78,18 +78,22 @@ module.exports.apply = (compiler) => {
   })
 
   compiler.hook('beforeCompile', (config) => {
-    const isProd = config.toConfig().mode === 'production'
-    const { htmlMinify } = { ...config.sasoConfig }
+    /**
+    * @type {import('webpack-chain')}
+    */
+    const c = config
+    const isProd = c.toConfig().mode === 'production'
+    const { htmlMinify } = { ...c.sasoConfig }
 
     if (!isHtmlEntry) return
-    config.entryPoints.delete(entry)
+    c.entryPoints.delete(entry)
     const replaceOptions = []
     for (let i = 0; i < files.length; i++) {
       const exists = fs.existsSync(files[i].src)
       if (exists) {
         const extname = path.extname(files[i].src)
         const file = path.basename(files[i].src, extname)
-        config
+        c
           .entry(file)
           .add(files[i].src)
           .end()
@@ -104,19 +108,19 @@ module.exports.apply = (compiler) => {
       }
     }
 
-    config.output
+    c.output
       .path(outputDir)
       .filename(isProd ? '[name].[hash].js' : '[name].js')
       .end()
 
-    config.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [
+    c.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [
       {
         template: entry,
         minify: isProd ? htmlMinify : false
       }
     ])
 
-    config.plugin('replace url').use(ReplaceUrlHtmlWebpackPlugin, [replaceOptions])
+    c.plugin('replace url').use(ReplaceUrlHtmlWebpackPlugin, [replaceOptions])
 
     if (polyfillService) {
       let filePath = ''
@@ -128,7 +132,7 @@ module.exports.apply = (compiler) => {
         filePath = polyfillService
       }
 
-      config.plugin('include-assets').use(HtmlWebpackIncludeAssetsPlugin, [
+      c.plugin('include-assets').use(HtmlWebpackIncludeAssetsPlugin, [
         {
           assets: [
             {

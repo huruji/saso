@@ -10,9 +10,13 @@ module.exports.apply = (compiler) => {
     port = config.port
   })
   compiler.hook('beforeCompile', (config) => {
+    /**
+    * @type {import('webpack-chain')}
+    */
+    const c = config
     if (!isWatch) return
-    const dist = config.toConfig().output.path
-    config.devServer
+    const dist = c.toConfig().output.path
+    c.devServer
       .contentBase(dist)
       .hot(true)
       .compress(false)
@@ -20,8 +24,8 @@ module.exports.apply = (compiler) => {
       .stats('errors-only')
       .watchContentBase(true)
 
-    config.plugin('openbrowser').use(OpenBrowserPlugin, [`http://localhost:${port}`])
-    config.plugin('add server client script').use(AddServerClientPlugin, [`http://localhost:${port}`])
-    config.plugin('hot').use(HotModuleReplacementPlugin)
+    c.plugin('openbrowser').use(OpenBrowserPlugin, [`http://localhost:${port}`])
+    c.plugin('add server client script').use(AddServerClientPlugin, [`http://localhost:${port}`])
+    c.plugin('hot').use(HotModuleReplacementPlugin)
   })
 }

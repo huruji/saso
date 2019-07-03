@@ -1,5 +1,9 @@
 module.exports.apply = (compiler) => {
   compiler.hook('beforeCompile', (config) => {
+    /**
+    * @type {import('webpack-chain')}
+    */
+    const c = config
     const sasoConfig = config.sasoConfig
     const jsxConfig = sasoConfig.jsx
     const jsPlugins = [
@@ -13,7 +17,7 @@ module.exports.apply = (compiler) => {
       //  require.resolve('babel-plugin-transform-react-remove-prop-types')
     ]
 
-    config.module
+    c.module
       .rule('compile js')
       .exclude.add(/node_modules/)
       .end()
@@ -35,7 +39,7 @@ module.exports.apply = (compiler) => {
       })
       .end()
 
-    config.module
+    c.module
       .rule('compile ts')
       .exclude.add(/node_modules/)
       .end()

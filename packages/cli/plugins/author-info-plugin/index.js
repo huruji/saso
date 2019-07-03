@@ -11,7 +11,7 @@ module.exports.apply = (compiler) => {
       const pkgFile = await pkgUp()
       if (pkgFile) {
         // eslint-disable-next-line
-        authorInfo = require (pkgFile);
+        authorInfo = require(pkgFile);
       }
     }
 
@@ -27,7 +27,11 @@ module.exports.apply = (compiler) => {
     }
 
     compiler.hook('beforeCompile', (cfg) => {
-      cfg.plugin('author webpack plugin').use(AuthorWebpackPlugin, [args])
+      /**
+      * @type {import('webpack-chain')}
+      */
+      const c = cfg
+      c.plugin('author webpack plugin').use(AuthorWebpackPlugin, [args])
     })
   })
 }

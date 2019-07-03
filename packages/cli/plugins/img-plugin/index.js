@@ -1,6 +1,10 @@
 module.exports.apply = (compiler) => {
   compiler.hook('beforeCompile', (config) => {
-    const imgRule = config.module.rule('compile img').test(/\.(png|jpg|gif|woff|svg|eot|ttf)$/)
+    /**
+    * @type {import('webpack-chain')}
+    */
+    const c = config
+    const imgRule = c.module.rule('compile img').test(/\.(png|jpg|gif|woff|svg|eot|ttf)$/)
     imgRule
       .use('url-loader')
       .loader(require.resolve('url-loader'))
@@ -10,7 +14,7 @@ module.exports.apply = (compiler) => {
     imgRule
       .use('img-loader')
       .loader(require.resolve('img-loader'))
-    /* eslint global-require: 0 */
+      /* eslint global-require: 0 */
       .options({
         plugins: [
           require('imagemin-mozjpeg')({

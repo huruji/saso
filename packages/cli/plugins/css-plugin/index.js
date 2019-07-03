@@ -5,15 +5,20 @@ const path = require('path')
 
 module.exports.apply = (compiler) => {
   compiler.hook('beforeCompile', (config) => {
-    const isProd = config.toConfig().mode === 'production'
+    /**
+    * @type {import('webpack-chain')}
+    */
+    const c = config
+    const isProd = c.toConfig().mode === 'production'
     const postcssConfig = cosmiconfig('postcss', {
       stopDir: process.cwd()
     }).searchSync()
 
-    const cssRule = config.module.rule('compile css').test(/\.css$/)
-    const sassRule = config.module.rule('compile sass').test(/\.s[a|c]ss$/)
-    const lessRule = config.module.rule('compile less').test(/\.less$/)
-    const stylusRule = config.module.rule('compile stylus').test(/\.styl(us)?$/)
+
+    const cssRule = c.module.rule('compile css').test(/\.css$/)
+    const sassRule = c.module.rule('compile sass').test(/\.s[a|c]ss$/)
+    const lessRule = c.module.rule('compile less').test(/\.less$/)
+    const stylusRule = c.module.rule('compile stylus').test(/\.styl(us)?$/)
 
     const postcssOptions = {
       config: {
@@ -95,12 +100,12 @@ module.exports.apply = (compiler) => {
       .loader(require.resolve('stylus-loader'))
       .end()
 
-    config.plugin('extra css').use(MiniCssExtractPlugin, [
+    c.plugin('extra css').use(MiniCssExtractPlugin, [
       {
         filename: isProd ? '[name].[hash].css' : '[name].css'
       }
     ])
 
-    config.plugin('fix style entry').use(FixStyleOnlyEntriesPlugin)
+    c.plugin('fix style entry').use(FixStyleOnlyEntriesPlugin)
   })
 }

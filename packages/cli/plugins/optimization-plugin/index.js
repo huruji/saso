@@ -1,6 +1,10 @@
 module.exports.apply = (compiler) => {
   compiler.hook('beforeCompile', (config) => {
-    config.optimization.splitChunks({
+    /**
+    * @type {import('webpack-chain')}
+    */
+    const c = config
+    c.optimization.splitChunks({
       chunks: 'initial',
       automaticNameDelimiter: '~',
       maxAsyncRequests: 5,
