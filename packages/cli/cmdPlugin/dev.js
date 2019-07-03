@@ -10,6 +10,7 @@ module.exports.cli = (program) => {
     .option('-p, --prod, --production')
     .option('--webpack, --webpackconfig')
     .option('--entry <entry>')
+    .option('--no-clear')
     .option('--port <port>')
     .option('--config <configFile>')
     .option('-a, --analyzer')
