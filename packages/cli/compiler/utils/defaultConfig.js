@@ -12,7 +12,8 @@ module.exports = {
   proxy: {},
   jsx: {
     pragma: 'React.createElement',
-    useBuiltIns: false
+    useBuiltIns: false,
+    pragmaFrag: 'React.Fragment'
   },
   clear: true,
   htmlMinify: {
