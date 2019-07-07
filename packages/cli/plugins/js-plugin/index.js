@@ -53,7 +53,7 @@ module.exports.apply = (compiler) => {
             {
               isTSX: true,
               allExtensions: true,
-              jsxPragma: jsxConfig.pragma
+              jsxPragma: jsxConfig.pragma.split('.')[0]
             }
           ],
           [
