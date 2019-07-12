@@ -1,5 +1,5 @@
 {
-	"packages": [ "packages/cli", "packages/log", "packages/template-typescript", "packages/template-mini-lib-ts" ],
+	"packages": [ "packages/cli", "packages/log", "packages/template-typescript", "packages/template-mini-lib-ts", "packages/template-ts-react-lib" ],
 	"command": {
 		"publish": {
 			"ignoreChanges": [ "*.md" ],
