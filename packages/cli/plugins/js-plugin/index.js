@@ -13,9 +13,15 @@ module.exports.apply = (compiler) => {
       [require.resolve('@babel/plugin-proposal-class-properties'), { loose: false }],
       [require.resolve('@babel/plugin-proposal-json-strings')]
     ]
-    const prodPlugins = [require.resolve('babel-plugin-no-debugging'),
+
+    const prodPlugins = [
+      // require.resolve('babel-plugin-no-debugging'),
       //  require.resolve('babel-plugin-transform-react-remove-prop-types')
     ]
+
+    if (sasoConfig.babel.pluginProd['no-debugging']) {
+      prodPlugins.push(require.resolve('babel-plugin-no-debugging'))
+    }
 
     c.module
       .rule('compile js')

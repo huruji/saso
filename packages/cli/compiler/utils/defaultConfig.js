@@ -23,5 +23,10 @@ module.exports = {
     removeScriptTypeAttributes: true,
     removeStyleLinkTypeAttributes: true,
     useShortDoctype: true
+  },
+  babel: {
+    pluginProd: {
+      'no-debugging': true
+    }
   }
 }
