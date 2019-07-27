@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import chainGet from "chain-get";
-import IMG_TYPES from "./CONSTANTS.js";
-import handleUrl from "./util.js";
+import chainGet from "chain-get"
+import IMG_TYPES from "./CONSTANTS.js"
+import handleUrl from "./util.js"
 
 export default {
   data() {
@@ -39,27 +39,27 @@ export default {
   methods: {
     preloadImg(imgs, base) {
       imgs.forEach((img, i) => {
-        const image = new Image();
-        image.src = img.url;
+        const image = new Image()
+        image.src = img.url
         image.onload = () => {
-          const list = this.list;
+          const list = this.list
           list[base + i] = {
             url: img.url,
             loaded: true
-          };
-          this.list = [].concat(list);
-        };
-      });
+          }
+          this.list = [].concat(list)
+        }
+      })
     },
     changeId(id) {
-      const cid = this.id;
-      if (id == cid) return;
-      this.id = id;
-      this.fetchData();
+      const cid = this.id
+      if (id == cid) return
+      this.id = id
+      this.fetchData()
     },
     fetchData() {
-      const id = this.id;
-      const cid = handleUrl(id);
+      const id = this.id
+      const cid = handleUrl(id)
       fetch(cid, {
         method: "GET",
         mode: "no-cors"
@@ -67,34 +67,30 @@ export default {
         .then(res => res.json())
         .then(json => {
           if (json.errno == "0" && chainGet(json, []).data().length) {
-            const imgs = [];
-            // const { list } = this.state
+            const imgs = []
             json.data.forEach(img =>
               imgs.push({
                 url: img.url,
                 loaded: false
               })
             );
-            this.list = imgs;
-            this.preloadImg(imgs, 0);
+            this.list = imgs
+            this.preloadImg(imgs, 0)
           }
-        });
-      // .catch(e => {
-      //   console.log(e);
-      // });
+        })
     }
   },
   created() {
-    const id = this.id;
-    this.fetchData(id);
+    const id = this.id
+    this.fetchData(id)
   },
   mounted() {
-    const width = this.$refs.container.clientWidth;
-    const height = (width / 1920) * 1200;
-    this.imgHeight = `${height}px`;
-    this.imgWidth = `${width}px`;
+    const width = this.$refs.container.clientWidth
+    const height = (width / 1920) * 1200
+    this.imgHeight = `${height}px`
+    this.imgWidth = `${width}px`
   }
-};
+}
 </script>
 <style lang="stylus">
 ul li
