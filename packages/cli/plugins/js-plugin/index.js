@@ -8,6 +8,10 @@ module.exports.apply = (compiler) => {
     const jsxConfig = sasoConfig.jsx
     const jsPlugins = [
       [require.resolve('@babel/plugin-transform-react-jsx'), jsxConfig],
+      [require.resolve('@babel/plugin-transform-regenerator')],
+      [require.resolve('@babel/plugin-transform-runtime'), {
+        absoluteRuntime: require.resolve('@babel/runtime/regenerator')
+      }],
       [require.resolve('@babel/plugin-syntax-dynamic-import')],
       [require.resolve('@babel/plugin-syntax-import-meta')],
       [require.resolve('@babel/plugin-proposal-class-properties'), { loose: false }],
@@ -16,7 +20,7 @@ module.exports.apply = (compiler) => {
 
     const prodPlugins = [
       // require.resolve('babel-plugin-no-debugging'),
-      //  require.resolve('babel-plugin-transform-react-remove-prop-types')
+      require.resolve('babel-plugin-transform-react-remove-prop-types')
     ]
 
     if (sasoConfig.babel.pluginProd['no-debugging']) {
