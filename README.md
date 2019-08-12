@@ -55,7 +55,7 @@ saso build --watch
 
 **`-p  --prod  --production`** : 使用 `production` 模式
 
-**`--debu`** : debug 模式，会辅助输出部分内容
+**`--debug`** : debug 模式，会辅助输出部分内容
 
 **`-a  --analyzer`** : 使用 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 分析 `bundle`
 
@@ -69,7 +69,25 @@ saso build --watch
 
 ### `saso dev`
 
-`saso build --watch` 的简写，同样可以使用以上的options
+开启 `webpack dev server` 方便本地开发。
+
+这个命令有以下 `options` :
+
+**`-d  --dev  --development`** : 使用 `development` 模式
+
+**`-p  --prod  --production`** : 使用 `production` 模式
+
+**`--debug`** : debug 模式，会辅助输出部分内容
+
+**`-a  --analyzer`** : 使用 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 分析 `bundle`
+
+**`--config <configFile>`** : 通过命令行指定 `saso` 的配置文件
+
+**`--entry <entryFile>`** : 通过命令行指定打包的入口文件
+
+**`--port <port>`** : 通过命令行指定端口，指定了 `port` 时，则必定开启监听模式
+
+**`--no-clear`** : `saso` 默认会清除上一次的编译信息以保持命令行的干净，使用这个参数则不会清除
 
 ## 编写 `saso` 配置文件
 
@@ -97,6 +115,19 @@ Type: `Boolean` `Object`
 
 [author-webpack-plugin](https://github.com/huruji/author-webpack-plugin) 的配置`options`，如果为 `Boolean` 值 `true` 则从最近的 `package.json` 中获取作者信息，如果为 `Boolean` 值 `false` 则不使用 [author-webpack-plugin](https://github.com/huruji/author-webpack-plugin) 插件。
 
++ **babel**
+
+Type: `Object`
+
+目前只有以下选项，用来在 `production` 模式下禁用 [babel-plugin-no-debugging](https://github.com/huruji/babel-plugin-no-debugging) 插件
+
+```js
+babel: {
+  pluginProd: {
+    'no-debugging': false
+  }
+}
+```
 
 + **cliPlugins**
 
@@ -139,13 +170,19 @@ Default: `false`
 
 [polyfill-service](https://github.com/Financial-Times/polyfill-service) 的链接，当为 `Boolean` 值 true 的时候，默认使用国内阿里的CDN `//polyfill.alicdn.com/polyfill.min.js` 。
 
-
 + **port**
 
 Type: `Number`
 
 Default: `10000`
 
++ **target**
+
+Type: `async-node` `electron-main` `electron-renderer` `electron-preload` `node` `node-webkit` `web` `webworker`
+
+Default: `web`
+
+webpack 的 [target](https://webpack.js.org/configuration/target/) 选项，配置编译后的运行平台。
 
 ## Hooks
 
