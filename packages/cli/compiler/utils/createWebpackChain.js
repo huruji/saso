@@ -53,5 +53,7 @@ module.exports = (config) => {
   Chain.plugin('clean dist')
     .use(CleanWebpackPlugin)
 
+  Chain.target(config.target)
+
   return Chain
 }

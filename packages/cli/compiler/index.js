@@ -42,7 +42,7 @@ class Compiler {
 
     const webpackConfig = this.config.webpackChain.toConfig()
     const webpackCompiler = webpack(webpackConfig)
-    if (this.config.watch) {
+    if (this.config.dev) {
       const contentBase = []
       const entries = webpackConfig.entry
       Object.values(entries).forEach((entry) => {
@@ -71,6 +71,24 @@ class Compiler {
       server.listen(this.config.port, '127.0.0.1', (err) => {
         if (err) logger.error(err)
         logger.notice(`\nStarting server on http://localhost:${this.config.port}`)
+      })
+    } else if (this.config.watch) {
+      webpackCompiler.watch({}, (err, stats) => {
+        if (err) logger.error(err)
+
+        const info = stats.toJson()
+
+        if (stats.hasWarnings()) {
+          for (const warn of info.warnings) {
+            console.warn(warn)
+          }
+        }
+
+        if (stats.hasErrors()) {
+          for (const error of info.errors) {
+            console.error(error)
+          }
+        }
       })
     } else {
       webpackCompiler.run((err, stats) => {

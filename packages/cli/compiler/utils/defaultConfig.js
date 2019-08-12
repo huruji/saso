@@ -28,5 +28,6 @@ module.exports = {
     pluginProd: {
       'no-debugging': true
     }
-  }
+  },
+  target: 'web'
 }

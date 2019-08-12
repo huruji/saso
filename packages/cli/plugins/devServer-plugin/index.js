@@ -3,18 +3,18 @@ const OpenBrowserPlugin = require('open-browser-plugin')
 const AddServerClientPlugin = require('add-server-client-script-webpack-plugin')
 
 module.exports.apply = (compiler) => {
-  let isWatch = false
+  let isDev = false
   let port = 7000
   compiler.hook('afterConfigure', (config) => {
-    isWatch = config.watch
     port = config.port
+    isDev = config.dev
   })
   compiler.hook('beforeCompile', (config) => {
     /**
     * @type {import('webpack-chain')}
     */
     const c = config
-    if (!isWatch) return
+    if (!isDev) return
     const dist = c.toConfig().output.path
     c.devServer
       .contentBase(dist)
