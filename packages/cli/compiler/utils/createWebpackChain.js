@@ -12,7 +12,7 @@ module.exports = (config) => {
     .end()
     .output.path(config.outputPath)
     .filename(config.outputFile)
-    .publicPath('/')
+    .publicPath(config.publicPath)
     .end()
     .mode(config.mode)
 

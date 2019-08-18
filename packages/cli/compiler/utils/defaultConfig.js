@@ -29,5 +29,6 @@ module.exports = {
       'no-debugging': true
     }
   },
+  publicPath: '/',
   target: 'web'
 }
