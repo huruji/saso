@@ -1,6 +1,6 @@
 {
 	"name": "saso",
-	"version": "3.8.1",
+	"version": "3.9.0",
 	"description": "Zero config bundler to help you to build fantastic APP",
 	"homepage": "https://github.com/huruji/saso#readme",
 	"main": "index.js",
@@ -73,7 +73,7 @@
 		"progress-bar-webpack-plugin": "^1.12.1",
 		"replace-url-html-webpack-plugin": "^1.0.3",
 		"resolve-url-loader": "^3.1.0",
-		"saso-log": "^1.6.1",
+		"saso-log": "^1.6.2",
 		"sass-loader": "^7.1.0",
 		"size-table-webpack-plugin": "^4.0.4",
 		"style-loader": "^0.23.1",
