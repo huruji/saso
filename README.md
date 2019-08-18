@@ -176,6 +176,14 @@ Type: `Number`
 
 Default: `10000`
 
++ **publicPath**
+
+Type: `String`,
+
+Default: `/`
+
+webpack 的 [`publicPath` 配置](https://webpack.js.org/guides/public-path/)
+
 + **target**
 
 Type: `async-node` `electron-main` `electron-renderer` `electron-preload` `node` `node-webkit` `web` `webworker`
