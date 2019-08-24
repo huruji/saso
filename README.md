@@ -150,6 +150,15 @@ Type: `Boolean` | `Object`
 
 `production` 模式下对 `html` 文件的压缩处理，参考[minification](https://github.com/jantimon/html-webpack-plugin#minification)
 
+
++ **minify**
+
+Type: `terser` | `uglify`
+
+default: `terser`
+
+使用 [Uglifyjs](https://github.com/mishoo/UglifyJS2) 或者 [Terser](https://github.com/terser-js/terser) 对 js 进行压缩，默认使用 terser 并开启多线程压缩。
+
 + **mode**
 
 Type: `String`
