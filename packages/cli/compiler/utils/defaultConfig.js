@@ -30,5 +30,6 @@ module.exports = {
     }
   },
   publicPath: '/',
-  target: 'web'
+  target: 'web',
+  minify: 'terser'
 }

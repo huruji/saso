@@ -1,4 +1,6 @@
 const TerserPlugin = require('terser-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports.apply = (compiler) => {
   compiler.hook('beforeCompile', (config) => {
@@ -18,12 +20,24 @@ module.exports.apply = (compiler) => {
       name: true
     })
 
-    c.optimization.minimizer('terser').use(TerserPlugin, [{
-      test: /\.js(\?.*)?$/i,
-    }])
+    if (config.minify === 'terser') {
+      c.optimization.minimizer('terser').use(TerserPlugin, [{
+        test: /\.(t|j)s(\?.*)?$/i,
+        include: /node_modules/,
+        sourceMap: true,
+        parallel: true
+      }])
+    } else if (config.prod) {
+      c.optimization.minimizer('js source-map').use(
+        UglifyJsPlugin,
+        [{
+          sourceMap: true
+        }]
+      )
 
-    // .minimizer([
-    //   new TerserPlugin()
-    // ])
+      c.plugin('source map').use(webpack.SourceMapDevToolPlugin, [{
+        filename: '[file].map'
+      }])
+    }
   })
 }

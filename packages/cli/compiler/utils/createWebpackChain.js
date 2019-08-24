@@ -16,19 +16,10 @@ module.exports = (config) => {
     .end()
     .mode(config.mode)
 
-  Chain.devtool(config.prod ? false : 'inline-source-map')
-
-  if (config.prod) {
-    Chain.optimization.minimizer('js source-map').use(
-      UglifyJsPlugin,
-      [{
-        sourceMap: true
-      }]
-    )
-
-    Chain.plugin('source map').use(webpack.SourceMapDevToolPlugin, [{
-      filename: '[file].map'
-    }])
+  if (config.minify === 'terser') {
+    Chain.devtool(config.prod ? 'source-map' : 'inline-source-map')
+  } else {
+    Chain.devtool(config.prod ? false : 'inline-source-map')
   }
 
 
