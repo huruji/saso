@@ -15,6 +15,8 @@ module.exports = {
   notice(msg) {
     console.log(notice(msg))
   },
+
+
   warn(msg) {
     console.log(warn(msg))
   },
