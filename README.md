@@ -89,6 +89,23 @@ saso build --watch
 
 **`--no-clear`** : `saso` 默认会清除上一次的编译信息以保持命令行的干净，使用这个参数则不会清除
 
+### `saso init`
+
+初始化一个项目，如：
+
+```bash
+saso init template-path my-project
+```
+
+saso 支持支持使用 npm 包作为项目的模版，也支持使用 git 地址：
+
+```bash
+saso init saso-template-typescript my-project
+```
+
+saso 官方提供了部分项目模版： 参见：[https://www.npmjs.com/search?q=saso-template](https://www.npmjs.com/search?q=saso-template)
+
+
 ## 编写 `saso` 配置文件
 
 saso 的配置文件和其他开源工具一样，支持在 `package.json` 中的属性定义，也支持 rc 文件、`.json` 、`.yaml`、`.yml`、`.js`文件，如可以在项目的文件夹中使用名为 `saso.config.js` 文件配置 `saso`
