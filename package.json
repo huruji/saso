@@ -4,8 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"publish": "lerna publish",
-		"republish": "lerna publish from-git"
+		"pub": "nrm use npm && lerna publish",
+    "republish": "lerna publish from-git",
 	},
 	"keywords": [],
 	"author": "",
