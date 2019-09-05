@@ -26,7 +26,8 @@ module.exports.apply = (compiler) => {
 
     c.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin, [
       Object.assign(analyzerConfig, {
-        analyzerPort: port
+        analyzerPort: port,
+        analyzerHost: 'localhost'
       })
     ])
   })

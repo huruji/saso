@@ -17,6 +17,8 @@ module.exports = (config) => {
     .mode(config.mode)
 
   if (config.minify === 'terser') {
+    // Chain.devtool('source-map')
+
     Chain.devtool(config.prod ? 'source-map' : 'inline-source-map')
   } else {
     Chain.devtool(config.prod ? false : 'inline-source-map')
