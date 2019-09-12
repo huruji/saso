@@ -1,5 +1,7 @@
 #!/usr/bin/env node --max_old_space_size=4096
 
+require('v8-compile-cache')
+
 const program = require('commander')
 const build = require('./build')
 const cmdPlugin = require('../cmdPlugin')
@@ -32,3 +34,8 @@ if (!process.argv.slice(2).length) {
 }
 
 program.parse(process.argv)
+
+process.on('unhandledRejection', (error) => {
+  console.error(error)
+  process.exit(1)
+})
