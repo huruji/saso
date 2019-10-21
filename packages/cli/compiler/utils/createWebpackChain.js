@@ -24,6 +24,10 @@ module.exports = (config) => {
     Chain.devtool(config.prod ? false : 'inline-source-map')
   }
 
+  if (config.libraryTarget) {
+    Chain.output.libraryTarget(config.libraryTarget)
+  }
+
 
   Chain.resolve.extensions
     .add('.js')
