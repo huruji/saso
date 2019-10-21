@@ -61,7 +61,10 @@ class Compiler {
         stats: 'errors-only',
         watchContentBase: true,
         inline: true,
-        open: `http://localhost:${this.config.port}`
+        open: `http://localhost:${this.config.port}`,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
       }
       if (this.config.proxy) {
         devServerOptions.proxy = this.config.proxy
