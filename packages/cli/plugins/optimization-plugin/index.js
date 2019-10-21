@@ -8,17 +8,19 @@ module.exports.apply = (compiler) => {
     * @type {import('webpack-chain')}
     */
     const c = config
+    const sasoConfig = config.sasoConfig
 
-
-    c.optimization.splitChunks({
-      chunks: 'initial',
-      automaticNameDelimiter: '~',
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      minChunks: 1,
-      minSize: 30000,
-      name: true
-    })
+    if (sasoConfig.optimization !== false) {
+      c.optimization.splitChunks({
+        chunks: 'initial',
+        automaticNameDelimiter: '~',
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        minChunks: 1,
+        minSize: 30000,
+        name: true
+      })
+    }
 
     if (config.minify === 'terser') {
       c.optimization.minimizer('terser').use(TerserPlugin, [{
