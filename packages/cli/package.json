@@ -1,6 +1,6 @@
 {
 	"name": "saso",
-	"version": "4.1.0",
+	"version": "4.2.0",
 	"description": "Zero config bundler to help you to build fantastic APP",
 	"homepage": "https://github.com/huruji/saso#readme",
 	"main": "index.js",
