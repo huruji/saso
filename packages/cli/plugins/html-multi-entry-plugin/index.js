@@ -83,7 +83,7 @@ module.exports.apply = (compiler) => {
     */
     const c = config
     const isProd = c.toConfig().mode === 'production'
-    const { htmlMinify } = { ...c.sasoConfig }
+    const { htmlMinify, fileHash } = { ...c.sasoConfig }
 
     if (!isHtmlEntry) return
     c.entryPoints.delete(entry)
@@ -107,10 +107,10 @@ module.exports.apply = (compiler) => {
         })
       }
     }
-
+    const prodFileName = fileHash ? '[name].[hash].js' : '[name].js'
     c.output
       .path(outputDir)
-      .filename(isProd ? '[name].[hash].js' : '[name].js')
+      .filename(isProd ? prodFileName : '[name].js')
       .end()
 
     c.plugin('html-webpack-plugin').use(HtmlWebpackPlugin, [
