@@ -57,7 +57,7 @@ class Compiler {
         contentBase,
         compress: false,
         hot: true,
-        // historyApiFallback: true,
+        historyApiFallback: true,
         stats: 'errors-only',
         watchContentBase: true,
         inline: true,
@@ -151,6 +151,9 @@ class Compiler {
       },
       {
         resolve: require.resolve('../plugins/html-multi-entry-plugin')
+      },
+      {
+        resolve: require.resolve('../plugins/global-plugin')
       }
     ]
 

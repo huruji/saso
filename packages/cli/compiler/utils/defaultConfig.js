@@ -31,5 +31,8 @@ module.exports = {
   },
   publicPath: '/',
   target: 'web',
-  minify: 'terser'
+  minify: 'terser',
+  fileHash: true,
+  extraCss: true,
+  globalConfig: {}
 }
