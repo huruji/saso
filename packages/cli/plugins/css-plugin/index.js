@@ -99,13 +99,16 @@ module.exports.apply = (compiler) => {
       .use('stylus-loader')
       .loader(require.resolve('stylus-loader'))
       .end()
+    const { fileHash, extraCss } = config.sasoConfig
+    const prodFileName = fileHash ? '[name].[hash].css' : '[name].css'
+    if (extraCss) {
+      c.plugin('extra css').use(MiniCssExtractPlugin, [
+        {
+          filename: isProd ? prodFileName : '[name].css'
+        }
+      ])
 
-    c.plugin('extra css').use(MiniCssExtractPlugin, [
-      {
-        filename: isProd ? '[name].[hash].css' : '[name].css'
-      }
-    ])
-
-    c.plugin('fix style entry').use(FixStyleOnlyEntriesPlugin)
+      c.plugin('fix style entry').use(FixStyleOnlyEntriesPlugin)
+    }
   })
 }
