@@ -13,7 +13,6 @@
 
 以上的这些问题 saso 都可以一键帮你解决。
 
-
 ## `saso` 的理念
 
 `saso` 推崇入口文件为 `.html` 文件，这样更加符合早期的学习理念，也就是说最早你是怎样写 web 应用的，使用 `saso` 你就可以返回 `.html` 文件链接 `.css` 和 `.js` 文件的时代。
@@ -105,7 +104,6 @@ saso init saso-template-typescript my-project
 
 saso 官方提供了部分项目模版： 参见：[https://www.npmjs.com/search?q=saso-template](https://www.npmjs.com/search?q=saso-template)
 
-
 ## 编写 `saso` 配置文件
 
 saso 的配置文件和其他开源工具一样，支持在 `package.json` 中的属性定义，也支持 rc 文件、`.json` 、`.yaml`、`.yml`、`.js`文件，如可以在项目的文件夹中使用名为 `saso.config.js` 文件配置 `saso`
@@ -124,7 +122,6 @@ module.exports = {
 Type: `Boolean` `Object`
 
 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 的配置 `options`，默认不开启 `webpack-bundle-analyzer` 这个插件，当这个配置有值的时候，则开启。
-
 
 + **authorInfo**
 
@@ -150,7 +147,6 @@ babel: {
 
 Type: `Array`
 
-
 + **entry**
 
 Type: `String`
@@ -159,6 +155,22 @@ Type: `String`
 
 如果不指定 `entry` 时，`saso` 会依次寻找以下文件作为入口文件 `index.html`、 `src/index.html`、`index.js`、`main.js`、`src/index.js`、 `src/main.js`。
 
++ **fileHash**
+
+Type： `Boolean`
+
+Default: `true`
+
+在 production 模式下最终的文件是否需要带 hash，除非特殊需要，否则建议始终为 true
+
++ **globalConfig**
+
+Type: `Object`
+
+Default: `{}`
+
+使用 [webpack Default plugin](https://webpack.js.org/plugins/define-plugin/) 配置全局的变量，不过 saso 对这个配置做了优化，允许你传入非字符串，面对非字符串，saso 会自动使用 `JSON.stringify` 处理
+
 + **htmlMinify**
 
 Type: `Boolean` | `Object`
@@ -166,7 +178,6 @@ Type: `Boolean` | `Object`
 > 只在 `production` 模式下生效
 
 `production` 模式下对 `html` 文件的压缩处理，参考[minification](https://github.com/jantimon/html-webpack-plugin#minification)
-
 
 + **minify**
 
@@ -182,11 +193,17 @@ Type: `String`
 
 Default: `development`
 
++ **outputPath**
+
+最终输出的文件夹，允许不传入绝对路径
+
+Type: `String`
+
+Default: `dist`
 
 + **plugins**
 
 Type: `Array`
-
 
 + **polyfillService**
 
