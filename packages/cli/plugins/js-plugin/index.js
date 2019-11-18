@@ -51,8 +51,8 @@ module.exports.apply = (compiler) => {
 
     c.module
       .rule('compile ts')
-      .exclude.add(/node_modules/)
-      .end()
+      // .exclude.add(/node_modules/)
+      // .end()
       .test(/\.tsx?$/)
       .use('babel')
       .loader(require.resolve('babel-loader'))
