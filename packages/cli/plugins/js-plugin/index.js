@@ -27,11 +27,17 @@ module.exports.apply = (compiler) => {
       prodPlugins.push(require.resolve('babel-plugin-no-debugging'))
     }
 
-    c.module
+    const jsModule = c.module
       .rule('compile js')
       .exclude.add(/node_modules/)
       .end()
-      .test(/\.jsx?$/)
+    const { extraBabelIncludes } = sasoConfig
+    const jsModuleInclude = jsModule.include
+    extraBabelIncludes.forEach((include) => {
+      jsModuleInclude.add(include)
+    })
+    jsModuleInclude.end()
+    jsModule.test(/\.jsx?$/)
       .use('babel')
       .loader(require.resolve('babel-loader'))
       .options({

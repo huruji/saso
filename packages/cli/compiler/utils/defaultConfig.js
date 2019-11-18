@@ -34,5 +34,6 @@ module.exports = {
   minify: 'terser',
   fileHash: true,
   extraCss: true,
-  globalConfig: {}
+  globalConfig: {},
+  extraBabelIncludes: []
 }
