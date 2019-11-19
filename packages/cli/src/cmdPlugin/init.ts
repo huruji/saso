@@ -24,7 +24,7 @@ async function initAction(project: string, dir: string) {
   }
   const isgit = isUrl(project)
   if (isgit) {
-    const [err] = await to(
+    const [ err ] = await to(
       gitClonePromise(project, {
         dest: dir[0]
       })
@@ -41,7 +41,7 @@ async function initAction(project: string, dir: string) {
       return
     }
 
-    const [err] = await to(
+    const [ err ] = await to(
       downloadNpmPackage({
         arg: `${project}@latest`,
         dir: process.cwd()
@@ -56,7 +56,7 @@ async function initAction(project: string, dir: string) {
   logger.success('init successful, just enjoy!\n')
 }
 
-export const cli = (program: CommanderStatic) => {
+const cli = (program: CommanderStatic) => {
   program
     .usage('<commander> <usage>')
     .command('init <project> [dir...]')
@@ -64,4 +64,6 @@ export const cli = (program: CommanderStatic) => {
     .action(initAction)
 }
 
-export default {}
+export default {
+  cli
+}

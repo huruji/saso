@@ -1,7 +1,7 @@
 import { CommanderStatic } from 'commander'
 import Compiler from '../compiler/index'
 
-export const cli = (program: CommanderStatic) => {
+const cli = (program: CommanderStatic) => {
   program
     .usage('<commander> <usage>')
     .command('build')
@@ -24,4 +24,6 @@ export const cli = (program: CommanderStatic) => {
     })
 }
 
-export default {}
+export default {
+  cli
+}
