@@ -155,6 +155,12 @@ Type: `String`
 
 如果不指定 `entry` 时，`saso` 会依次寻找以下文件作为入口文件 `index.html`、 `src/index.html`、`index.js`、`main.js`、`src/index.js`、 `src/main.js`。
 
++ **extraBabelIncludes**
+
+Type: `Array`
+
+额外指定需要走 babel 的库，默认情况下 `node_modules` 下不走 babel
+
 + **fileHash**
 
 Type： `Boolean`
