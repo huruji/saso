@@ -7,10 +7,11 @@ import to from 'await-to-js'
 import downloadNpmPackage from 'download-npm-package'
 import gitClone from 'gitclone'
 import logger from 'saso-log'
+import { CmdPlugin } from '../typings/custom'
 
 const gitClonePromise = util.promisify(gitClone)
 
-async function initAction(project: string, dir: string) {
+async function initAction(project: string, dir: string): Promise<void> {
   if (!project) {
     logger.error('project name is needed')
   }
@@ -56,7 +57,7 @@ async function initAction(project: string, dir: string) {
   logger.success('init successful, just enjoy!\n')
 }
 
-const cli = (program: CommanderStatic) => {
+const cli = (program: CommanderStatic): void => {
   program
     .usage('<commander> <usage>')
     .command('init <project> [dir...]')
@@ -66,4 +67,4 @@ const cli = (program: CommanderStatic) => {
 
 export default {
   cli
-}
+} as CmdPlugin

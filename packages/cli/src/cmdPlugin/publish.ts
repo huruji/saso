@@ -1,6 +1,7 @@
 import { CommanderStatic } from 'commander'
+import { CmdPlugin } from '../typings/custom'
 
-const cli = (program: CommanderStatic) => {
+const cli = (program: CommanderStatic): void => {
   program.command('publish').description('start publish ').action(() => {
     console.log('publish')
   })
@@ -8,4 +9,4 @@ const cli = (program: CommanderStatic) => {
 
 export default {
   cli
-}
+} as CmdPlugin

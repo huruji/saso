@@ -1,7 +1,8 @@
 import { CommanderStatic } from 'commander'
 import Compiler from '../compiler/index'
+import { CmdPlugin } from '../typings/custom'
 
-const cli = (program: CommanderStatic) => {
+const cli = (program: CommanderStatic): void => {
   program
     .usage('<commander> <usage>')
     .command('build')
@@ -26,4 +27,4 @@ const cli = (program: CommanderStatic) => {
 
 export default {
   cli
-}
+} as CmdPlugin

@@ -1,13 +1,11 @@
 #!/usr/bin/env node --max_old_space_size=4096
 
-import program from 'commander'
-
 import('v8-compile-cache')
-
-const cmdPlugin = require('../cmdPlugin')
+import program from 'commander'
+import cmdPlugin from '../cmdPlugin'
 
 if (cmdPlugin.length) {
-  cmdPlugin.forEach(plugin => plugin.cli.apply(null, [program]))
+  cmdPlugin.forEach((plugin) => plugin.cli.apply(null, [ program ]))
 }
 
 if (!process.argv.slice(2).length) {
