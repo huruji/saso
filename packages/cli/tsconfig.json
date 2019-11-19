@@ -3,6 +3,11 @@
     "node_modules",
     "dist"
   ],
+  "typeRoots": [
+    "node",
+    "node_modules/@types",
+    "src/typings",
+  ],
   "compilerOptions": {
     "outDir": "./dist/",
     "rootDir": "./src",
