@@ -95,7 +95,10 @@
 		"webpack-stats-logger": "^1.0.1"
 	},
 	"devDependencies": {
+		"@types/is-url": "^1.2.28",
 		"inert-entry-webpack-plugin": "^4.0.2",
-		"progress-bar-webpack-plugin2": "^1.0.0"
+		"progress-bar-webpack-plugin2": "^1.0.0",
+		"typescript": "^3.7.2",
+		"v8-compile-cache": "^2.1.0"
 	}
 }

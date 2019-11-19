@@ -1,3 +1,4 @@
+
 const Compiler = require('../compiler/index')
 
 module.exports = async (opt) => {

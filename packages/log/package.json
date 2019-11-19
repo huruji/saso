@@ -5,13 +5,13 @@
   "author": "huruji <594613537@qq.com>",
   "homepage": "https://github.com/huruji/saso#readme",
   "license": "ISC",
-  "main": "lib/log.js",
+  "main": "dist/log.js",
   "directories": {
-    "lib": "lib",
+    "lib": "dist",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
@@ -28,5 +28,9 @@
   },
   "dependencies": {
     "cli-color": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/cli-color": "^0.3.29",
+    "typescript": "^3.7.2"
   }
 }
