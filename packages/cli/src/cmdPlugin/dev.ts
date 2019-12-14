@@ -1,6 +1,8 @@
-const Compiler = require('../compiler/index')
+import { CommanderStatic } from 'commander'
+import Compiler from '../compiler/index'
+import { CmdPlugin } from '../typings/custom'
 
-module.exports.cli = (program) => {
+const cli = (program: CommanderStatic): void => {
   program
     .usage('<commander> <usage>')
     .command('dev')
@@ -14,10 +16,14 @@ module.exports.cli = (program) => {
     .option('--port <port>')
     .option('--config <configFile>')
     .option('-a, --analyzer')
-    .action(async (opt) => {
+    .action(async (opt: SasoCliOpt) => {
       opt.watch = true
       opt.dev = true
       const wpc = new Compiler(opt)
-      await wpc.run(opt)
+      await wpc.run()
     })
 }
+
+export default {
+  cli
+} as CmdPlugin

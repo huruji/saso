@@ -1,0 +1,37 @@
+{
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "typeRoots": [
+    "node",
+    "node_modules/@types",
+    "typings",
+    "cli/typings"
+  ],
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "rootDir": "./packages",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "esnext",
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "declaration": true,
+    "lib": [
+      "es6",
+      "es7",
+      "dom",
+      "dom.iterable"
+    ]
+  },
+  "include": [
+    "packages/**/*"
+  ]
+}

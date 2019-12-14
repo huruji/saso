@@ -1,12 +1,9 @@
-const WebpackChain = require('webpack-chain')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const webpack = require('webpack')
+import WebpackChain from 'webpack-chain'
+import CleanWebpackPlugin from 'clean-webpack-plugin'
 
 const Chain = new WebpackChain()
 
-/* eslint-enable */
-module.exports = (config) => {
+const createWepbackChain = (config: SasoConfig): WebpackChain => {
   Chain.entry(config.entry)
     .add(config.entry)
     .end()
@@ -17,8 +14,6 @@ module.exports = (config) => {
     .mode(config.mode)
 
   if (config.minify === 'terser') {
-    // Chain.devtool('source-map')
-
     Chain.devtool(config.prod ? 'source-map' : 'inline-source-map')
   } else {
     Chain.devtool(config.prod ? false : 'inline-source-map')
@@ -27,7 +22,6 @@ module.exports = (config) => {
   if (config.libraryTarget) {
     Chain.output.libraryTarget(config.libraryTarget)
   }
-
 
   Chain.resolve.extensions
     .add('.js')
@@ -47,10 +41,11 @@ module.exports = (config) => {
     .add('.md')
     .add('.html')
 
-  Chain.plugin('clean dist')
-    .use(CleanWebpackPlugin)
+  Chain.plugin('clean dist').use(CleanWebpackPlugin)
 
   Chain.target(config.target)
 
   return Chain
 }
+
+export default createWepbackChain

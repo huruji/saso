@@ -1,17 +1,17 @@
-
-const isUrl = require('is-url')
-const fs = require('fs')
-const downloadNpmPackage = require('download-npm-package')
-const to = require('await-to-js').default
-const gitClone = require('gitclone')
-const path = require('path')
-const util = require('util')
-const logger = require('saso-log')
-
+import * as fs from 'fs'
+import * as path from 'path'
+import * as util from 'util'
+import { CommanderStatic } from 'commander'
+import isUrl from 'is-url'
+import to from 'await-to-js'
+import downloadNpmPackage from 'download-npm-package'
+import gitClone from 'gitclone'
+import logger from 'saso-log'
+import { CmdPlugin } from '../typings/custom'
 
 const gitClonePromise = util.promisify(gitClone)
 
-async function initAction(project, dir) {
+async function initAction(project: string, dir: string): Promise<void> {
   if (!project) {
     logger.error('project name is needed')
   }
@@ -25,9 +25,11 @@ async function initAction(project, dir) {
   }
   const isgit = isUrl(project)
   if (isgit) {
-    const [err] = await to(gitClonePromise(project, {
-      dest: dir[0]
-    }))
+    const [ err ] = await to(
+      gitClonePromise(project, {
+        dest: dir[0]
+      })
+    )
 
     if (err) {
       logger.error(err)
@@ -40,10 +42,12 @@ async function initAction(project, dir) {
       return
     }
 
-    const [err] = await to(downloadNpmPackage({
-      arg: `${project}@latest`,
-      dir: process.cwd()
-    }))
+    const [ err ] = await to(
+      downloadNpmPackage({
+        arg: `${project}@latest`,
+        dir: process.cwd()
+      })
+    )
     if (err) {
       logger.error(err)
       return
@@ -53,11 +57,14 @@ async function initAction(project, dir) {
   logger.success('init successful, just enjoy!\n')
 }
 
-
-module.exports.cli = function init(program) {
+const cli = (program: CommanderStatic): void => {
   program
     .usage('<commander> <usage>')
     .command('init <project> [dir...]')
     .description('init a saso project')
     .action(initAction)
 }
+
+export default {
+  cli
+} as CmdPlugin
