@@ -1,3 +1,16 @@
+interface AnalyzerConfig {
+  port?: number
+  analyzerMode?: 'server' | 'static' | 'disabled'
+  analyzerHost?: string
+  logLevel?: 'info' | 'warn' | 'error' | 'silent'
+}
+
+interface AuthorInfoConfig {
+  author?: string
+  email?: string
+  homepage?: string
+}
+
 interface SasoConfig {
   entry?: string
   port?: number
@@ -6,8 +19,8 @@ interface SasoConfig {
   watch?: boolean
   mode?: 'development' | 'production'
   webpackconfig?: boolean
-  analyzer?: boolean
-  authorInfo?: boolean
+  analyzer?: boolean | AnalyzerConfig
+  authorInfo?: boolean | AuthorInfoConfig
   polyfillService?: boolean | string
   proxy?: {}
   jsx?: {

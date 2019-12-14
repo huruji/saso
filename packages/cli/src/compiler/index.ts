@@ -9,9 +9,10 @@ import Hook from './Hook'
 import pick from './utils/pick'
 import getConfig from './utils/getConfig'
 import createWebpackChain from './utils/createWebpackChain'
+import { SasoCompilerConfig } from '../typings/compiler'
 
-class Compiler implements SasoCompiler {
-  config: SasoConfig & { webpackChain?: WebpackChain } & SasoCliOpt & { debug?: boolean }
+class Compiler {
+  config: SasoCompilerConfig
   hooks: Hook
   plugins: { resolve: string }[]
   mode: 'development' | 'production'
