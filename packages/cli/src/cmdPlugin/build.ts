@@ -17,7 +17,7 @@ const cli = (program: CommanderStatic): void => {
     .option('--port <port>')
     .option('-w, --watch')
     // .option('--webpack, --webpackconfig')
-    .action(async (opt) => {
+    .action(async (opt: SasoCliOpt) => {
       if (opt.port) opt.watch = true
       if (opt.config) opt.configFile = opt.config
       const wpc = new Compiler(opt)

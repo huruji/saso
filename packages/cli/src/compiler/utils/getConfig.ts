@@ -1,14 +1,14 @@
-const cosmiconfig = require('cosmiconfig')
-const assign = require('assign-deep')
-const path = require('path')
-const defaultConfig = require('./defaultConfig')
+import { cosmiconfigSync } from 'cosmiconfig'
+import * as path from 'path'
+import defaultConfig from './defaultConfig'
+import assign from 'assign-deep'
 
-module.exports = (cliConfig) => {
+export default (cliConfig): SasoConfig => {
   let config = defaultConfig
-  const explorer = cosmiconfig('saso')
+  const explorer = cosmiconfigSync('saso')
   let result
-  if (cliConfig.configFile) result = explorer.loadSync(cliConfig.configFile)
-  else result = explorer.searchSync()
+  if (cliConfig.configFile) result = explorer.load(cliConfig.configFile)
+  else result = explorer.search()
   if (result && result.config) {
     config = assign(config, result.config)
   }

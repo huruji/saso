@@ -16,11 +16,11 @@ const cli = (program: CommanderStatic): void => {
     .option('--port <port>')
     .option('--config <configFile>')
     .option('-a, --analyzer')
-    .action(async (opt) => {
+    .action(async (opt: SasoCliOpt) => {
       opt.watch = true
       opt.dev = true
       const wpc = new Compiler(opt)
-      await wpc.run(opt)
+      await wpc.run()
     })
 }
 

@@ -1,4 +1,4 @@
-module.exports = {
+const defaultConfig: SasoConfig = {
   port: 10000,
   entry: '',
   pagePath: '',
@@ -37,3 +37,5 @@ module.exports = {
   globalConfig: {},
   extraBabelIncludes: []
 }
+
+export default defaultConfig
