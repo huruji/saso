@@ -21,7 +21,7 @@
     "allowJs": false,
     "checkJs": false,
     "allowSyntheticDefaultImports": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "declaration": true,
     "lib": [
       "es6",
