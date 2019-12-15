@@ -1,4 +1,4 @@
-const cheerio = require('cheerio')
+import cheerio from 'cheerio'
 
 class ReplacePlugin {
   constructor(options) {
@@ -55,9 +55,8 @@ class ReplacePlugin {
           $(`link[href="${originUrl}"]`).remove()
         })
 
-
-        data.assets.js = jsFiles.filter(e => e)
-        data.assets.css = cssFiles.filter(e => e)
+        data.assets.js = jsFiles.filter((e) => e)
+        data.assets.css = cssFiles.filter((e) => e)
         data.html = $.html()
         return data
       })
@@ -65,4 +64,4 @@ class ReplacePlugin {
   }
 }
 
-module.exports = ReplacePlugin
+export default ReplacePlugin
