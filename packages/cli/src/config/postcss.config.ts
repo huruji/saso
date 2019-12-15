@@ -1,8 +1,8 @@
-const cosmiconfig = require('cosmiconfig')
+import { cosmiconfigSync } from 'cosmiconfig'
 
-const browserlistConfig = cosmiconfig('browserslist', {
+const browserlistConfig = cosmiconfigSync('browserslist', {
   stopDir: process.cwd()
-}).searchSync()
+}).search()
 const opts = {}
 if (!browserlistConfig) {
   opts.browsers = [
@@ -17,7 +17,7 @@ if (!browserlistConfig) {
     'last 2 iOS major versions'
   ]
 }
-module.exports = {
+export default {
   // eslint-disable-next-line
-	plugins: [require('autoprefixer')(opts), require('cssnano')]
+  plugins: [ require('autoprefixer')(opts), require('cssnano') ]
 }

@@ -172,7 +172,7 @@ class Compiler {
       /* eslint-disable */
       plugin.resolve = require(plugin.resolve)
       /* eslint-enable */
-      plugin.resolve.apply(this)
+      plugin.resolve.default.apply(this)
     })
   }
 
