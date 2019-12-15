@@ -23,6 +23,7 @@
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": false,
     "declaration": true,
+    "esModuleInterop": true,
     "lib": [
       "es6",
       "es7",
