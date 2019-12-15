@@ -5,9 +5,11 @@
   "homepage": "https://github.com/huruji/saso#readme",
   "main": "index.js",
   "bin": {
-    "saso": "bin/index.js"
+    "saso": "dist/bin/index.js"
   },
   "scripts": {
+    "build": "tsc --project .",
+    "dev": "tsc --project . -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -95,6 +97,7 @@
     "webpack-stats-logger": "^1.0.1"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.15",
     "@types/cosmiconfig": "^6.0.0",
     "@types/is-url": "^1.2.28",
     "@types/uglifyjs-webpack-plugin": "^1.1.0",
