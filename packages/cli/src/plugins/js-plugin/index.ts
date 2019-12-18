@@ -21,7 +21,8 @@ const plugin: SasoPlugin = {
         [ require.resolve('@babel/plugin-syntax-dynamic-import') ],
         [ require.resolve('@babel/plugin-syntax-import-meta') ],
         [ require.resolve('@babel/plugin-proposal-class-properties'), { loose: false } ],
-        [ require.resolve('@babel/plugin-proposal-json-strings') ]
+        [ require.resolve('@babel/plugin-proposal-json-strings') ],
+        [ require.resolve('@babel/plugin-proposal-decorators'), { legacy: true } ]
       ]
 
       const prodPlugins = [
