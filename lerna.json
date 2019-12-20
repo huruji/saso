@@ -11,7 +11,7 @@
       "ignoreChanges": [
         "*.md"
       ],
-      "": "chore(release): publish"
+      "message": "chore(release): publish"
     }
   },
   "version": "independent"
