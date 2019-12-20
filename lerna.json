@@ -1,10 +1,18 @@
 {
-	"packages": [ "packages/cli", "packages/log", "packages/template-typescript", "packages/template-mini-lib-ts", "packages/template-ts-react-lib" ],
-	"command": {
-		"publish": {
-			"ignoreChanges": [ "*.md" ],
-			"message": "chore(release): publish"
-		}
-	},
-	"version": "independent"
+  "packages": [
+    "packages/cli",
+    "packages/log",
+    "packages/template-typescript",
+    "packages/template-mini-lib-ts",
+    "packages/template-ts-react-lib"
+  ],
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md"
+      ],
+      "": "chore(release): publish"
+    }
+  },
+  "version": "independent"
 }
