@@ -1,7 +1,7 @@
 import AuthorWebpackPlugin from 'author-webpack-plugin'
 import pkgUp from 'pkg-up'
 import WebpackChain from 'webpack-chain'
-import { SasoCompiler, SasoCompilerConfig } from '../../typings/compiler'
+import { SasoCompiler, SasoCompilerConfig, SasoPlugin } from '../../typings/compiler'
 
 const plugin: SasoPlugin = {
   apply(compiler: SasoCompiler) {

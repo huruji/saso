@@ -3,10 +3,11 @@ import FixStyleOnlyEntriesPlugin from 'webpack-fix-style-only-entries'
 import { cosmiconfigSync } from 'cosmiconfig'
 import * as path from 'path'
 import { SasoPlugin } from '../../typings/compiler'
+import WebpackChain from 'webpack-chain'
 
 const plugin: SasoPlugin = {
   apply(compiler) {
-    compiler.hook('beforeCompile', (config) => {
+    compiler.hook('beforeCompile', (config: WebpackChain) => {
       /**
       * @type {import('webpack-chain')}
       */

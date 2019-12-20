@@ -2,10 +2,11 @@ import ora from 'ora'
 import chalk from 'chalk'
 import WebpackChain from 'webpack-chain'
 import { SasoPlugin } from '../../typings/compiler'
+import { Compiler } from 'webpack'
 
 class BuildInfo {
   /* eslint-disable */
-  apply(compiler) {
+  apply(compiler: Compiler) {
     compiler.hooks.done.tap('buildInfo', (stats) => {
       const durations = stats.endTime - stats.startTime
       const formatedDurations = durations >= 1000 ? `${durations / 1000} s` : `${durations} ms`

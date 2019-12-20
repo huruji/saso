@@ -3,7 +3,7 @@ import { SasoPlugin } from '../../typings/compiler'
 
 const plugin: SasoPlugin = {
   apply(compiler) {
-    compiler.hook('beforeCompileAsync', async (config) => {
+    compiler.hook('beforeCompileAsync', async (config: any) => {
       /**
       * @type {import('webpack-chain')}
       */
