@@ -6,20 +6,20 @@ const notice = clc.blue
 const success = clc.green
 
 export default {
-  success(msg: string) {
+  success(msg: string): void {
     console.log(success(msg))
   },
-  error(msg: string) {
+  error(msg: string): void {
     console.log(error(msg))
   },
-  notice(msg: string) {
+  notice(msg: string): void {
     console.log(notice(msg))
   },
 
-  warn(msg: string) {
+  warn(msg: string): void {
     console.log(warn(msg))
   },
-  statsLog(err, stats, cb = console.log) {
+  statsLog(err, stats, cb: Function = console.log): void {
     if (err) {
       throw new Error(err.message.red.bgBlack)
     }
@@ -33,7 +33,7 @@ export default {
 
     cb(`${prompt} ${message}`)
   },
-  debug(msg: string) {
+  debug(msg: string): void {
     if (global.debug) {
       console.log(notice(msg))
     }

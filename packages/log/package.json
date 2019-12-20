@@ -21,7 +21,9 @@
     "url": "git+https://github.com/huruji/saso.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "tsc --project .",
+    "dev": "tsc --project . -w"
   },
   "bugs": {
     "url": "https://github.com/huruji/saso/issues"
