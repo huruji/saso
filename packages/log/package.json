@@ -23,7 +23,8 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "build": "tsc --project .",
-    "dev": "tsc --project . -w"
+    "dev": "tsc --project . -w",
+    "prepublish": "npm run build"
   },
   "bugs": {
     "url": "https://github.com/huruji/saso/issues"
