@@ -3,17 +3,24 @@
     "node_modules",
     "dist"
   ],
+  "typeRoots": [
+    "node",
+    "node_modules/@types",
+    "src/typings",
+    "lib/typings",
+    "typings"
+  ],
   "compilerOptions": {
     "outDir": "./dist/",
     "rootDir": "./lib",
     "sourceMap": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "module": "commonjs",
     "target": "esnext",
     "noEmit": false,
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "allowJs": false,
+    "allowJs": true,
     "checkJs": false,
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": true,
@@ -26,6 +33,7 @@
     ]
   },
   "include": [
-    "lib/**/*"
+    "lib/**/*",
+    "typings"
   ]
 }

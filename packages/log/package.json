@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@types/cli-color": "^0.3.29",
+    "@types/node": "^12.12.21",
     "typescript": "^3.7.2"
   }
 }
