@@ -7,23 +7,28 @@ import logger from 'saso-log'
 import HtmlWebpackIncludeAssetsPlugin from 'html-webpack-include-assets-plugin'
 import escapeStringRegexp from 'escape-string-regexp'
 import ReplaceUrlHtmlWebpackPlugin from '../html-replace-url-plugin'
-import { SasoPlugin } from '../../typings/compiler'
+import { SasoPlugin, SasoCompilerConfig } from '../../typings/compiler'
 
 const ALI_CDN = '//polyfill.alicdn.com/polyfill.min.js'
 
+interface File {
+  src: string
+  originSrc: string
+}
+
 const plugin: SasoPlugin = {
   apply(compiler) {
-    let entry
-    let isHtmlEntry
-    let files = []
+    let entry: string
+    let isHtmlEntry: boolean
+    let files: File[] = []
     let srcFiles = []
-    let outputDir
+    let outputDir: string
     let polyfillService = false
     const tags = []
 
-    compiler.hook('afterConfigure', (config) => {
+    compiler.hook('afterConfigure', (config: SasoCompilerConfig) => {
       entry = config.entry
-      polyfillService = config.polyfillService
+      polyfillService = config.polyfillService as boolean
       outputDir = config.outputPath
 
       if ([ '.html', '.shtml', '.xhtml' ].includes(path.extname(entry))) isHtmlEntry = true
@@ -79,13 +84,13 @@ const plugin: SasoPlugin = {
       })
     })
 
-    compiler.hook('beforeCompile', (config) => {
+    compiler.hook('beforeCompile', (config: any) => {
       /**
     * @type {import('webpack-chain')}
     */
       const c = config
       const isProd = c.toConfig().mode === 'production'
-      const { htmlMinify, fileHash } = { ...c.sasoConfig }
+      const { htmlMinify, fileHash }: { htmlMinify: boolean; fileHash: boolean } = { ...c.sasoConfig }
 
       if (!isHtmlEntry) return
       c.entryPoints.delete(entry)

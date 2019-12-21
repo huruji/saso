@@ -11,6 +11,7 @@ declare module 'html-webpack-include-assets-plugin'
 declare module 'progress-bar-webpack-plugin'
 declare module 'html-webpack-plugin'
 declare module 'saso-log'
+declare module 'assign-deep'
 
 declare module 'download-npm-package' {
   interface Options {

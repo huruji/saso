@@ -1,9 +1,13 @@
 import { cosmiconfigSync } from 'cosmiconfig'
 
+interface Options {
+  browsers?: string[]
+}
+
 const browserlistConfig = cosmiconfigSync('browserslist', {
   stopDir: process.cwd()
 }).search()
-const opts = {}
+const opts: Options = {}
 if (!browserlistConfig) {
   opts.browsers = [
     '> 1%',
