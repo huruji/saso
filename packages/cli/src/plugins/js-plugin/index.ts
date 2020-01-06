@@ -1,4 +1,5 @@
 import { SasoPlugin } from '../../typings/compiler'
+import { getPkgPath, shouldTransform } from './es5ImcompatibleVersions'
 
 const plugin: SasoPlugin = {
   apply(compiler) {
@@ -10,19 +11,19 @@ const plugin: SasoPlugin = {
       const sasoConfig = config.sasoConfig
       const jsxConfig = sasoConfig.jsx
       const jsPlugins = [
-        [ require.resolve('@babel/plugin-transform-react-jsx'), jsxConfig ],
-        [ require.resolve('@babel/plugin-transform-regenerator') ],
+        [require.resolve('@babel/plugin-transform-react-jsx'), jsxConfig],
+        [require.resolve('@babel/plugin-transform-regenerator')],
         [
           require.resolve('@babel/plugin-transform-runtime'),
           {
             absoluteRuntime: require.resolve('@babel/runtime/regenerator')
           }
         ],
-        [ require.resolve('@babel/plugin-syntax-dynamic-import') ],
-        [ require.resolve('@babel/plugin-syntax-import-meta') ],
-        [ require.resolve('@babel/plugin-proposal-class-properties'), { loose: false } ],
-        [ require.resolve('@babel/plugin-proposal-json-strings') ],
-        [ require.resolve('@babel/plugin-proposal-decorators'), { legacy: true } ]
+        [require.resolve('@babel/plugin-syntax-dynamic-import')],
+        [require.resolve('@babel/plugin-syntax-import-meta')],
+        [require.resolve('@babel/plugin-proposal-class-properties'), { loose: false }],
+        [require.resolve('@babel/plugin-proposal-json-strings')],
+        [require.resolve('@babel/plugin-proposal-decorators'), { legacy: true }]
       ]
 
       const prodPlugins = [
@@ -37,7 +38,12 @@ const plugin: SasoPlugin = {
       const jsModule = c.module.rule('compile js').exclude.add(/node_modules/).end()
       const { extraBabelIncludes } = sasoConfig
       const jsModuleInclude = jsModule.include
-      extraBabelIncludes.forEach((include) => {
+      jsModuleInclude.add((m: string) => {
+        if (!m.includes('node_modules')) return false
+        const pkgPath = getPkgPath(m)
+        return shouldTransform(pkgPath)
+      })
+      extraBabelIncludes.forEach((include: string) => {
         jsModuleInclude.add(include)
       })
       jsModuleInclude.end()

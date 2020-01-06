@@ -12,6 +12,7 @@ declare module 'progress-bar-webpack-plugin'
 declare module 'html-webpack-plugin'
 declare module 'saso-log'
 declare module 'assign-deep'
+declare module 'semver'
 
 declare module 'download-npm-package' {
   interface Options {
