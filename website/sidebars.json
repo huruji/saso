@@ -1,0 +1,17 @@
+{
+  "docs": {
+    "关于 Saso": [
+      "about"
+    ],
+    "快速开始": [
+      "basic/installition",
+      "basic/start"
+    ]
+  },
+  "docs-other": {
+    "First Category": [
+      "doc4",
+      "doc5"
+    ]
+  }
+}
