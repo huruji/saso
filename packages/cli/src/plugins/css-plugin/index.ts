@@ -70,7 +70,8 @@ const plugin: SasoPlugin = {
         .loader(require.resolve('sass-loader'))
         .options({
           sourceMap: true,
-          sourceMapContents: false
+          sourceMapContents: false,
+          implementation: require('sass')
         })
         .end()
 
