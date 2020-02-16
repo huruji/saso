@@ -1,4 +1,4 @@
-import clc from 'cli-color'
+import * as clc from 'cli-color'
 
 const error = clc.red.bold
 const warn = clc.yellow
