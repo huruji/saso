@@ -11,18 +11,18 @@
 // List of projects/orgs using your project for the users page.
 const users = [
   {
-    caption: 'User1',
+    caption: 'moedan',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/image.jpg'.
-    image: '/img/undraw_open_source.svg',
-    infoLink: 'https://www.facebook.com',
+    image: '/img/moedan.png',
+    infoLink: 'https://github.com/huruji/moedan',
     pinned: true,
   },
 ];
 
 const siteConfig = {
   title: 'Saso', // Title for your website.
-  tagline: '零配置、渐进式的 web 打包工具',
+  tagline: '零配置、渐进式、基于 HTML 为入口的 web 打包工具',
   url: 'https://your-docusaurus-test-site.com', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
@@ -39,9 +39,10 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     { doc: 'about', label: 'Docs' },
-    { doc: 'doc4', label: 'API' },
-    { page: 'help', label: 'Help' },
-    { blog: true, label: 'Blog' },
+    { href: 'https://github.com/huruji/saso', label: 'GitHub'}
+    // { doc: 'doc4', label: 'API' },
+    // { page: 'help', label: 'Help' },
+    // { blog: true, label: 'Blog' },
   ],
 
   // If you have users set above, you add it here:
@@ -73,7 +74,7 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Your Name or Your Company Name`,
+  copyright: `Copyright © ${new Date().getFullYear()} huruji`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.

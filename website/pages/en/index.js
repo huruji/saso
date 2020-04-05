@@ -64,9 +64,7 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle tagline={siteConfig.tagline} title={siteConfig.title} />
           <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html')}>Example Link</Button>
-            <Button href={docUrl('doc2.html')}>Example Link 2</Button>
+            <Button href={docUrl('about.html')}>快速开始</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -150,7 +148,7 @@ class Index extends React.Component {
         {[
           {
             content: '基于 webpack，在绝大多数情况下不需要任何额外配置，就能快速开发 web 应用',
-            image: `${baseUrl}img/undraw_react.svg`,
+            image: `${baseUrl}img/undraw_deliveries_131a.svg`,
             imageAlign: 'top',
             title: '零配置',
           },
@@ -162,7 +160,7 @@ class Index extends React.Component {
           },
           {
             content: '所有配置插件化',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
+            image: `${baseUrl}img/undraw_abstract_x68e.svg`,
             imageAlign: 'top',
             title: '插件化',
           }
@@ -187,8 +185,8 @@ class Index extends React.Component {
 
       return (
         <div className="productShowcaseSection paddingBottom">
-          <h2>Who is Using This?</h2>
-          <p>This project is used by all these people</p>
+          <h2>谁在使用?</h2>
+          {/* <p>This project is used by all these people</p> */}
           <div className="logos">{showcase}</div>
           <div className="more-users">
             <a className="button" href={pageUrl('users.html')}>
@@ -205,9 +203,9 @@ class Index extends React.Component {
         <div className="mainContainer">
           <Features />
           {/* <FeatureCallout /> */}
-          <LearnHow />
+          {/* <LearnHow />
           <TryOut />
-          <Description />
+          <Description /> */}
           <Showcase />
         </div>
       </div>
