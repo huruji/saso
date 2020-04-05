@@ -27,5 +27,5 @@ Check the [documentation](https://docusaurus.io) for how to use Docusaurus.
 ```
 
 <p align="center">
-<img src="/saso/img/example.gif" alt="saso">
+<img src="/img/example.gif" alt="saso">
 </p>
