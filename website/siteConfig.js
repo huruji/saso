@@ -14,7 +14,7 @@ const users = [
     caption: 'moedan',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/image.jpg'.
-    image: '/img/moedan.png',
+    image: '/saso/img/moedan.png',
     infoLink: 'https://github.com/huruji/moedan',
     pinned: true,
   },

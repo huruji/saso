@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "零配置、渐进式的 web 打包工具",
+    "tagline": "零配置、渐进式、基于 HTML 为入口的 web 打包工具",
     "docs": {
       "about": {
         "title": "关于 saso"
@@ -47,9 +47,7 @@
     },
     "links": {
       "Docs": "Docs",
-      "API": "API",
-      "Help": "Help",
-      "Blog": "Blog"
+      "GitHub": "GitHub"
     },
     "categories": {
       "关于 Saso": "关于 Saso",
