@@ -17,6 +17,18 @@
       "basic/start": {
         "title": "使用"
       },
+      "command/build": {
+        "title": "saso build"
+      },
+      "command/dev": {
+        "title": "saso dev"
+      },
+      "command/init": {
+        "title": "saso init"
+      },
+      "config": {
+        "title": "配置项"
+      },
       "doc3": {
         "title": "This is document number 3"
       },
@@ -25,6 +37,12 @@
       },
       "doc5": {
         "title": "Fifth Document"
+      },
+      "hooks": {
+        "title": "Hooks"
+      },
+      "plugin": {
+        "title": "Plugin"
       }
     },
     "links": {
@@ -36,6 +54,10 @@
     "categories": {
       "关于 Saso": "关于 Saso",
       "快速开始": "快速开始",
+      "Saso 命令": "Saso 命令",
+      "Saso 配置项": "Saso 配置项",
+      "Hooks": "Hooks",
+      "Plugin": "Plugin",
       "First Category": "First Category"
     }
   },

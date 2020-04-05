@@ -6,6 +6,20 @@
     "快速开始": [
       "basic/installition",
       "basic/start"
+    ],
+    "Saso 命令": [
+      "command/build",
+      "command/dev",
+      "command/init"
+    ],
+    "Saso 配置项": [
+      "config"
+    ],
+    "Hooks": [
+      "hooks"
+    ],
+    "Plugin": [
+      "plugin"
     ]
   },
   "docs-other": {
