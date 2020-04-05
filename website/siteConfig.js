@@ -24,7 +24,7 @@ const siteConfig = {
   title: 'Saso', // Title for your website.
   tagline: '零配置、渐进式、基于 HTML 为入口的 web 打包工具',
   url: 'https://your-docusaurus-test-site.com', // Your website URL
-  baseUrl: '/', // Base URL for your project */
+  baseUrl: '/saso', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
