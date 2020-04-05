@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>配置项 · Saso</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="saso 的配置文件和其他开源工具一样，支持在 `package.json` 中的属性定义，也支持 rc 文件、`.json` 、`.yaml`、`.yml`、`.js`文件，如可以在项目的文件夹中使用名为 `saso.config.js` 文件配置 `saso`"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="配置项 · Saso"/><meta property="og:type" content="website"/><meta property="og:url" content="https://your-docusaurus-test-site.com/"/><meta property="og:description" content="saso 的配置文件和其他开源工具一样，支持在 `package.json` 中的属性定义，也支持 rc 文件、`.json` 、`.yaml`、`.yml`、`.js`文件，如可以在项目的文件夹中使用名为 `saso.config.js` 文件配置 `saso`"/><meta property="og:image" content="https://your-docusaurus-test-site.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://your-docusaurus-test-site.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/logo.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="Saso"/><h2 class="headerTitleWithLogo">Saso</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/about" target="_self">Docs</a></li><li class=""><a href="https://github.com/huruji/saso" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Saso 配置项</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">关于 Saso</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/about">关于 saso</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">快速开始</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/basic/installition">安装</a></li><li class="navListItem"><a class="navItem" href="/docs/basic/start">使用</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Saso 命令</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/command/build">saso build</a></li><li class="navListItem"><a class="navItem" href="/docs/command/dev">saso dev</a></li><li class="navListItem"><a class="navItem" href="/docs/command/init">saso init</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Saso 配置项</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/config">配置项</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Hooks</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/hooks">Hooks</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Plugin</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/plugin">Plugin</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">配置项</h1></header><article><div><span><p>saso 的配置文件和其他开源工具一样，支持在 <code>package.json</code> 中的属性定义，也支持 rc 文件、<code>.json</code> 、<code>.yaml</code>、<code>.yml</code>、<code>.js</code>文件，如可以在项目的文件夹中使用名为 <code>saso.config.js</code> 文件配置 <code>saso</code></p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">watch</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">port</span>: <span class="hljs-number">9000</span>
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="saso-的配置项"></a><a href="#saso-的配置项" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>saso</code> 的配置项</h3>
+<ul>
+<li><strong>analyzer</strong></li>
+</ul>
+<p>Type: <code>Boolean</code> <code>Object</code></p>
+<p><a href="https://github.com/webpack-contrib/webpack-bundle-analyzer">webpack-bundle-analyzer</a> 的配置 <code>options</code>，默认不开启 <code>webpack-bundle-analyzer</code> 这个插件，当这个配置有值的时候，则开启。</p>
+<ul>
+<li><strong>authorInfo</strong></li>
+</ul>
+<p>Type: <code>Boolean</code> <code>Object</code></p>
+<p><a href="https://github.com/huruji/author-webpack-plugin">author-webpack-plugin</a> 的配置<code>options</code>，如果为 <code>Boolean</code> 值 <code>true</code> 则从最近的 <code>package.json</code> 中获取作者信息，如果为 <code>Boolean</code> 值 <code>false</code> 则不使用 <a href="https://github.com/huruji/author-webpack-plugin">author-webpack-plugin</a> 插件。</p>
+<ul>
+<li><strong>babel</strong></li>
+</ul>
+<p>Type: <code>Object</code></p>
+<p>目前只有以下选项，用来在 <code>production</code> 模式下禁用 <a href="https://github.com/huruji/babel-plugin-no-debugging">babel-plugin-no-debugging</a> 插件</p>
+<pre><code class="hljs css language-js">babel: {
+  <span class="hljs-attr">pluginProd</span>: {
+    <span class="hljs-string">'no-debugging'</span>: <span class="hljs-literal">false</span>
+  }
+}
+</code></pre>
+<ul>
+<li><strong>cliPlugins</strong></li>
+</ul>
+<p>Type: <code>Array</code></p>
+<ul>
+<li><strong>entry</strong></li>
+</ul>
+<p>Type: <code>String</code></p>
+<p>项目的入口文件，可以是 <code>.js</code> 、<code>.html</code> 文件，当入口是 <code>.html</code> 文件的时候，<code>saso</code> 会解析这个 <code>.html</code> 文件依赖的文件，因此推荐使用这种方式，这也更加符合前端开发者的思维。</p>
+<p>如果不指定 <code>entry</code> 时，<code>saso</code> 会依次寻找以下文件作为入口文件 <code>index.html</code>、 <code>src/index.html</code>、<code>index.js</code>、<code>main.js</code>、<code>src/index.js</code>、 <code>src/main.js</code>。</p>
+<ul>
+<li><strong>extraBabelIncludes</strong></li>
+</ul>
+<p>Type: <code>Array</code></p>
+<p>额外指定需要走 babel 的库，默认情况下 <code>node_modules</code> 下不走 babel</p>
+<ul>
+<li><strong>fileHash</strong></li>
+</ul>
+<p>Type： <code>Boolean</code></p>
+<p>Default: <code>true</code></p>
+<p>在 production 模式下最终的文件是否需要带 hash，除非特殊需要，否则建议始终为 true</p>
+<ul>
+<li><strong>globalConfig</strong></li>
+</ul>
+<p>Type: <code>Object</code></p>
+<p>Default: <code>{}</code></p>
+<p>使用 <a href="https://webpack.js.org/plugins/define-plugin/">webpack Default plugin</a> 配置全局的变量，不过 saso 对这个配置做了优化，允许你传入非字符串，面对非字符串，saso 会自动使用 <code>JSON.stringify</code> 处理</p>
+<ul>
+<li><strong>htmlMinify</strong></li>
+</ul>
+<p>Type: <code>Boolean</code> | <code>Object</code></p>
+<blockquote>
+<p>只在 <code>production</code> 模式下生效</p>
+</blockquote>
+<p><code>production</code> 模式下对 <code>html</code> 文件的压缩处理，参考<a href="https://github.com/jantimon/html-webpack-plugin#minification">minification</a></p>
+<ul>
+<li><strong>minify</strong></li>
+</ul>
+<p>Type: <code>terser</code> | <code>uglify</code></p>
+<p>default: <code>terser</code></p>
+<p>使用 <a href="https://github.com/mishoo/UglifyJS2">Uglifyjs</a> 或者 <a href="https://github.com/terser-js/terser">Terser</a> 对 js 进行压缩，默认使用 terser 并开启多线程压缩。</p>
+<ul>
+<li><strong>mode</strong></li>
+</ul>
+<p>Type: <code>String</code></p>
+<p>Default: <code>development</code></p>
+<ul>
+<li><strong>outputPath</strong></li>
+</ul>
+<p>最终输出的文件夹，允许不传入绝对路径</p>
+<p>Type: <code>String</code></p>
+<p>Default: <code>dist</code></p>
+<ul>
+<li><strong>plugins</strong></li>
+</ul>
+<p>Type: <code>Array</code></p>
+<ul>
+<li><strong>polyfillService</strong></li>
+</ul>
+<p>Type: <code>Boolean</code> <code>String</code></p>
+<p>Default: <code>false</code></p>
+<p><a href="https://github.com/Financial-Times/polyfill-service">polyfill-service</a> 的链接，当为 <code>Boolean</code> 值 true 的时候，默认使用国内阿里的CDN <code>//polyfill.alicdn.com/polyfill.min.js</code> 。</p>
+<ul>
+<li><strong>port</strong></li>
+</ul>
+<p>Type: <code>Number</code></p>
+<p>Default: <code>10000</code></p>
+<ul>
+<li><strong>publicPath</strong></li>
+</ul>
+<p>Type: <code>String</code>,</p>
+<p>Default: <code>/</code></p>
+<p>webpack 的 <a href="https://webpack.js.org/guides/public-path/"><code>publicPath</code> 配置</a></p>
+<ul>
+<li><strong>target</strong></li>
+</ul>
+<p>Type: <code>async-node</code> <code>electron-main</code> <code>electron-renderer</code> <code>electron-preload</code> <code>node</code> <code>node-webkit</code> <code>web</code> <code>webworker</code></p>
+<p>Default: <code>web</code></p>
+<p>webpack 的 <a href="https://webpack.js.org/configuration/target/">target</a> 选项，配置编译后的运行平台。</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/command/init"><span class="arrow-prev">← </span><span>saso init</span></a><a class="docs-next button" href="/docs/hooks"><span>Hooks</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"></section><section class="copyright">Copyright © 2020 huruji</section></footer></div></body></html>
