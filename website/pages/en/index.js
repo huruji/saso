@@ -153,7 +153,7 @@ class Index extends React.Component {
             title: '零配置',
           },
           {
-            content: '倡导以 html 文件为打包入口，更加符合早期 web 开发者的学习理念',
+            content: '倡导以 html 文件为打包入口，更加符合早期 web 开发者的学习理念，通过 script 连接 .js、.jsx、.ts、.tsx、.json等文件，通过 link 连接 .css、.less、.scss、.stylus 文件',
             image: `${baseUrl}img/undraw_operating_system.svg`,
             imageAlign: 'top',
             title: '初学者友好',
