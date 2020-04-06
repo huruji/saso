@@ -147,7 +147,7 @@ class Index extends React.Component {
       <Block layout="fourColumn">
         {[
           {
-            content: '基于 webpack，在绝大多数情况下不需要任何额外配置，就能快速开发 web 应用',
+            content: '基于 webpack，在绝大多数情况下不需要任何额外配置，甚至不需要配置文件，就能快速开发 web 应用',
             image: `${baseUrl}img/undraw_deliveries_131a.svg`,
             imageAlign: 'top',
             title: '零配置',
@@ -159,11 +159,18 @@ class Index extends React.Component {
             title: '初学者友好',
           },
           {
-            content: '所有配置插件化',
+            content: '所有配置插件化，所有插件基于 Hooks',
             image: `${baseUrl}img/undraw_abstract_x68e.svg`,
             imageAlign: 'top',
             title: '插件化',
-          }
+          },
+          {
+            content: '内置 polyfill service、es5 imcompatible，兼顾性能与兼容性，你的应用跑在老旧设备完全不是问题',
+            image: `${baseUrl}img/undraw_abstract_x68e.svg`,
+            imageAlign: 'top',
+            height: '60px',
+            title: '性能、兼容性并存',
+          },
         ]}
       </Block>
     );
