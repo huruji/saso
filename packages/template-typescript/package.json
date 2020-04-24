@@ -1,6 +1,6 @@
 {
   "name": "saso-template-typescript",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "saso template for typescript",
   "main": "index.js",
   "scripts": {
