@@ -1,6 +1,6 @@
 {
 		"name": "saso-template-ts-react-lib",
-		"version": "2.0.1",
+		"version": "2.0.2",
 		"description": "saso template for develop react component",
 		"main": "dist/index.js",
 		"umd:main": "dist/index.umd.js",
