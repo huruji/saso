@@ -22,5 +22,6 @@
     "eslint-plugin-standard": "^4.0.0",
     "prettier": "^1.17.0",
     "typescript": "^3.4.1"
-  }
+  },
+  "gitHead": "0cca7a091940e4b29cd30a227c3f857f63b00626"
 }

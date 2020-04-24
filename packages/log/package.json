@@ -36,5 +36,6 @@
     "@types/cli-color": "^0.3.29",
     "@types/node": "^12.12.21",
     "typescript": "^3.7.2"
-  }
+  },
+  "gitHead": "0cca7a091940e4b29cd30a227c3f857f63b00626"
 }

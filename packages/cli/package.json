@@ -10,8 +10,7 @@
   "scripts": {
     "build": "tsc --project .",
     "dev": "tsc --project . -w",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "npm run build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -112,5 +111,6 @@
     "progress-bar-webpack-plugin2": "^1.0.0",
     "typescript": "^3.7.2",
     "v8-compile-cache": "^2.1.0"
-  }
+  },
+  "gitHead": "0cca7a091940e4b29cd30a227c3f857f63b00626"
 }

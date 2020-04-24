@@ -46,5 +46,6 @@
 	"dependencies": {
 		"@types/jquery": "^3.3.29",
 		"@types/scroll-to-element": "^2.0.0"
-	}
+	},
+	"gitHead": "0cca7a091940e4b29cd30a227c3f857f63b00626"
 }
