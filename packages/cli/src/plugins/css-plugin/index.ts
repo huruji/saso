@@ -12,6 +12,7 @@ const plugin: SasoPlugin = {
       * @type {import('webpack-chain')}
       */
       const c = config
+      const { cssmodule } = c.sasoConfig
       const isProd = c.toConfig().mode === 'production'
       const postcssConfig = cosmiconfigSync('postcss', {
         stopDir: process.cwd()
@@ -40,14 +41,41 @@ const plugin: SasoPlugin = {
         stylusRule.use('stylus-mini-css').loader(MiniCssExtractPlugin.loader)
       }
 
-      // set css-loader
-      cssRule.use('css-loader').loader(require.resolve('css-loader'))
-      sassRule.use('css-loader').loader(require.resolve('css-loader')).options({
-        sourceMap: true,
-        importLoaders: 1
-      })
-      lessRule.use('css-loader').loader(require.resolve('css-loader'))
-      stylusRule.use('css-loader').loader(require.resolve('css-loader'))
+      if (cssmodule) {
+        cssRule.use('typings-for-css-modules-loader').loader(require.resolve('typings-for-css-modules-loader')).options({
+          modules: true,
+          namedExport: true,
+          camelCase: true,
+          localIdentName: '[local]--[hash:base64:5]',
+        })
+        sassRule.use('typings-for-css-modules-loader').loader(require.resolve('typings-for-css-modules-loader')).options({
+          modules: true,
+          namedExport: true,
+          camelCase: true,
+          localIdentName: '[local]--[hash:base64:5]',
+        })
+        lessRule.use('typings-for-css-modules-loader').loader(require.resolve('typings-for-css-modules-loader')).options({
+          modules: true,
+          namedExport: true,
+          camelCase: true,
+          localIdentName: '[local]--[hash:base64:5]',
+        })
+        stylusRule.use('typings-for-css-modules-loader').loader(require.resolve('typings-for-css-modules-loader')).options({
+          modules: true,
+          namedExport: true,
+          camelCase: true,
+          localIdentName: '[local]--[hash:base64:5]',
+        })
+      } else {
+        // set css-loader
+        cssRule.use('css-loader').loader(require.resolve('css-loader'))
+        sassRule.use('css-loader').loader(require.resolve('css-loader')).options({
+          sourceMap: true,
+          importLoaders: 1
+        })
+        lessRule.use('css-loader').loader(require.resolve('css-loader'))
+        stylusRule.use('css-loader').loader(require.resolve('css-loader'))
+      }
 
       // set postcss
       cssRule.use('css-postcss-loader').loader(require.resolve('postcss-loader')).options(postcssOptions)
