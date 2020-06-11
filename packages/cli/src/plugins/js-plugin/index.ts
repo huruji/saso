@@ -1,5 +1,6 @@
-import { SasoPlugin } from '../../typings/compiler'
 import { getPkgPath, shouldTransform } from './es5ImcompatibleVersions'
+
+import { SasoPlugin } from '../../typings/compiler'
 
 const plugin: SasoPlugin = {
   apply(compiler) {
@@ -23,6 +24,14 @@ const plugin: SasoPlugin = {
         [require.resolve('@babel/plugin-syntax-import-meta')],
         [require.resolve('@babel/plugin-proposal-class-properties'), { loose: false }],
         [require.resolve('@babel/plugin-proposal-json-strings')],
+        [require.resolve('@babel/plugin-proposal-export-default-from')],
+        // es 2020
+        [require.resolve('@babel/plugin-proposal-nullish-coalescing-operator')],
+        [require.resolve('@babel/plugin-proposal-optional-chaining')],
+        [
+          require.resolve('@babel/plugin-proposal-private-methods'), { loose: true },
+        ],
+        [require.resolve('@babel/plugin-syntax-bigint')],
         [require.resolve('@babel/plugin-proposal-decorators'), { legacy: true }]
       ]
 
