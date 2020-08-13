@@ -29,7 +29,7 @@ const plugin: SasoPlugin = {
         [require.resolve('@babel/plugin-proposal-nullish-coalescing-operator')],
         [require.resolve('@babel/plugin-proposal-optional-chaining')],
         [
-          require.resolve('@babel/plugin-proposal-private-methods'), { loose: true },
+          require.resolve('@babel/plugin-proposal-private-methods'), { loose: false },
         ],
         [require.resolve('@babel/plugin-syntax-bigint')],
         [require.resolve('@babel/plugin-proposal-decorators'), { legacy: true }]
@@ -85,6 +85,13 @@ const plugin: SasoPlugin = {
         .options({
           presets: [
             [
+              require.resolve('@babel/preset-env'),
+              {
+                useBuiltIns: false,
+                modules: false
+              }
+            ],
+            [
               require.resolve('@babel/preset-typescript'),
               {
                 isTSX: true,
@@ -92,13 +99,6 @@ const plugin: SasoPlugin = {
                 jsxPragma: jsxConfig.pragma.split('.')[0]
               }
             ],
-            [
-              require.resolve('@babel/preset-env'),
-              {
-                useBuiltIns: false,
-                modules: false
-              }
-            ]
           ],
           plugins: sasoConfig.mode === 'development' ? jsPlugins : jsPlugins.concat(prodPlugins),
           cacheDirectory: true
