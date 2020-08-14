@@ -19,9 +19,9 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "lib": [
-      "es6",
-      "es7",
-      "dom"
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
     "types": []
   },

@@ -8,7 +8,7 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "es6",
-    "target": "esnext",
+    "target": "es5",
     "noEmit": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
@@ -17,9 +17,9 @@
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": true,
     "lib": [
-      "es6",
-      "es7",
-      "dom"
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
   },
   "include": [

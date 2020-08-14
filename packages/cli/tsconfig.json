@@ -14,7 +14,7 @@
     "sourceMap": true,
     "noImplicitAny": false,
     "module": "commonjs",
-    "target": "esnext",
+    "target": "es5",
     "noEmit": false,
     "resolveJsonModule": true,
     "moduleResolution": "node",
@@ -25,8 +25,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "lib": [
-      "es6",
-      "es7",
+      "ESNext",
       "dom",
       "dom.iterable"
     ]
