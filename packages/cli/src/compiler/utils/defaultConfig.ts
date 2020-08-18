@@ -1,4 +1,5 @@
 const defaultConfig: SasoConfig = {
+  typescriptCompiler: 'babel',
   port: 10000,
   entry: '',
   pagePath: '',

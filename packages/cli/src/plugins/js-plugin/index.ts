@@ -5,11 +5,9 @@ import { SasoPlugin } from '../../typings/compiler'
 const plugin: SasoPlugin = {
   apply(compiler) {
     compiler.hook('beforeCompile', (config: any) => {
-      /**
-      * @type {import('webpack-chain')}
-      */
-      const c = config
+      const c: import('webpack-chain') = config
       const sasoConfig = config.sasoConfig
+      const { typescriptCompiler } = sasoConfig
       const jsxConfig = sasoConfig.jsx
       const jsPlugins = [
         [require.resolve('@babel/plugin-transform-react-jsx'), jsxConfig],
@@ -74,8 +72,33 @@ const plugin: SasoPlugin = {
           cacheDirectory: true
         })
         .end()
-
-      c.module
+      if (typescriptCompiler === 'typescript') {
+        c.module
+        .rule('compile ts')
+        // .exclude.add(/node_modules/)
+        // .end()
+        .test(/\.tsx?$/)
+        .use('babel')
+        .loader(require.resolve('babel-loader'))
+        .options({
+          presets: [
+            [
+              require.resolve('@babel/preset-env'),
+              {
+                useBuiltIns: false,
+                modules: false
+              }
+            ],
+          ],
+          plugins: sasoConfig.mode === 'development' ? jsPlugins : jsPlugins.concat(prodPlugins),
+          cacheDirectory: true
+        })
+        .end()
+        .use('ts-loader')
+        .loader(require.resolve('ts-loader'))
+        .end()
+      } else {
+        c.module
         .rule('compile ts')
         // .exclude.add(/node_modules/)
         // .end()
@@ -104,6 +127,7 @@ const plugin: SasoPlugin = {
           cacheDirectory: true
         })
         .end()
+      }
     })
   }
 }

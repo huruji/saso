@@ -12,6 +12,7 @@ interface AuthorInfoConfig {
 }
 
 interface SasoConfig {
+  typescriptCompiler: 'typescript' | 'babel'
   entry?: string
   port?: number
   pagePath?: string
