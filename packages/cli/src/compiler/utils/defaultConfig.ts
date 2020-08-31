@@ -36,7 +36,8 @@ const defaultConfig: SasoConfig = {
   fileHash: true,
   extraCss: true,
   globalConfig: {},
-  extraBabelIncludes: []
+  extraBabelIncludes: [],
+  cssmodule: true
 }
 
 export default defaultConfig

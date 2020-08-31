@@ -1,11 +1,11 @@
+import * as path from 'path'
+
 import FixStyleOnlyEntriesPlugin from 'webpack-fix-style-only-entries'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { SasoPlugin } from '../../typings/compiler'
 import WebpackChain from 'webpack-chain'
-import cssRule from './css'
-import lessRule from './less'
+import { cosmiconfigSync } from 'cosmiconfig'
 import sassRule from './sass'
-import stylusRule from './styl'
 
 const plugin: SasoPlugin = {
   apply(compiler) {
@@ -15,9 +15,6 @@ const plugin: SasoPlugin = {
       */
       const isProd = config.toConfig().mode === 'production'
       sassRule(config)
-      lessRule(config)
-      stylusRule(config)
-      cssRule(config)
       const { fileHash, extraCss } = config.sasoConfig
       const prodFileName = fileHash ? '[name].[hash].css' : '[name].css'
       if (extraCss) {

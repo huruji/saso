@@ -57,4 +57,5 @@ interface SasoConfig {
   prod?: boolean
 
   libraryTarget?: string
+  cssmodule?: boolean
 }
