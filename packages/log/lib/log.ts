@@ -4,7 +4,7 @@ const error = clc.red.bold
 const warn = clc.yellow
 const notice = clc.blue
 const success = clc.green
-
+// console.log('saso-log')
 export default {
   success(msg: string): void {
     console.log(success(msg))
