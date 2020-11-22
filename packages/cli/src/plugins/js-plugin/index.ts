@@ -72,6 +72,9 @@ const plugin: SasoPlugin = {
           cacheDirectory: true
         })
         .end()
+        console.log('typescriptCompiler')
+        console.log(typescriptCompiler)
+
       if (typescriptCompiler === 'typescript') {
         c.module
         .rule('compile ts')

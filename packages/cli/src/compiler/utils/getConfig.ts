@@ -1,7 +1,8 @@
-import { cosmiconfigSync } from 'cosmiconfig'
 import * as path from 'path'
-import defaultConfig from './defaultConfig'
+
 import assign from 'assign-deep'
+import { cosmiconfigSync } from 'cosmiconfig'
+import defaultConfig from './defaultConfig'
 
 export default (cliConfig): SasoConfig => {
   let config = defaultConfig
@@ -9,6 +10,8 @@ export default (cliConfig): SasoConfig => {
   let result
   if (cliConfig.configFile) result = explorer.load(cliConfig.configFile)
   else result = explorer.search()
+  console.log('result')
+  console.log(result)
   if (result && result.config) {
     config = assign(config, result.config)
   }

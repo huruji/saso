@@ -1,0 +1,31 @@
+{
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationDir": "./dist/",
+    "moduleResolution": "node",
+    "allowJs": false,
+    "checkJs": false,
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "types": []
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

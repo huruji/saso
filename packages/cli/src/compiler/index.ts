@@ -1,15 +1,16 @@
-import WebpackChain from 'webpack-chain'
 import * as fs from 'fs'
 import * as path from 'path'
-import webpack from 'webpack'
-import WebpackDevServer from 'webpack-dev-server'
-import logger from 'saso-log'
-import portfinder from 'portfinder'
+
 import Hook from './Hook'
-import pick from './utils/pick'
-import getConfig from './utils/getConfig'
-import createWebpackChain from './utils/createWebpackChain'
 import { SasoCompilerConfig } from '../typings/compiler'
+import WebpackChain from 'webpack-chain'
+import WebpackDevServer from 'webpack-dev-server'
+import createWebpackChain from './utils/createWebpackChain'
+import getConfig from './utils/getConfig'
+import logger from 'saso-log'
+import pick from './utils/pick'
+import portfinder from 'portfinder'
+import webpack from 'webpack'
 
 class Compiler {
   config: SasoCompilerConfig
@@ -132,7 +133,7 @@ class Compiler {
         resolve: require.resolve('../plugins/vue-plugin')
       },
       {
-        resolve: require.resolve('../plugins/css-plugin')
+        resolve: require.resolve('../plugins/css-plugin/index2')
       },
       {
         resolve: require.resolve('../plugins/img-plugin')
@@ -210,7 +211,7 @@ class Compiler {
 
   handleCliOpts(opt: SasoCliOpt): void {
     this.config = {}
-    const cliOpts = [ 'analyzer', 'clear', 'configFile', 'debug', 'dev', 'entry', 'port', 'prod', 'watch', 'minify' ]
+    const cliOpts = [ 'analyzer', 'clear', 'configFile', 'debug', 'dev', 'entry', 'port', 'prod', 'watch', 'minify', 'typescriptCompiler' ]
     // eslint-disable-next-line prefer-spread
     const results = pick.apply(null, [ opt ].concat(cliOpts))
     Object.assign(this.config, results)
