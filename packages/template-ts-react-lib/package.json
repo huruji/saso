@@ -36,7 +36,7 @@
 				"eslint-plugin-standard": "^4.0.0",
 				"husky": "^3.0.0",
 				"lint-staged": "^9.2.0",
-				"postcss": "^7.0.17",
+				"postcss": "^8.2.10",
 				"rollup": "^1.16.6",
 				"rollup-plugin-postcss": "^2.0.3",
 				"rollup-plugin-typescript": "^1.0.1",
